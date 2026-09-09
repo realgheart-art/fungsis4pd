@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agihan Tugas S4PD — JPN Kedah</title>
+<meta name="description" content="Dashboard interaktif agihan tugas pegawai Sektor Perancangan & Pengurusan PPD, JPN Kedah.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --navy:#0F2942; --navy-70:#3a5169; --brass:#B8860B; --brass-soft:#e7d4a1;
+  --paper:#F5F6F8; --surface:#ffffff; --line:#e4e7ec; --line-strong:#cfd4dc;
+  --ink:#111a24; --muted:#5b6673; --teal:#2f6f6f; --teal-soft:#dcebe9;
+  --danger:#a13232; --ok:#2f7a4d;
+  --shadow:0 1px 2px rgba(15,41,66,.06), 0 8px 24px rgba(15,41,66,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.5;}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em;margin:0}
+button{font-family:inherit;cursor:pointer}
+a{color:var(--navy)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* Masthead */
+.masthead{background:var(--navy);color:#eaf0f6;border-bottom:3px solid var(--brass)}
+.masthead .wrap{padding:18px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.crest{width:44px;height:44px;flex:0 0 auto;border:1.5px solid var(--brass);border-radius:50%;
+  display:grid;place-items:center;font-family:'Fraunces';font-weight:700;color:var(--brass);font-size:19px}
+.mh-txt h1{font-size:22px;color:#fff;line-height:1.15}
+.mh-txt p{margin:2px 0 0;font-size:12.5px;color:#a9bccf;letter-spacing:.02em}
+.mh-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid transparent;border-radius:8px;padding:8px 13px;font-size:13.5px;font-weight:600;
+  background:var(--surface);color:var(--navy);display:inline-flex;align-items:center;gap:7px;transition:.15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:#dbe6f1;border-color:#33506c}
+.btn.ghost:hover{background:#183651}
+.btn.brass{background:var(--brass);color:#231a00;border-color:var(--brass)}
+.btn.brass:hover{background:#c8961d}
+.btn.sm{padding:5px 10px;font-size:12.5px}
+.btn.icon{padding:6px 9px}
+.dropwrap{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 6px);background:#fff;border:1px solid var(--line);
+  border-radius:10px;box-shadow:var(--shadow);min-width:230px;padding:6px;z-index:40;display:none}
+.menu.open{display:block}
+.menu button{display:block;width:100%;text-align:left;background:none;border:0;padding:9px 11px;border-radius:7px;
+  font-size:13.5px;color:var(--ink)}
+.menu button:hover{background:var(--paper)}
+.menu .mlabel{font-size:11px;color:var(--muted);padding:8px 11px 3px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+/* Tabs */
+.tabbar{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:none;padding:14px 15px 12px;font-size:14px;font-weight:600;color:var(--muted);
+  border-bottom:2.5px solid transparent;white-space:nowrap}
+.tab:hover{color:var(--navy)}
+.tab.active{color:var(--navy);border-bottom-color:var(--brass)}
+
+main{padding:26px 0 70px}
+.pane{display:none;animation:fade .25s ease}
+.pane.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pane{animation:none}.btn:hover{transform:none}}
+
+.pane-head{margin-bottom:18px}
+.pane-head h2{font-size:24px;color:var(--navy)}
+.pane-head p{margin:4px 0 0;color:var(--muted);font-size:13.5px;max-width:70ch}
+
+/* Stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 16px}
+.stat .n{font-family:'Fraunces';font-weight:700;font-size:30px;color:var(--navy);line-height:1}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:5px}
+.stat.accent{border-top:3px solid var(--brass)}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* Officer cards (Ringkasan) */
+.ocard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.ocard-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ocard .bil{font-family:'Fraunces';font-weight:700;color:var(--brass);font-size:18px;min-width:24px}
+.ocard .nm{font-family:'Fraunces';font-weight:600;font-size:17px;color:var(--navy)}
+.ocard .role{font-size:12px;color:var(--muted);margin-left:auto}
+.bar{height:12px;border-radius:6px;background:var(--paper);display:flex;overflow:hidden;margin-top:12px;border:1px solid var(--line)}
+.bar .seg-teras{background:var(--brass)}
+.bar .seg-pelapis{background:var(--teal)}
+.legend{display:flex;gap:16px;margin-top:9px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.dot.teras{background:var(--brass)} .dot.pelapis{background:var(--teal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.chip{font-size:11.5px;padding:3px 9px;border-radius:20px;border:1px solid var(--line-strong);color:var(--muted);background:var(--paper)}
+.chip b{color:var(--navy);font-weight:600}
+
+/* Matrix */
+.matrix-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table.matrix{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+table.matrix th,table.matrix td{border:1px solid var(--line);padding:9px 8px;text-align:center}
+table.matrix thead th{background:var(--navy);color:#eaf0f6;font-weight:600;font-size:12px;position:sticky;top:0}
+table.matrix tbody th{text-align:left;background:var(--paper);font-weight:600;color:var(--navy);position:sticky;left:0;min-width:210px;font-size:12.5px}
+table.matrix tbody th .bil{color:var(--brass);font-family:'Fraunces';font-weight:700;margin-right:6px}
+.mk{font-size:15px;line-height:1}
+.mk.owner{color:var(--brass)} .mk.pelapis{color:var(--teal)}
+td.self{background:#fbf6e9}
+.matrix-key{display:flex;gap:20px;margin-top:12px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.matrix-key span{display:inline-flex;align-items:center;gap:6px}
+
+/* Ikut Pegawai */
+.picker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+select,input[type=text],textarea{font-family:inherit;font-size:14px;border:1px solid var(--line-strong);
+  border-radius:8px;padding:9px 11px;background:#fff;color:var(--ink)}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--brass);outline-offset:1px;border-color:var(--brass)}
+.tasklist{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.grp-head{background:var(--paper);border-bottom:1px solid var(--line);border-top:1px solid var(--line);
+  padding:10px 16px;font-size:12.5px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:9px}
+.grp-head:first-child{border-top:0}
+.grp-head .tagpill{font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px}
+.tagpill.teras{background:var(--brass);color:#231a00}
+.tagpill.pelapis{background:var(--teal-soft);color:var(--teal);border:1px solid #bcdad6}
+.trow{display:flex;gap:12px;padding:11px 16px;border-bottom:1px solid var(--line);align-items:flex-start}
+.trow:last-child{border-bottom:0}
+.trow .idx{color:var(--brass);font-weight:700;font-size:13px;min-width:20px;font-variant-numeric:tabular-nums}
+.trow .txt{flex:1;font-size:14px;line-height:1.45}
+.trow .rowedit{display:flex;gap:8px;flex:1;flex-wrap:wrap}
+.trow textarea{flex:1;min-width:200px;min-height:44px;resize:vertical}
+.emptystate{padding:40px 20px;text-align:center;color:var(--muted)}
+.emptystate b{color:var(--navy);font-family:'Fraunces'}
+
+/* Reverse lookup */
+.searchbox{position:relative;margin-bottom:16px}
+.searchbox input{width:100%;padding-left:38px}
+.searchbox svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.tq{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:9px;overflow:hidden}
+.tq-q{padding:12px 15px;font-size:14px;font-weight:500;display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.tq-q:hover{background:var(--paper)}
+.tq-q .caret{margin-left:auto;color:var(--muted);transition:.2s;flex:0 0 auto}
+.tq.open .caret{transform:rotate(90deg)}
+.tq-a{display:none;padding:0 15px 14px;border-top:1px solid var(--line)}
+.tq.open .tq-a{display:block}
+.holder{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.holder:last-child{border-bottom:0}
+.holder .rolepill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;flex:0 0 auto}
+.rolepill.teras{background:var(--brass);color:#231a00}
+.rolepill.pelapis{background:var(--teal-soft);color:var(--teal);border:1px solid #bcdad6}
+.holder .hn{font-size:13.5px}
+.holder .hn small{color:var(--muted)}
+
+/* Struktur */
+.hier-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:26px}
+table.hier{border-collapse:collapse;width:100%;min-width:820px;font-size:12.5px}
+table.hier th,table.hier td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;text-align:left}
+table.hier thead th{background:var(--navy);color:#eaf0f6;font-weight:600;font-size:11.5px;letter-spacing:.02em}
+table.hier td.role{background:var(--paper);font-weight:600;color:var(--navy);white-space:nowrap}
+table.hier td.task{color:var(--ink)}
+.units{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.units{grid-template-columns:1fr}}
+.unit{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.unit h3{padding:13px 16px;font-size:15px;color:#fff;background:var(--navy);border-bottom:3px solid var(--brass)}
+.unit.pemb h3{background:var(--teal)}
+.unit ul{list-style:none;margin:0;padding:6px 0}
+.unit li{padding:8px 16px;font-size:13px;border-bottom:1px solid var(--line);display:flex;gap:9px}
+.unit li:last-child{border-bottom:0}
+.unit li::before{content:'';flex:0 0 6px;height:6px;border-radius:50%;background:var(--brass);margin-top:7px}
+.unit.pemb li::before{background:var(--teal)}
+
+/* editing toolbar */
+.editbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.editbar .spacer{flex:1}
+.savepill{font-size:12px;color:var(--ok);display:inline-flex;align-items:center;gap:6px}
+.notice{background:#fff8e8;border:1px solid var(--brass-soft);border-radius:10px;padding:12px 15px;
+  font-size:13px;color:#6a5310;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start}
+.notice svg{flex:0 0 auto;color:var(--brass);margin-top:1px}
+.foot{color:var(--muted);font-size:12px;text-align:center;padding:24px 0 8px;border-top:1px solid var(--line);margin-top:30px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;
+  padding:11px 20px;border-radius:10px;font-size:13.5px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* carta alir */
+.carta-btn{flex:0 0 auto;border:1px solid var(--line-strong);background:#fff;border-radius:7px;width:30px;height:30px;display:grid;place-items:center;color:var(--muted);opacity:.5;transition:.15s;padding:0}
+.trow:hover .carta-btn{opacity:1}
+.carta-btn:hover{color:var(--brass);border-color:var(--brass);opacity:1;transform:translateY(-1px)}
+.carta-btn.has{opacity:1;color:var(--brass);border-color:var(--brass-soft);background:#fdf7e9}
+.trow .txt[data-carta]{cursor:pointer}
+.trow .txt[data-carta]:hover{color:var(--navy)}
+@media(hover:none){.carta-btn{opacity:1}}
+.modal-bg{position:fixed;inset:0;background:rgba(15,41,66,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:16px;max-width:940px;width:100%;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.modal-head{background:var(--navy);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--brass)}
+.modal-head h3{font-size:16px;color:#fff;flex:1;line-height:1.3;font-weight:600}
+.modal-head .x{background:none;border:0;color:#cdd9e6;font-size:24px;line-height:1;padding:0 6px;border-radius:6px;cursor:pointer}
+.modal-head .x:hover{background:#1c3d5a;color:#fff}
+.modal-body{display:grid;grid-template-columns:330px 1fr;flex:1;min-height:0}
+.carta-edit{border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:9px;overflow:auto}
+.carta-edit label{font-size:12.5px;font-weight:700;color:var(--navy)}
+.carta-edit .hint{font-size:11.5px;color:var(--muted);line-height:1.55;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.carta-edit .hint code{background:#fff;border:1px solid var(--line-strong);border-radius:4px;padding:0 4px;font-size:11px}
+.carta-edit textarea{flex:1;min-height:240px;resize:vertical;font-size:13.5px;line-height:1.7}
+.carta-preview{padding:18px;overflow:auto;background:var(--paper);display:flex;align-items:flex-start;justify-content:center}
+.carta-preview svg{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);max-width:100%;height:auto}
+.modal-foot{border-top:1px solid var(--line);padding:11px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff}
+.modal-foot .spacer{flex:1}
+@media(max-width:720px){.modal-body{grid-template-columns:1fr;overflow:auto}.carta-edit{border-right:0;border-bottom:1px solid var(--line)}.carta-edit textarea{min-height:150px}}
+.gitem{display:flex;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:#fff}
+.ginfo{flex:1;min-width:0}
+.gname{font-weight:700;color:var(--navy);font-size:14px}
+.gshape{font-weight:500;font-size:11px;color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:1px 8px;margin-left:6px}
+.gdesc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+.gex{font-size:12.5px;margin-top:5px;color:var(--ink)}
+.gex code,.gnote code{background:var(--paper);border:1px solid var(--line-strong);border-radius:4px;padding:1px 6px;font-size:11.5px;color:var(--navy)}
+.gsvg{flex:0 0 auto}
+.gsvg svg{display:block;max-height:118px;width:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.gnote{font-size:12.5px;color:var(--muted);line-height:1.8;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:4px}
+.gnote b{color:var(--navy)}
+@media(max-width:600px){.gitem{flex-direction:column;align-items:stretch}.gsvg svg{max-width:100%}}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="crest">S4</div>
+    <div class="mh-txt">
+      <h1>Agihan Tugas S4PD</h1>
+      <p id="mhSub"></p>
+    </div>
+    <div class="mh-actions">
+      <button class="btn ghost" id="btnImport">⭱ Import Excel</button>
+      <div class="dropwrap">
+        <button class="btn brass" id="btnExport">⭳ Eksport ▾</button>
+        <div class="menu" id="exportMenu">
+          <div class="mlabel">Muat turun .xlsx</div>
+          <button data-x="asal">Format asal (Agihan + CATATAN)</button>
+          <button data-x="matriks">Matriks bersih sahaja</button>
+          <button data-x="kedua">Kedua-duanya + Struktur</button>
+        </div>
+      </div>
+      <button class="btn ghost" id="btnReset" title="Kembalikan data asal">↺ Set semula</button>
+      <span id="syncWrap" class="hidden" style="display:flex;align-items:center;gap:8px;margin-left:4px;padding-left:10px;border-left:1px solid #33506c">
+        <button class="btn ghost" id="btnPull">☁ Muat</button>
+        <button class="btn brass" id="btnPush">☁ Simpan ke Sheet</button>
+        <span id="syncStat" style="font-size:11px;color:#a9bccf;min-width:78px"></span>
+      </span>
+    </div>
+  </div>
+  <input type="file" id="fileInput" accept=".xlsx,.xls" class="hidden">
+</header>
+
+<nav class="tabbar"><div class="wrap"><div class="tabs" id="tabs">
+  <button class="tab active" data-p="ringkasan">Ringkasan</button>
+  <button class="tab" data-p="matriks">Matriks Agihan</button>
+  <button class="tab" data-p="pegawai">Ikut Pegawai</button>
+  <button class="tab" data-p="tugas">Ikut Tugas</button>
+  <button class="tab" data-p="struktur">Struktur &amp; Unit</button>
+</div></div></nav>
+
+<main><div class="wrap">
+
+  <!-- RINGKASAN -->
+  <section class="pane active" id="pane-ringkasan">
+    <div class="pane-head"><h2>Ringkasan agihan</h2>
+      <p>Beban setiap pegawai dipecahkan kepada <b>tugas teras</b> (milik sendiri) dan <b>tugas pelapis</b> (menyokong kluster pegawai lain). Angka disusun ikut jumlah tanggungan.</p></div>
+    <div class="stats" id="stats"></div>
+    <div id="ocards"></div>
+  </section>
+
+  <!-- MATRIKS -->
+  <section class="pane" id="pane-matriks">
+    <div class="pane-head"><h2>Matriks agihan</h2>
+      <p>Baris = pegawai · Lajur = kluster tugas (ikut pemilik). Lihat sekali pandang siapa pemilik dan siapa pelapis setiap kluster.</p></div>
+    <div class="matrix-scroll" id="matrixWrap"></div>
+    <div class="matrix-key">
+      <span><span class="mk owner">●</span> Pemilik kluster</span>
+      <span><span class="mk pelapis">○</span> Pelapis (menyokong)</span>
+      <span><span style="width:14px;height:14px;background:#fbf6e9;border:1px solid var(--line);display:inline-block;border-radius:3px"></span> Petak diagonal (diri sendiri)</span>
+    </div>
+  </section>
+
+  <!-- IKUT PEGAWAI -->
+  <section class="pane" id="pane-pegawai">
+    <div class="pane-head"><h2>Tugas ikut pegawai</h2>
+      <p>Pilih nama untuk lihat senarai tugas penuh, dikelompokkan mengikut kluster.</p></div>
+    <div class="picker">
+      <select id="offSelect" style="min-width:280px"></select>
+      <button class="btn sm" id="btnEdit">✎ Sunting</button>
+      <button class="btn sm ghost" id="btnAddOfficer" style="color:var(--navy);border-color:var(--line-strong)">＋ Pegawai baharu</button>
+    </div>
+    <div class="editbar hidden" id="editbar">
+      <button class="btn sm brass" id="btnAddRow">＋ Tambah tugas</button>
+      <button class="btn sm" id="btnRenameOff" style="border-color:var(--line-strong)">✎ Nama / jawatan</button>
+      <button class="btn sm" id="btnDelOff" style="color:var(--danger);border-color:#e5c3c3">🗑 Padam pegawai</button>
+      <span class="spacer"></span>
+      <span class="savepill">● Disimpan automatik</span>
+      <button class="btn sm brass" id="btnDone">Selesai</button>
+    </div>
+    <div id="offBody"></div>
+  </section>
+
+  <!-- IKUT TUGAS -->
+  <section class="pane" id="pane-tugas">
+    <div class="pane-head"><h2>Carian songsang: tugas &rarr; pegawai</h2>
+      <p>Cari mana-mana tugas untuk lihat siapa pemiliknya dan siapa yang bertindak sebagai pelapis.</p></div>
+    <div class="searchbox">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="text" id="taskSearch" placeholder="Cari tugas… (cth: EMIS, Dialog Prestasi, aduan)">
+    </div>
+    <div id="taskResults"></div>
+  </section>
+
+  <!-- STRUKTUR -->
+  <section class="pane" id="pane-struktur">
+    <div class="pane-head"><h2>Struktur jawatan &amp; unit</h2>
+      <p>Agihan bidang tugas mengikut hierarki jawatan, serta inventori tugas Unit Transformasi dan Unit Pembangunan.</p></div>
+    <div class="hier-scroll" id="hierWrap"></div>
+    <div class="units">
+      <div class="unit tf"><h3>Unit Transformasi</h3><ul id="unitT"></ul></div>
+      <div class="unit pemb"><h3>Unit Pembangunan</h3><ul id="unitP"></ul></div>
+    </div>
+  </section>
+
+  <div class="foot" id="foot"></div>
+</div></main>
+
+<div class="modal-bg" id="cartaModal">
+  <div class="modal">
+    <div class="modal-head"><h3 id="cartaTitle"></h3><button class="x" id="cartaClose" aria-label="Tutup">&times;</button></div>
+    <div class="modal-body">
+      <div class="carta-edit">
+        <label>Langkah proses</label>
+        <div class="hint">Satu langkah, satu baris. Baris berakhir dengan <code>?</code> jadi nod keputusan (rombus). <b>MULA</b> &amp; <b>TAMAT</b> ditambah automatik.</div>
+        <textarea id="cartaInput" placeholder="Terima arahan / dokumen&#10;Semak kelengkapan?&#10;Sedia maklum balas&#10;Hantar untuk kelulusan&#10;Rekod dan failkan"></textarea>
+      </div>
+      <div class="carta-preview" id="cartaPreview"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn sm brass" id="cartaSave">Simpan</button>
+      <button class="btn sm" id="cartaGuideBtn" style="border-color:var(--line-strong)">? Panduan simbol</button>
+      <span class="spacer"></span>
+      <button class="btn sm" id="cartaPng" style="border-color:var(--line-strong)">⭳ PNG</button>
+      <button class="btn sm" id="cartaSvg" style="border-color:var(--line-strong)">⭳ SVG</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="guideModal">
+  <div class="modal" style="max-width:720px">
+    <div class="modal-head"><h3>Panduan pengisian carta alir</h3><button class="x" id="guideClose" aria-label="Tutup">&times;</button></div>
+    <div id="guideBody" style="padding:16px;overflow:auto"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SEED = {"meta": {"sektor": "Sektor Perancangan & Pengurusan PPD (S4PD)", "jpn": "Jabatan Pendidikan Negeri Kedah", "tarikh": "9 September 2026", "sumber": "Bilateral S4PD Bil. 1/2026 (23 Julai 2026)"}, "shortmap": {"DR MOHD LATIFI": "DR MOHD LATIFI BIN ABD GHANI", "EN. LUTHFI": "EN. LUTHFI BIN MOHD RADZI", "HJ. AHMAD HAMDI": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "HJ. HAMDI": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "EN. MOHD SHAHRIL": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "EN. SUFIYUDDIN": "EN. SUFIYUDDIN BIN AHMAD", "PN. ZARIYATI": "PN. NOOR ZARIYATI BINTI MOHAMMAD", "EN. DIN": "EN. DIN BIN MAT JUSOH", "EN. NOORULANUAR": "EN. NOORULANUAR BIN BAHARUDIN"}, "canon": {"DR MOHD LATIFI BIN ABD GHANI": "DR MOHD LATIFI", "EN. LUTHFI BIN MOHD RADZI": "EN. LUTHFI", "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR": "HJ. AHMAD HAMDI", "EN. MOHD SHAHRIL BIN IBENIL HARJAD": "EN. MOHD SHAHRIL", "EN. SUFIYUDDIN BIN AHMAD": "EN. SUFIYUDDIN", "PN. NOOR ZARIYATI BINTI MOHAMMAD": "PN. ZARIYATI", "EN. DIN BIN MAT JUSOH": "EN. DIN", "EN. NOORULANUAR BIN BAHARUDIN": "EN. NOORULANUAR"}, "officers": [{"id": 1, "bil": 1, "nama": "DR MOHD LATIFI BIN ABD GHANI", "short": "DR MOHD LATIFI", "rows": [{"task": "Maklum balas Syor Nazir dan Tindak Susul", "tag": "DR MOHD LATIFI"}, {"task": "Program Latihan (BPG)", "tag": "DR MOHD LATIFI"}, {"task": "Program Career Development Informative Kit (CerDIK)", "tag": "DR MOHD LATIFI"}, {"task": "Standard Guru Malaysia (SSKD-SGMy)", "tag": "DR MOHD LATIFI"}, {"task": "RPM 2026-2035 (Prakarsa)", "tag": "DR MOHD LATIFI"}, {"task": "Dialog Prestasi PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI Pengarah (PPTPA)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Inovasi dan Penyelidikan", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat Pengurusan JPN PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat SRO (Senior Responsible owner)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Portal DTPCare", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "EN. DIN"}, {"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 2, "bil": 2, "nama": "EN. LUTHFI BIN MOHD RADZI", "short": "EN. LUTHFI", "rows": [{"task": "Pengurusan Kewangan (Sektor)", "tag": "EN. LUTHFI"}, {"task": "Maklum balas Sidang Dewan Undangan Negeri (DUN)", "tag": "EN. LUTHFI"}, {"task": "Urus setia Bilateral S4PD", "tag": "EN. LUTHFI"}, {"task": "Menyelaras permohonan projek ICU", "tag": "EN. LUTHFI"}, {"task": "Maklum balas Sidang Parlimen", "tag": "EN. LUTHFI"}, {"task": "Menghadiri Mesyuarat UR20a berdasarkan ketetapan PlanMalaysia bagi mengesahkan pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. LUTHFI"}, {"task": "Menentusahkan reka bentuk konsep bagi setiap pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. LUTHFI"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan kesesuaian dan kebolehlaksanaan projek.", "tag": "EN. LUTHFI"}, {"task": "Menyelaras pangkalan data sebagai pusat sehenti bagi JPN dan PPD", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN.", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Mesyuarat Khas Pengarah *Pengarah,timbalan dan PPD", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}, {"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 3, "bil": 3, "nama": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "short": "HJ. AHMAD HAMDI", "rows": [{"task": "Dialog Prestasi PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI Pengarah (PPTPA)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Inovasi dan Penyelidikan", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat Pengurusan JPN PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat SRO (Senior Responsible Owner)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Portal DTPCare", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "EN. DIN"}, {"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 4, "bil": 4, "nama": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "short": "EN. MOHD SHAHRIL", "rows": [{"task": "Mengawal selia pengoperasian Sistem EMIS", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN melibatkan rendah, menengah, prasekolah, PPKI dan TVET", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras semakan ralat pengisian EMIS", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras dan membuat semakan kesahan data Modul Pengurusan Murid (MOEIS), Modul Pengurusan Guru (eOperasi) dan Modul Pengurusan Sekolah secara bulanan", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menguruskan perlantikan Guru Data dan Maklumat Sekolah (GDM)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras latihan penggunaan sistem EMIS kepada Guru Data dan Maklumat sekolah-sekolah", "tag": "EN. MOHD SHAHRIL"}, {"task": "Melatih serta membimbing pegawai-pegawai JPN dan Penolong-penolong PPD Perancangan dalam penyediaan dashboard", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras dan mengemaskini data repositori JPN Kedah", "tag": "EN. MOHD SHAHRIL"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Urus setia Mesyuarat Khas Pengarah (melibatkan Pengarah,Timbalan Pengarah dan PPD sahaja)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}, {"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 5, "bil": 5, "nama": "EN. SUFIYUDDIN BIN AHMAD", "short": "EN. SUFIYUDDIN", "rows": [{"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 6, "bil": 6, "nama": "PN. NOOR ZARIYATI BINTI MOHAMMAD", "short": "PN. ZARIYATI", "rows": [{"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "PN. ZARIYATI"}]}, {"id": 7, "bil": 7, "nama": "EN. DIN BIN MAT JUSOH", "short": "EN. DIN", "rows": [{"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 8, "bil": 8, "nama": "EN. NOORULANUAR BIN BAHARUDIN", "short": "EN. NOORULANUAR", "rows": [{"task": "Merancang dan menyelaras permohonan projek pembangunan termasuk skop projek dan anggaran kos bagi projek jangka panjang (RMK)", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan dan pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep bagi setiap pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan kesesuaian dan kebolehlaksanaan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}]}], "tugas": {"hierarki": [{"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB)."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras pangkalan data sebagai pusat sehenti bagi JPN dan PPD"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras dan mengurusetia mesyuarat cadangan arahan penempatan pegawai"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Membangunkan pelan strategik pembangunan pendidikan negeri yang selari dengan pelan jangka panjang KPM."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Menyelaras maklum balas berkaitan pendidikan kepada pihak berkepentingan"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Menyelaras dan memastikan pematuhan/pelaksanaan terhadap langkah-langkah penambahbaikan daripada hasil laporan audit dan naziran."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "NOOR ZARIYATI BINTI MOHAMMAD", "task": "Menyelaras, memantau dan memberi khidmat nasihat ke atas pematuhan dasar dan standard kualiti merentasi sektor serta pelaksanaan inisiatif kualiti, inovasi dan penyelidikan di peringkat JPN dan PPD."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "NOOR ZARIYATI BINTI MOHAMMAD", "task": "Merancang dan menyelaras pengurusan transformasi PPD."}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pemilihan program-program utama untuk dilaksanakan di peringkat negeri/wilayah dan PPD"}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pengurusan aduan awam di peringkat negeri / wilayah"}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pengurusan bencana di peringkat negeri"}], "unitTransformasi": ["RPM 2026-2035", "KPI Sektor/ KPI Pengarah (PPTPA)", "Program CerDIK", "MAKMur", "Dialog Prestasi", "Maklum balas Syor Nazir dan Tindak Susul", "Penarafan PPD", "Inovasi dan penyelidikan", "Aduan dan siasatan", "Pengurusan Bencana", "Reformasi Sekolah", "Mesyuarat Sektor Perancangan JPN PPD", "Mesyuarat Pengurusan JPN PPD", "Mesyuarat SRO (Senior Responsible owner)", "Program latihan (BPG)", "Takwim JPN"], "unitPembangunan": ["Merancang dan menyelaras projek pembangunan", "Menyelaras urusan pembukaan dan pemindahan sekolah", "Menyelaras pangkalan data sehenti", "Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "Mesyuarat Khas JPN PPD", "Mesyuarat Pengurusan Sektor Perancangan dan Pengurusan PPD (S4PD dalaman)/bilateral", "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "Maklum balas Sidang Dewan Undangan Negeri (DUN)", "Maklum balas Sidang Parlimen (pegawai penghubung Parlimen ialah UKK, maklum balas S4PD yang dok jawab)/ Maklum balas mesyuarat Pengarah bersama agensi luar", "Pengurusan Kewangan (Sektor)", "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "Mesyuarat Rundingan 20A di bawah Akta", "Mesyuarat Social Impact SIA"]}};
+/* ===== FASA 2: Tampal URL Apps Script Web App di sini selepas deploy ===== */
+const CONFIG = { API_URL: "" };
+const LS_KEY = 'agihan_s4pd_v1';
+const SHORTS = Object.keys(SEED.canon).map(f=>SEED.canon[f]); // canonical shorts in officer order-ish
+let state = load();
+let editMode = false;
+let curOffId = state.officers[0] ? state.officers[0].id : null;
+
+function load(){
+  try{ const s = localStorage.getItem(LS_KEY); if(s) return JSON.parse(s); }catch(e){}
+  return JSON.parse(JSON.stringify(SEED));
+}
+function save(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
+
+/* ---------- FASA 2: segerak Google Sheet (JSONP baca / POST tulis) ---------- */
+function apiConfigured(){ return CONFIG.API_URL && /^https:\/\//.test(CONFIG.API_URL); }
+function setSync(t){ const el=document.getElementById('syncStat'); if(el) el.textContent=t; }
+function jsonp(params){ return new Promise((res,rej)=>{
+  const cb='__jp'+Math.random().toString(36).slice(2); const s=document.createElement('script');
+  const to=setTimeout(()=>{cleanup();rej(new Error('timeout'));},15000);
+  function cleanup(){clearTimeout(to);try{delete window[cb];}catch(e){} s.remove();}
+  window[cb]=d=>{cleanup();res(d);};
+  s.onerror=()=>{cleanup();rej(new Error('rangkaian'));};
+  const q=Object.keys(params).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(params[k])).join('&');
+  s.src=CONFIG.API_URL+'?'+q+'&callback='+cb; document.body.appendChild(s);
+});}
+async function sha256hex(str){ const b=new TextEncoder().encode(str); const h=await crypto.subtle.digest('SHA-256',b); return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join(''); }
+async function apiLoad(){ if(!apiConfigured())return; setSync('Memuat…');
+  try{ const d=await jsonp({action:'load'});
+    if(d&&d.ok&&d.data&&d.data.officers&&d.data.officers.length){ state=d.data; save(); curOffId=state.officers[0].id; renderAll(); setSync('✓ Dari Sheet'); toast('Data dimuat dari Google Sheet'); }
+    else { setSync('Sheet kosong'); toast('Sheet kosong — jalankan setupSheets() dahulu'); }
+  }catch(e){ setSync('⚠ Luar talian'); toast('Gagal muat — guna salinan tempatan'); }
+}
+async function apiSave(){ if(!apiConfigured())return;
+  let pw=sessionStorage.getItem('s4pd_pw');
+  if(!pw){ pw=prompt('Kata laluan untuk simpan ke Google Sheet:'); if(!pw)return; }
+  setSync('Mengesah…'); let hash;
+  try{ hash=await sha256hex(pw); const v=await jsonp({action:'verify',pw:hash});
+    if(!(v&&v.ok)){ sessionStorage.removeItem('s4pd_pw'); setSync('✗ Kata laluan salah'); toast('Kata laluan salah'); return; }
+  }catch(e){ setSync('⚠ Gagal sambung'); toast('Gagal sambung ke Sheet'); return; }
+  sessionStorage.setItem('s4pd_pw',pw); setSync('Menyimpan…');
+  try{
+    await fetch(CONFIG.API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'save',pw:hash,data:state})});
+    await new Promise(r=>setTimeout(r,1000));
+    const d=await jsonp({action:'load'});
+    if(d&&d.ok&&d.data&&d.data.officers){ state=d.data; save(); if(!state.officers.some(o=>o.id===curOffId))curOffId=state.officers[0].id; renderAll(); }
+    setSync('✓ Disimpan'); toast('Berjaya disimpan ke Google Sheet');
+  }catch(e){ setSync('⚠ Gagal simpan'); toast('Gagal simpan ke Sheet'); }
+}
+function resetData(){ if(confirm('Set semula kepada data asal? Semua suntingan tempatan akan hilang.')){ state = JSON.parse(JSON.stringify(SEED)); curOffId = state.officers[0].id; save(); renderAll(); toast('Data asal dipulihkan'); } }
+
+/* ---------- derivations ---------- */
+function officerByShort(sh){ return state.officers.find(o=>o.short===sh); }
+function normTask(t){ return (t||'').replace(/\s+/g,' ').trim().toLowerCase(); }
+function terasCount(o){ return o.rows.filter(r=>r.tag===o.short).length; }
+function pelapisCount(o){ return o.rows.filter(r=>r.tag!==o.short).length; }
+function pelapisGroups(o){
+  const g={}; o.rows.forEach(r=>{ if(r.tag!==o.short){ (g[r.tag]=g[r.tag]||[]).push(r); }}); return g;
+}
+function shortLabel(sh){ const o=officerByShort(sh); return o?o.nama:sh; }
+
+/* ---------- rendering ---------- */
+function renderAll(){ renderMeta(); renderRingkasan(); renderMatrix(); renderPegawaiSelect(); renderPegawai(); renderTasks(); renderStruktur(); }
+
+function renderMeta(){
+  document.getElementById('mhSub').textContent = SEED.meta.sektor + ' · ' + SEED.meta.jpn;
+  document.getElementById('foot').innerHTML = 'Sumber: '+SEED.meta.sumber+' · Kemas kini '+SEED.meta.tarikh+
+    ' · Data disimpan dalam pelayar anda (localStorage). Fasa 2: sambungan Google Sheets untuk kongsi antara pegawai.';
+}
+
+function renderRingkasan(){
+  const offs = state.officers.slice();
+  let totalTeras=0, totalPelapis=0, links=0;
+  offs.forEach(o=>{ totalTeras+=terasCount(o); totalPelapis+=pelapisCount(o); });
+  offs.forEach(o=>{ links += Object.keys(pelapisGroups(o)).length; });
+  const stats=[
+    ['Pegawai', offs.length, true],
+    ['Tugas teras', totalTeras, false],
+    ['Tugas pelapis', totalPelapis, false],
+    ['Hubungan pelapis', links, false],
+  ];
+  document.getElementById('stats').innerHTML = stats.map(s=>
+    '<div class="stat '+(s[2]?'accent':'')+'"><div class="n">'+s[1]+'</div><div class="l">'+s[0]+'</div></div>').join('');
+
+  const maxTotal = Math.max(1, ...offs.map(o=>o.rows.length));
+  const sorted = offs.slice().sort((a,b)=>b.rows.length-a.rows.length);
+  document.getElementById('ocards').innerHTML = sorted.map(o=>{
+    const t=terasCount(o), p=pelapisCount(o), tot=o.rows.length;
+    const wT=(t/maxTotal*100), wP=(p/maxTotal*100);
+    const pg=pelapisGroups(o);
+    const chips=Object.keys(pg).map(k=>'<span class="chip">pelapis <b>'+k+'</b> ·'+pg[k].length+'</span>').join('');
+    return '<div class="ocard"><div class="ocard-top">'+
+      '<span class="bil">'+o.bil+'</span><span class="nm">'+o.nama+'</span>'+
+      '<span class="role">'+tot+' tugasan</span></div>'+
+      '<div class="bar"><div class="seg-teras" style="width:'+wT+'%"></div><div class="seg-pelapis" style="width:'+wP+'%"></div></div>'+
+      '<div class="legend"><span><span class="dot teras"></span>Teras: '+t+'</span><span><span class="dot pelapis"></span>Pelapis: '+p+'</span></div>'+
+      (chips?'<div class="chips">'+chips+'</div>':'')+
+      '</div>';
+  }).join('');
+}
+
+function renderMatrix(){
+  const offs=state.officers;
+  const cols=offs.map(o=>o.short);
+  let h='<table class="matrix"><thead><tr><th style="text-align:left">Pegawai \\ Kluster</th>';
+  offs.forEach(o=>{ h+='<th title="'+o.nama+'">'+o.short+'</th>'; });
+  h+='</tr></thead><tbody>';
+  offs.forEach(o=>{
+    h+='<tr><th><span class="bil">'+o.bil+'</span>'+o.nama+'</th>';
+    offs.forEach(c=>{
+      let mk='', cls='';
+      if(o.short===c.short){ mk='<span class="mk owner">●</span>'; cls=' class="self"'; }
+      else if(o.rows.some(r=>r.tag===c.short)){ mk='<span class="mk pelapis">○</span>'; }
+      h+='<td'+cls+'>'+mk+'</td>';
+    });
+    h+='</tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('matrixWrap').innerHTML=h;
+}
+
+function renderPegawaiSelect(){
+  const sel=document.getElementById('offSelect');
+  if(!state.officers.some(o=>o.id===curOffId)) curOffId = state.officers[0] ? state.officers[0].id : null;
+  sel.innerHTML=state.officers.map(o=>'<option value="'+o.id+'"'+(o.id===curOffId?' selected':'')+'>'+o.bil+'. '+o.nama+'</option>').join('');
+}
+
+function tagOptions(sel, own){
+  return state.officers.map(o=>{
+    const lbl = o.short + (o.short===own?' (teras sendiri)':'');
+    return '<option value="'+o.short+'"'+(o.short===sel?' selected':'')+'>'+lbl+'</option>';
+  }).join('');
+}
+
+function renderPegawai(){
+  const o=state.officers.find(x=>x.id===curOffId);
+  const body=document.getElementById('offBody');
+  if(!o){ body.innerHTML='<div class="emptystate"><b>Tiada pegawai.</b><br>Tambah pegawai baharu untuk bermula.</div>'; return; }
+
+  // ordered groups: teras first (own short), then each pelapis tag in first-appearance order
+  const order=[]; o.rows.forEach(r=>{ if(!order.includes(r.tag)) order.push(r.tag); });
+  order.sort((a,b)=> (a===o.short?-1:0) - (b===o.short?-1:0) );
+
+  let h='<div class="tasklist">';
+  if(o.rows.length===0){ h+='<div class="emptystate">Belum ada tugas. Tekan <b>＋ Tambah tugas</b>.</div>'; }
+  order.forEach(tag=>{
+    const rows=o.rows.filter(r=>r.tag===tag);
+    if(rows.length===0) return;
+    const isTeras = tag===o.short;
+    h+='<div class="grp-head">'+(isTeras?'Tugas teras':'Pelapis kepada')+
+       ' <span class="tagpill '+(isTeras?'teras':'pelapis')+'">'+tag+'</span>'+
+       (isTeras?'':'<span style="color:var(--muted);font-weight:500">('+shortLabel(tag)+')</span>')+'</div>';
+    rows.forEach(r=>{
+      const gi=o.rows.indexOf(r);
+      if(editMode){
+        h+='<div class="trow"><span class="idx">'+(gi+1)+'</span><div class="rowedit">'+
+           '<textarea data-ei="'+gi+'">'+escapeHtml(r.task)+'</textarea>'+
+           '<select data-ti="'+gi+'" style="min-width:170px">'+tagOptions(r.tag,o.short)+'</select>'+
+           '<button class="btn sm icon" data-del="'+gi+'" style="color:var(--danger);border-color:#e5c3c3">🗑</button>'+
+           '<button class="carta-btn'+(r.proses&&r.proses.trim()?' has':'')+'" data-carta="'+gi+'" title="Carta alir" aria-label="Carta alir">'+flowIcon()+'</button>'+
+           '</div></div>';
+      }else{
+        h+='<div class="trow"><span class="idx">'+(gi+1)+'</span><div class="txt" data-carta="'+gi+'">'+escapeHtml(r.task)+'</div>'+
+           '<button class="carta-btn'+(r.proses&&r.proses.trim()?' has':'')+'" data-carta="'+gi+'" title="Carta alir" aria-label="Carta alir">'+flowIcon()+'</button></div>';
+      }
+    });
+  });
+  h+='</div>';
+  body.innerHTML=h;
+
+  if(editMode){
+    body.querySelectorAll('textarea[data-ei]').forEach(t=>t.addEventListener('input',e=>{
+      o.rows[+e.target.dataset.ei].task=e.target.value; save();
+    }));
+    body.querySelectorAll('select[data-ti]').forEach(s=>s.addEventListener('change',e=>{
+      o.rows[+e.target.dataset.ti].tag=e.target.value; save(); renderPegawai();
+    }));
+    body.querySelectorAll('button[data-del]').forEach(b=>b.addEventListener('click',e=>{
+      o.rows.splice(+e.currentTarget.dataset.del,1); save(); renderPegawai();
+    }));
+  }
+  body.querySelectorAll('[data-carta]').forEach(el=>el.addEventListener('click',ev=>{
+    ev.stopPropagation(); openCarta(o.id, +el.getAttribute('data-carta'));
+  }));
+}
+
+function renderTasks(){
+  const q=normTask(document.getElementById('taskSearch').value);
+  // unique tasks -> holders
+  const map={};
+  state.officers.forEach(o=>o.rows.forEach(r=>{
+    const k=normTask(r.task);
+    if(!map[k]) map[k]={label:r.task, holders:[]};
+    map[k].holders.push({off:o, tag:r.tag, teras:(r.tag===o.short)});
+  }));
+  let keys=Object.keys(map).sort((a,b)=>map[a].label.localeCompare(map[b].label));
+  if(q) keys=keys.filter(k=>k.includes(q));
+  const box=document.getElementById('taskResults');
+  if(keys.length===0){ box.innerHTML='<div class="emptystate"><b>Tiada padanan.</b><br>Cuba kata kunci lain.</div>'; return; }
+  box.innerHTML=keys.map((k,i)=>{
+    const t=map[k];
+    // owner(s): holders where teras
+    const owners=t.holders.filter(h=>h.teras);
+    const pelapis=t.holders.filter(h=>!h.teras);
+    const holders=owners.concat(pelapis);
+    return '<div class="tq" data-i="'+i+'"><div class="tq-q"><span>'+escapeHtml(t.label)+'</span>'+
+      '<span class="caret">▸</span></div><div class="tq-a">'+
+      holders.map(h=>'<div class="holder"><span class="rolepill '+(h.teras?'teras':'pelapis')+'">'+(h.teras?'PEMILIK':'PELAPIS')+'</span>'+
+        '<span class="hn">'+h.off.nama+' <small>('+h.off.short+')</small></span></div>').join('')+
+      '</div></div>';
+  }).join('');
+  box.querySelectorAll('.tq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+}
+
+function renderStruktur(){
+  const H=SEED.tugas.hierarki;
+  // group consecutive equal values per column for rowspan feel
+  let h='<table class="hier"><thead><tr>'+
+    '<th>Timbalan Pengarah</th><th>Ketua Penolong Pengarah Kanan</th><th>Ketua Penolong Pengarah</th><th>Penolong Pengarah</th><th>Bidang Tugas</th></tr></thead><tbody>';
+  const span=(col)=>{ // precompute rowspans
+    const arr=H.map(r=>r[col]); const res=new Array(arr.length).fill(0);
+    let i=0; while(i<arr.length){ let j=i; while(j+1<arr.length && arr[j+1]===arr[i] && arr[i]!=='') j++; res[i]=(j-i+1); for(let k=i+1;k<=j;k++)res[k]=-1; i=j+1; }
+    // blanks: each its own cell
+    for(let k=0;k<arr.length;k++){ if(arr[k]==='' && res[k]===0) res[k]=1; }
+    return res;
+  };
+  const s={tp:span('tp'),kppk:span('kppk'),kpp:span('kpp'),pp:span('pp')};
+  H.forEach((r,i)=>{
+    h+='<tr>';
+    ['tp','kppk','kpp','pp'].forEach(c=>{
+      if(s[c][i]===-1) return;
+      const rs=s[c][i]>1?' rowspan="'+s[c][i]+'"':'';
+      h+='<td class="role"'+rs+'>'+escapeHtml(r[c]||'—')+'</td>';
+    });
+    h+='<td class="task">'+escapeHtml(r.task)+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  document.getElementById('hierWrap').innerHTML=h;
+  document.getElementById('unitT').innerHTML=SEED.tugas.unitTransformasi.map(x=>'<li>'+escapeHtml(x)+'</li>').join('');
+  document.getElementById('unitP').innerHTML=SEED.tugas.unitPembangunan.map(x=>'<li>'+escapeHtml(x)+'</li>').join('');
+}
+
+function escapeHtml(s){ return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ---------- editing actions ---------- */
+function setEdit(on){ editMode=on; document.getElementById('editbar').classList.toggle('hidden',!on);
+  document.getElementById('btnEdit').textContent = on?'✎ Menyunting…':'✎ Sunting'; renderPegawai(); }
+
+document.getElementById('btnEdit').onclick=()=>setEdit(!editMode);
+document.getElementById('btnDone').onclick=()=>{ setEdit(false); renderAll(); toast('Suntingan disimpan'); };
+document.getElementById('btnAddRow').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
+  o.rows.push({task:'Tugas baharu', tag:o.short}); save(); renderPegawai(); };
+document.getElementById('btnRenameOff').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
+  const nm=prompt('Nama penuh pegawai:', o.nama); if(nm && nm.trim()){ o.nama=nm.trim(); save(); renderPegawaiSelect(); renderPegawai(); renderRingkasan(); renderMatrix(); } };
+document.getElementById('btnDelOff').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
+  if(confirm('Padam '+o.nama+'? Tugas pelapis di pegawai lain yang merujuk kluster ini tidak dipadam automatik.')){
+    state.officers=state.officers.filter(x=>x.id!==o.id);
+    state.officers.forEach((x,i)=>x.bil=i+1);
+    curOffId=state.officers[0]?state.officers[0].id:null; save(); renderAll(); setEdit(false); toast('Pegawai dipadam'); } };
+document.getElementById('btnAddOfficer').onclick=()=>{
+  const nm=prompt('Nama penuh pegawai baharu:'); if(!nm||!nm.trim())return;
+  const short=prompt('Nama pendek (label kluster, cth: EN. FIRDAUS):', nm.trim().split(' ').slice(0,2).join(' ')); if(!short)return;
+  const id=Math.max(0,...state.officers.map(o=>o.id))+1;
+  state.officers.push({id,bil:state.officers.length+1,nama:nm.trim(),short:short.trim(),rows:[]});
+  curOffId=id; save(); renderAll(); setEdit(true); toast('Pegawai ditambah — mula tambah tugas'); };
+document.getElementById('offSelect').onchange=e=>{ curOffId=+e.target.value; renderPegawai(); };
+
+/* ---------- tabs ---------- */
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('.tab'); if(!b)return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  b.classList.add('active'); document.getElementById('pane-'+b.dataset.p).classList.add('active');
+});
+document.getElementById('taskSearch').addEventListener('input',renderTasks);
+
+/* ---------- export menu ---------- */
+const exMenu=document.getElementById('exportMenu');
+document.getElementById('btnExport').onclick=e=>{ e.stopPropagation(); exMenu.classList.toggle('open'); };
+document.addEventListener('click',()=>exMenu.classList.remove('open'));
+exMenu.addEventListener('click',e=>{ const b=e.target.closest('button[data-x]'); if(b){ exportExcel(b.dataset.x); exMenu.classList.remove('open'); } });
+document.getElementById('btnReset').onclick=resetData;
+
+/* ---------- import ---------- */
+document.getElementById('btnImport').onclick=()=>document.getElementById('fileInput').click();
+document.getElementById('fileInput').addEventListener('change',ev=>{
+  const f=ev.target.files[0]; if(!f)return;
+  const rd=new FileReader();
+  rd.onload=e=>{ try{ importExcel(e.target.result); }catch(err){ alert('Gagal membaca fail: '+err.message); } ev.target.value=''; };
+  rd.readAsArrayBuffer(f);
+});
+
+function importExcel(buf){
+  const wb=XLSX.read(buf,{type:'array'});
+  const shName = wb.SheetNames.find(n=>/^agihan/i.test(n)) || wb.SheetNames[0];
+  const ws=wb.Sheets[shName];
+  const aoa=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,blankrows:false});
+  // find header row with BIL/NAMA
+  let hr=aoa.findIndex(r=>r && String(r[0]||'').trim().toUpperCase()==='BIL');
+  if(hr<0) hr=2;
+  const shortByFull={}; Object.keys(SEED.shortmap).forEach(k=>shortByFull[SEED.shortmap[k]]=null);
+  const canon=Object.assign({},SEED.canon);
+  const smap=Object.assign({},SEED.shortmap);
+  const normShort=(tag)=>{ tag=(tag||'').toString().trim(); if(!tag)return ''; const full=smap[tag]||tag; return canon[full]||tag; };
+  const offs=[]; let cur=null,id=0,lastName=null,lastCat='';
+  for(let i=hr+1;i<aoa.length;i++){
+    const row=aoa[i]||[]; const bil=row[0], nm=(row[1]!=null?String(row[1]).trim():''), task=(row[2]!=null?String(row[2]).trim():''), cat=(row[3]!=null?String(row[3]).trim():'');
+    if(nm && /^nota/i.test(nm)) break;
+    const name = nm||lastName; if(nm) lastName=nm;
+    if(bil!=null && String(bil).trim()!==''){ id++; const short=canon[name]|| (name?name.split(' ').slice(0,2).join(' '):'?'); cur={id,bil:parseInt(bil)||id,nama:name,short,rows:[]}; offs.push(cur); lastCat=''; }
+    if(!cur) continue;
+    const catUse = cat||lastCat; if(cat) lastCat=cat;
+    if(task){ const tag=normShort(catUse)||cur.short; cur.rows.push({task,tag}); }
+  }
+  if(offs.length===0){ alert('Tiada data pegawai dijumpai dalam sheet "'+shName+'".'); return; }
+  state.officers=offs; curOffId=offs[0].id; save(); renderAll(); toast('Import berjaya: '+offs.length+' pegawai');
+}
+
+/* ---------- export ---------- */
+function exportExcel(which){
+  const wb=XLSX.utils.book_new();
+  if(which==='asal'||which==='kedua') wb_addAgihan(wb);
+  if(which==='matriks'||which==='kedua') wb_addMatriks(wb);
+  if(which==='kedua') wb_addStruktur(wb);
+  if(wb.SheetNames.length===0) wb_addAgihan(wb);
+  XLSX.writeFile(wb,'Agihan_Tugas_S4PD_'+stamp()+'.xlsx');
+  toast('Fail Excel dimuat turun');
+}
+function stamp(){ const d=new Date(); const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate()); }
+
+function wb_addAgihan(wb){
+  const aoa=[['SEKTOR PERANCANGAN DAN PENGURUSAN PPD — CADANGAN AGIHAN TUGAS PEGAWAI','','',''],['','','',''],['BIL','NAMA','BIDANG TUGAS','CATATAN']];
+  const merges=[{s:{r:0,c:0},e:{r:0,c:3}}];
+  let r=3;
+  state.officers.forEach(o=>{
+    const start=r;
+    // order groups teras-first
+    const order=[]; o.rows.forEach(x=>{ if(!order.includes(x.tag))order.push(x.tag); });
+    order.sort((a,b)=>(a===o.short?-1:0)-(b===o.short?-1:0));
+    order.forEach(tag=>{
+      const rows=o.rows.filter(x=>x.tag===tag); const gstart=r;
+      rows.forEach((x,idx)=>{ aoa.push([idx===0&&r===start?o.bil:'', '', x.task, idx===0?tag:'']); r++; });
+      if(rows.length>1) merges.push({s:{r:gstart,c:3},e:{r:gstart+rows.length-1,c:3}});
+    });
+    const cnt=r-start;
+    if(cnt>0){ aoa[start][1]=o.nama; if(cnt>1){ merges.push({s:{r:start,c:0},e:{r:r-1,c:0}}); merges.push({s:{r:start,c:1},e:{r:r-1,c:1}}); } }
+  });
+  const ws=XLSX.utils.aoa_to_sheet(aoa);
+  ws['!merges']=merges; ws['!cols']=[{wch:6},{wch:34},{wch:70},{wch:20}];
+  XLSX.utils.book_append_sheet(wb,ws,'Agihan');
+}
+function wb_addMatriks(wb){
+  const offs=state.officers;
+  const head=['PEGAWAI \\ KLUSTER'].concat(offs.map(o=>o.short));
+  const aoa=[head];
+  offs.forEach(o=>{
+    const row=[o.bil+'. '+o.nama];
+    offs.forEach(c=>{ row.push(o.short===c.short?'PEMILIK':(o.rows.some(x=>x.tag===c.short)?'pelapis':'')); });
+    aoa.push(row);
+  });
+  const ws=XLSX.utils.aoa_to_sheet(aoa);
+  ws['!cols']=[{wch:34}].concat(offs.map(()=>({wch:16})));
+  XLSX.utils.book_append_sheet(wb,ws,'Matriks');
+}
+function wb_addStruktur(wb){
+  const aoa=[['Timbalan Pengarah','Ketua Penolong Pengarah Kanan','Ketua Penolong Pengarah','Penolong Pengarah','Bidang Tugas']];
+  SEED.tugas.hierarki.forEach(r=>aoa.push([r.tp,r.kppk,r.kpp,r.pp,r.task]));
+  aoa.push([]); aoa.push(['UNIT TRANSFORMASI','','','UNIT PEMBANGUNAN','']);
+  const n=Math.max(SEED.tugas.unitTransformasi.length,SEED.tugas.unitPembangunan.length);
+  for(let i=0;i<n;i++) aoa.push([SEED.tugas.unitTransformasi[i]||'','','',SEED.tugas.unitPembangunan[i]||'','']);
+  const ws=XLSX.utils.aoa_to_sheet(aoa);
+  ws['!cols']=[{wch:26},{wch:26},{wch:26},{wch:26},{wch:60}];
+  XLSX.utils.book_append_sheet(wb,ws,'Struktur');
+}
+
+/* ---------- toast ---------- */
+let toastT; function toast(m){ const el=document.getElementById('toast'); el.textContent=m; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2200); }
+
+/* ---------- CARTA ALIR (enjin menegak) ---------- */
+function flowIcon(){return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3" y="10" width="6" height="4" rx="1"/><rect x="15" y="10" width="6" height="4" rx="1"/><rect x="9" y="17" width="6" height="4" rx="1"/><path d="M12 7v3M6 10V9h12v1M12 14v3"/></svg>';}
+
+const DOC_KW=['dokumen','surat','borang','laporan','sijil','memo','minit','fail','rekod'];
+const IO_KW=['terima','hantar','papar','cetak','isi','dapat','input','output','keluarkan','serah','muat'];
+const SUB_KW=['rujuk','rujukan','sub proses','sub-proses','laksana proses'];
+function startsAny(low,arr){ return arr.some(k=>low===k || low.startsWith(k+' ')); }
+function classifyLine(raw){
+  let l=raw.trim();
+  const m=l.match(/^\[(k|p|io|d|s)\]\s*/i);
+  if(m){ const map={k:'decision',p:'process',io:'io',d:'document',s:'subprocess'}; let t=l.slice(m[0].length).trim(); const ty=map[m[1].toLowerCase()]; return {type:ty, text: ty==='decision'? t.replace(/\?\s*$/,'').trim()+' ?' : t}; }
+  if(/\?\s*$/.test(l)) return {type:'decision', text:l.replace(/\?\s*$/,'').trim()+' ?'};
+  const low=l.toLowerCase();
+  if(/^\[\[.*\]\]$/.test(l)) return {type:'subprocess', text:l.replace(/^\[\[|\]\]$/g,'').trim()};
+  if(startsAny(low,SUB_KW)) return {type:'subprocess', text:l};
+  if(startsAny(low,DOC_KW)) return {type:'document', text:l};
+  if(startsAny(low,IO_KW)) return {type:'io', text:l};
+  return {type:'process', text:l};
+}
+function parseFlow(text){
+  const lines=(text||'').split('\n').map(s=>s.trim()).filter(s=>s && !/^(mula|tamat)$/i.test(s));
+  const nodes=[{type:'start',text:'MULA'}];
+  lines.forEach(l=>nodes.push(classifyLine(l)));
+  nodes.push({type:'end',text:'TAMAT'});
+  return nodes;
+}
+function wrapText(t,max){
+  const words=(t||'').split(/\s+/).filter(Boolean); const lines=[]; let cur='';
+  words.forEach(w=>{ if(!cur){cur=w;} else if((cur+' '+w).length<=max){cur+=' '+w;} else {lines.push(cur);cur=w;} });
+  if(cur)lines.push(cur); return lines.length?lines:[' '];
+}
+function renderFlow(nodes){
+  const CW=7.3, LH=18, PADX=18, GAP=30, TOP=22;
+  const items=nodes.map(n=>{
+    let max,minW;
+    if(n.type==='start'||n.type==='end'){max=40;minW=96;}
+    else if(n.type==='decision'){max=24;minW=150;}
+    else {max=32;minW=150;}
+    const lines=wrapText(n.text,max);
+    const longest=Math.max.apply(null,lines.map(l=>l.length));
+    let w=Math.max(minW, Math.round(longest*CW)+2*PADX);
+    let h=lines.length*LH+18;
+    if(n.type==='start'||n.type==='end'){h=42;}
+    if(n.type==='decision'){w+=44;h+=16;}
+    if(n.type==='io'){w+=28;}
+    if(n.type==='document'){h+=10;}
+    if(n.type==='subprocess'){w+=24;}
+    return {n,lines,w,h};
+  });
+  const maxW=Math.max.apply(null,items.map(i=>i.w));
+  const W=maxW+90, cx=Math.round(W/2);
+  let y=TOP; const parts=[]; const centers=[];
+  items.forEach(it=>{
+    const {n,lines,w,h}=it; const x=Math.round(cx-w/2); const cyTop=y, cyMid=Math.round(y+h/2);
+    centers.push({top:cyTop,bot:cyTop+h,mid:cyMid});
+    const weight=(n.type==='process')?'400':'600';
+    const txt=(fill)=>lines.map((l,li)=>'<text x="'+cx+'" y="'+Math.round(cyMid-(lines.length-1)*LH/2+li*LH)+'" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="13.5" font-weight="'+weight+'" fill="'+fill+'">'+escapeHtml(l)+'</text>').join('');
+    const NV='#0F2942';
+    if(n.type==='start'||n.type==='end'){
+      const fill=n.type==='start'?'#B8860B':NV, tc=n.type==='start'?'#231a00':'#ffffff';
+      parts.push('<rect x="'+x+'" y="'+cyTop+'" width="'+w+'" height="'+h+'" rx="'+(h/2)+'" fill="'+fill+'"/>'+txt(tc));
+    }else if(n.type==='decision'){
+      const pts=[cx+','+cyTop,(x+w)+','+cyMid,cx+','+(cyTop+h),x+','+cyMid].join(' ');
+      parts.push('<polygon points="'+pts+'" fill="#fdf7e9" stroke="#B8860B" stroke-width="1.5"/>'+txt(NV));
+    }else if(n.type==='io'){
+      const s=16, pts=[(x+s)+','+cyTop,(x+w)+','+cyTop,(x+w-s)+','+(cyTop+h),x+','+(cyTop+h)].join(' ');
+      parts.push('<polygon points="'+pts+'" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+txt(NV));
+    }else if(n.type==='document'){
+      const b=cyTop+h-6;
+      const d='M'+x+' '+cyTop+' L'+(x+w)+' '+cyTop+' L'+(x+w)+' '+b+' Q'+(x+w*0.75)+' '+(b+11)+' '+(x+w*0.5)+' '+b+' T'+x+' '+b+' Z';
+      parts.push('<path d="'+d+'" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+txt(NV));
+    }else if(n.type==='subprocess'){
+      parts.push('<rect x="'+x+'" y="'+cyTop+'" width="'+w+'" height="'+h+'" rx="6" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+
+        '<line x1="'+(x+8)+'" y1="'+cyTop+'" x2="'+(x+8)+'" y2="'+(cyTop+h)+'" stroke="'+NV+'" stroke-width="1.2"/>'+
+        '<line x1="'+(x+w-8)+'" y1="'+cyTop+'" x2="'+(x+w-8)+'" y2="'+(cyTop+h)+'" stroke="'+NV+'" stroke-width="1.2"/>'+txt(NV));
+    }else{
+      parts.push('<rect x="'+x+'" y="'+cyTop+'" width="'+w+'" height="'+h+'" rx="8" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+txt(NV));
+    }
+    y=cyTop+h+GAP;
+  });
+  let conn='';
+  for(let i=0;i<centers.length-1;i++){
+    const a=centers[i], b=centers[i+1];
+    conn+='<line x1="'+cx+'" y1="'+a.bot+'" x2="'+cx+'" y2="'+(b.top-2)+'" stroke="#0F2942" stroke-width="1.5" marker-end="url(#fa)"/>';
+    if(nodes[i].type==='decision') conn+='<text x="'+(cx+9)+'" y="'+Math.round((a.bot+b.top)/2)+'" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#0F6E56">Ya</text>';
+  }
+  const H=y-GAP+TOP;
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+
+    '<defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#0F2942" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>'+
+    conn+parts.join('')+'</svg>';
+  return {svg,W,H};
+}
+/* ---------- Panduan simbol ---------- */
+const GUIDE=[
+  {sim:'Mula / Tamat', bentuk:'Kapsul', desc:'Ditambah automatik di atas & bawah carta.', ex:'(automatik)', node:{type:'start',text:'MULA'}},
+  {sim:'Proses', bentuk:'Segi empat', desc:'Ayat tindakan biasa (lalai).', ex:'Sedia maklum balas', node:{type:'process',text:'Sedia maklum balas'}},
+  {sim:'Keputusan', bentuk:'Rombus', desc:'Ayat berakhir dengan tanda ?', ex:'Semak kelengkapan?', node:{type:'decision',text:'Semak kelengkapan ?'}},
+  {sim:'Input / Output', bentuk:'Segi empat condong', desc:'Bermula: Terima, Hantar, Papar, Cetak, Isi, Serah…', ex:'Terima borang permohonan', node:{type:'io',text:'Terima borang permohonan'}},
+  {sim:'Dokumen', bentuk:'Lengkung bawah', desc:'Bermula: Dokumen, Surat, Borang, Laporan, Sijil, Memo, Rekod…', ex:'Surat kelulusan pengarah', node:{type:'document',text:'Surat kelulusan pengarah'}},
+  {sim:'Sub-proses', bentuk:'Garis dua tepi', desc:'Bermula: Rujuk — atau balut dengan [[ ]]', ex:'Rujuk SOP kewangan', node:{type:'subprocess',text:'Rujuk SOP kewangan'}}
+];
+function openGuide(){
+  const box=document.getElementById('guideBody');
+  box.innerHTML=GUIDE.map(g=>{
+    const {svg}=renderFlow([g.node]);
+    const ex = g.ex==='(automatik)' ? '<i style="color:var(--muted)">automatik</i>' : '<code>'+escapeHtml(g.ex)+'</code>';
+    return '<div class="gitem"><div class="ginfo"><div class="gname">'+g.sim+' <span class="gshape">'+g.bentuk+'</span></div>'+
+      '<div class="gdesc">'+g.desc+'</div><div class="gex">Contoh: '+ex+'</div></div>'+
+      '<div class="gsvg">'+svg+'</div></div>';
+  }).join('') +
+  '<div class="gnote"><b>Paksa simbol (pilihan):</b> letak tag di depan ayat — <code>[K]</code> keputusan, <code>[P]</code> proses, <code>[IO]</code> input/output, <code>[D]</code> dokumen, <code>[S]</code> sub-proses. Contoh: <code>[D] Perakuan selesai</code>.</div>';
+  document.getElementById('guideModal').classList.add('open');
+}
+function closeGuide(){ document.getElementById('guideModal').classList.remove('open'); }
+
+let cartaCtx=null;
+function slugify(s){ return (s||'carta').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,40)||'carta'; }
+function cartaFname(){ return 'carta_'+slugify(document.getElementById('cartaTitle').textContent); }
+function dl(url,name){ const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500); }
+function openCarta(oid,ri){ const o=state.officers.find(x=>x.id===oid); if(!o)return; const r=o.rows[ri]; if(!r)return;
+  cartaCtx={oid,ri};
+  document.getElementById('cartaTitle').textContent=r.task;
+  document.getElementById('cartaInput').value=r.proses||'';
+  drawCarta(); document.getElementById('cartaModal').classList.add('open'); }
+function drawCarta(){ const {svg}=renderFlow(parseFlow(document.getElementById('cartaInput').value)); document.getElementById('cartaPreview').innerHTML=svg; }
+function closeCarta(){ document.getElementById('cartaModal').classList.remove('open'); cartaCtx=null; }
+document.getElementById('cartaInput').addEventListener('input',drawCarta);
+document.getElementById('cartaClose').onclick=closeCarta;
+document.getElementById('cartaModal').addEventListener('click',e=>{ if(e.target.id==='cartaModal') closeCarta(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('cartaModal').classList.contains('open')) closeCarta(); });
+document.getElementById('cartaSave').onclick=()=>{ if(!cartaCtx)return; const o=state.officers.find(x=>x.id===cartaCtx.oid); o.rows[cartaCtx.ri].proses=document.getElementById('cartaInput').value; save(); renderPegawai(); toast('Carta alir disimpan'); closeCarta(); };
+document.getElementById('cartaSvg').onclick=()=>{ const svg=document.querySelector('#cartaPreview svg'); if(!svg)return; const blob=new Blob([svg.outerHTML],{type:'image/svg+xml;charset=utf-8'}); dl(URL.createObjectURL(blob),cartaFname()+'.svg'); toast('SVG dimuat turun'); };
+document.getElementById('cartaPng').onclick=()=>{ const svg=document.querySelector('#cartaPreview svg'); if(!svg)return;
+  const xml=new XMLSerializer().serializeToString(svg); const src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(xml)));
+  const img=new Image(); img.onload=()=>{ const s=2,c=document.createElement('canvas'); c.width=img.width*s; c.height=img.height*s; const ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); ctx.setTransform(s,0,0,s,0,0); ctx.drawImage(img,0,0); c.toBlob(bl=>{ dl(URL.createObjectURL(bl),cartaFname()+'.png'); toast('PNG dimuat turun'); }); };
+  img.onerror=()=>toast('Gagal jana PNG — cuba SVG'); img.src=src; };
+document.getElementById('cartaGuideBtn').onclick=openGuide;
+document.getElementById('guideClose').onclick=closeGuide;
+document.getElementById('guideModal').addEventListener('click',e=>{ if(e.target.id==='guideModal') closeGuide(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('guideModal').classList.contains('open')) closeGuide(); });
+
+renderAll();
+
+/* aktifkan lapisan Sheet hanya bila API_URL ditetapkan */
+if(apiConfigured()){
+  document.getElementById('syncWrap').classList.remove('hidden');
+  document.getElementById('btnPull').onclick=apiLoad;
+  document.getElementById('btnPush').onclick=apiSave;
+  apiLoad();
+  if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
