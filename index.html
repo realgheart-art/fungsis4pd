@@ -171,6 +171,56 @@ table.hier td.task{color:var(--ink)}
 .editbar .spacer{flex:1}
 /* ---------- Laporan cetak / PDF ---------- */
 #printRoot{display:none}
+/* ---------- Log masuk & admin ---------- */
+.authbox{display:flex;align-items:center;margin-left:4px;padding-left:10px;border-left:1px solid #33506c}
+.userchip{display:flex;align-items:center;gap:8px;background:#183651;border:1px solid #33506c;color:#fff;border-radius:999px;padding:4px 12px 4px 4px;font:inherit;font-size:13px;cursor:pointer;max-width:320px}
+.userchip:hover{background:#1f4263}
+.uav{width:28px;height:28px;border-radius:50%;background:var(--brass);color:#231a00;font-weight:700;font-size:11.5px;display:flex;align-items:center;justify-content:center;flex:none}
+.unm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;min-width:0}
+.urole{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--teal-soft);color:var(--teal);flex:none}
+.urole.admin{background:#f4ead0;color:#7a5a00}
+.ucaret{opacity:.7;font-size:11px}
+#userMenu{min-width:230px;z-index:60}
+.ro-note{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;background:#f3f6f9;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:10px;padding:10px 14px;margin:-4px 0 14px;font-size:13.5px}
+.ro-badge{font-size:11.5px;font-weight:700;background:rgba(255,255,255,.14);color:#e3c272;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.savepill.busy{color:#8a6500}.savepill.ok{color:var(--ok)}.savepill.err{color:var(--danger)}
+.form-grid{display:flex;flex-direction:column;gap:12px}
+.form-grid label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.form-grid input,.form-grid select{font:inherit;font-size:14px;font-weight:400;color:var(--ink);padding:9px 11px;border:1px solid var(--line-strong);border-radius:8px;width:100%;box-sizing:border-box;background:#fff}
+.form-grid input:focus,.form-grid select:focus{outline:2px solid var(--brass-soft);border-color:var(--brass)}
+.form-grid input:disabled{background:var(--paper);color:var(--muted)}
+.form-grid label.chk{flex-direction:row;align-items:center;gap:8px;font-size:13.5px;color:var(--ink);font-weight:600}
+.form-grid label.chk input{width:auto}
+.pwwrap{position:relative;display:block}.pwwrap input{padding-right:42px}
+.pweye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;cursor:pointer;font-size:16px;padding:4px 6px;border-radius:6px}
+.err{color:var(--danger);font-size:13px;margin:0;min-height:0;font-weight:600}.err:empty{display:none}
+.demo-hint{background:#fffcf3;border:1px dashed #d9b968;border-radius:8px;padding:8px 11px;font-size:12.5px}
+.warn-note{background:#fdf3e1;border:1px solid #e8c98a;border-radius:8px;padding:10px 12px;font-size:13px;font-weight:600;color:#6b4d00}
+.lg-brand{display:flex;gap:12px;align-items:center;padding-bottom:4px}.lg-brand .crest{background:var(--navy);color:#e3c272}
+.lg-brand b{display:block;color:var(--navy);font-size:15px}.lg-brand small{color:var(--muted);font-size:12.5px}
+.pwcard{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pwcard div{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.pwcard small{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pwcard b{font-size:17px;color:var(--navy);word-break:break-all}.mono{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em}
+.adm-body{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.adm-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--paper);font-size:13px;color:var(--muted);font-weight:600}
+.adm-scroll{overflow-x:auto}
+.adm-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.adm-tbl th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;background:#fff}
+.adm-tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.adm-tbl tr:last-child td{border-bottom:0}.adm-tbl tr.dim td{color:#9aa3ad}
+.adm-tbl td.nw{white-space:nowrap}.adm-tbl td.wrap{min-width:220px;max-width:460px}
+.adm-tbl td.acts{text-align:right}.adm-tbl td.acts .btn{margin-left:4px;border-color:var(--line-strong)}
+.btn.danger{color:var(--danger);border-color:#e5c3c3!important}
+.st{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.st.on{background:#e4f2ea;color:var(--ok)}.st.off{background:#eef0f2;color:#7b8590}.st.warn{background:#fdf3e1;color:#8a6500}
+.mini-tag{font-size:10.5px;font-weight:700;background:var(--teal-soft);color:var(--teal);border-radius:4px;padding:1px 6px;margin-left:4px;white-space:nowrap}
+.act-pill{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:6px;background:#eef2f6;color:var(--navy);white-space:nowrap}
+.act-pill.gugur_item,.act-pill.padam_pegawai{background:#f8e5e5;color:var(--danger)}
+.act-pill.tambah_item,.act-pill.pulih_item,.act-pill.tambah_pengguna{background:#e4f2ea;color:var(--ok)}
+.act-pill.log_masuk{background:#f4ead0;color:#7a5a00}
+.adm-loading{padding:30px;text-align:center;color:var(--muted)}
+@media(max-width:720px){.authbox{border-left:0;padding-left:0;margin-left:0}.unm{max-width:110px}.pwcard{grid-template-columns:1fr}}
 /* ---------- Demo ---------- */
 .demo-head{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;justify-content:space-between}
 .demo-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
@@ -409,12 +459,12 @@ table.hier td.task{color:var(--ink)}
           <button data-x="kedua">Kedua-duanya + Struktur</button>
         </div>
       </div>
-      <button class="btn ghost" id="btnReset" title="Kembalikan data asal">↺ Set semula</button>
+      <button class="btn ghost" id="btnReset" title="Set semula data demo">↺ Set semula demo</button>
       <span id="syncWrap" class="hidden" style="display:flex;align-items:center;gap:8px;margin-left:4px;padding-left:10px;border-left:1px solid #33506c">
-        <button class="btn ghost" id="btnPull">☁ Muat</button>
-        <button class="btn brass" id="btnPush">☁ Simpan ke Sheet</button>
+        <button class="btn ghost" id="btnPull" title="Muat semula data terkini dari Google Sheet">☁ Muat semula</button>
         <span id="syncStat" style="font-size:11px;color:#a9bccf;min-width:78px"></span>
       </span>
+      <div class="authbox" id="authBox"></div>
     </div>
   </div>
   <input type="file" id="fileInput" accept=".xlsx,.xls" class="hidden">
@@ -427,6 +477,7 @@ table.hier td.task{color:var(--ink)}
   <button class="tab" data-p="tugas">Ikut Tugas</button>
   <button class="tab" data-p="struktur">Struktur &amp; Unit</button>
   <button class="tab" data-p="demo">Demo Carta Alir</button>
+  <button class="tab hidden" data-p="admin" id="tabAdmin">🛠 Panel Admin</button>
 </div></div></nav>
 
 <main><div class="wrap">
@@ -459,15 +510,17 @@ table.hier td.task{color:var(--ink)}
       <select id="offSelect" style="min-width:280px"></select>
       <button class="btn sm" id="btnEdit">✎ Sunting</button>
       <button class="btn sm ghost" id="btnAddOfficer" style="color:var(--navy);border-color:var(--line-strong)">＋ Pegawai baharu</button>
+      <span class="spacer" style="flex:1"></span>
+      <button class="btn sm" id="btnPdfOne" style="border-color:var(--line-strong)">⬇ PDF pegawai ini</button>
+      <button class="btn sm" id="btnPdfAll" style="border-color:var(--line-strong)">⬇ PDF semua</button>
     </div>
+    <div class="ro-note hidden" id="roNote"></div>
     <div class="editbar hidden" id="editbar">
       <button class="btn sm brass" id="btnAddRow">＋ Tambah tugas</button>
       <button class="btn sm" id="btnRenameOff" style="border-color:var(--line-strong)">✎ Nama / jawatan</button>
       <button class="btn sm" id="btnDelOff" style="color:var(--danger);border-color:#e5c3c3">🗑 Padam pegawai</button>
-      <button class="btn sm" id="btnPdfOne" style="border-color:var(--line-strong)">⬇ PDF pegawai ini</button>
-      <button class="btn sm" id="btnPdfAll" style="border-color:var(--line-strong)">⬇ PDF semua</button>
       <span class="spacer"></span>
-      <span class="savepill">● Disimpan automatik</span>
+      <span class="savepill" id="savePill">● Disimpan automatik ke pelayan</span>
       <button class="btn sm brass" id="btnDone">Selesai</button>
     </div>
     <div id="offBody"></div>
@@ -504,12 +557,20 @@ table.hier td.task{color:var(--ink)}
     <div class="demo-card" id="demoCard"></div>
   </section>
 
+  <!-- PANEL ADMIN -->
+  <section class="pane" id="pane-admin">
+    <div class="pane-head"><h2>Panel Admin</h2>
+      <p>Urus akaun pengguna dan pegawai, pulihkan item yang digugurkan, dan semak log aktiviti. Setiap perubahan direkodkan.</p></div>
+    <div class="seg" id="admTabs" style="margin-bottom:14px"><button data-a="pengguna" class="on">👥 Pengguna</button><button data-a="pegawai">🧑‍💼 Pegawai</button><button data-a="arkib">🗄 Arkib</button><button data-a="log">📜 Log aktiviti</button></div>
+    <div id="admBody" class="adm-body"></div>
+  </section>
+
   <div class="foot" id="foot"></div>
 </div></main>
 
 <div class="modal-bg" id="cartaModal">
   <div class="modal">
-    <div class="modal-head"><h3 id="cartaTitle"></h3><button class="x" id="cartaClose" aria-label="Tutup">&times;</button></div>
+    <div class="modal-head"><h3 id="cartaTitle"></h3><span class="ro-badge hidden" id="cartaRO">👁 Baca sahaja</span><button class="x" id="cartaClose" aria-label="Tutup">&times;</button></div>
     <div class="modal-body">
       <div class="carta-edit">
         <div class="seg" id="cartaInTabs"><button data-in="teks" class="on">✎ Teks</button><button data-in="borang">☰ Borang</button></div>
@@ -574,6 +635,64 @@ table.hier td.task{color:var(--ink)}
   </div>
 </div>
 
+<div class="modal-bg" id="loginModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-head"><h3>Log masuk</h3><button class="x" id="lgClose" aria-label="Tutup">&times;</button></div>
+    <div class="pdf-body form-grid">
+      <div class="lg-brand"><div class="crest">S4</div><div><b>Agihan Tugas S4PD</b><small>Log masuk untuk menambah dan menyunting tugas anda</small></div></div>
+      <label>ID pengguna<input id="lgUser" autocomplete="username" autocapitalize="off" spellcheck="false"></label>
+      <label>Kata laluan<span class="pwwrap"><input id="lgPw" type="password" autocomplete="current-password"><button type="button" class="pweye" data-eye="lgPw" aria-label="Papar kata laluan">👁</button></span></label>
+      <p class="err" id="lgErr" role="alert"></p>
+      <div class="demo-hint" id="lgDemo"><b>Mod demo</b> — cuba <code>admin</code> / <code>admin123</code> atau <code>shahril</code> / <code>demo1234</code></div>
+      <p class="hint" style="margin:0">Lupa kata laluan? Hubungi admin untuk set semula.</p>
+    </div>
+    <div class="modal-foot"><span class="spacer"></span><button class="btn sm brass" id="lgGo">Log masuk</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="tukarModal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-head"><h3>Tukar kata laluan</h3><button class="x" id="tkClose" aria-label="Tutup">&times;</button></div>
+    <div class="pdf-body form-grid">
+      <div class="warn-note hidden" id="tkNote">🔒 Anda menggunakan kata laluan sementara. Tetapkan kata laluan baharu untuk meneruskan.</div>
+      <label>Kata laluan semasa<span class="pwwrap"><input id="tkLama" type="password" autocomplete="current-password"><button type="button" class="pweye" data-eye="tkLama">👁</button></span></label>
+      <label>Kata laluan baharu<span class="pwwrap"><input id="tkBaru" type="password" autocomplete="new-password"><button type="button" class="pweye" data-eye="tkBaru">👁</button></span></label>
+      <label>Sahkan kata laluan baharu<input id="tkSah" type="password" autocomplete="new-password"></label>
+      <p class="hint" style="margin:0">Sekurang-kurangnya 8 aksara, mengandungi huruf dan nombor.</p>
+      <p class="err" id="tkErr" role="alert"></p>
+    </div>
+    <div class="modal-foot"><span class="spacer"></span><button class="btn sm" id="tkBatal" style="border-color:var(--line-strong)">Batal</button><button class="btn sm brass" id="tkGo">Simpan kata laluan</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="userModal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-head"><h3 id="umTitle">Tambah pengguna</h3><button class="x" id="umClose" aria-label="Tutup">&times;</button></div>
+    <div class="pdf-body form-grid">
+      <label>ID pengguna<input id="umUser" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="cth: shahril"></label>
+      <label>Nama penuh<input id="umNama" placeholder="cth: En. Mohd Shahril bin Ibenil Harjad"></label>
+      <label>Peranan<select id="umPeranan"><option value="pengguna">Pengguna individu — urus item sendiri</option><option value="admin">Admin — urus semua</option></select></label>
+      <label>Pegawai dipautkan<select id="umOff"></select></label>
+      <label class="chk hidden" id="umAktifWrap"><input type="checkbox" id="umAktif"> Akaun aktif</label>
+      <p class="hint" id="umHint" style="margin:0">Kata laluan sementara dijana automatik. Pengguna wajib menukarnya semasa log masuk pertama.</p>
+      <p class="err" id="umErr" role="alert"></p>
+    </div>
+    <div class="modal-foot"><span class="spacer"></span><button class="btn sm" id="umCancel" style="border-color:var(--line-strong)">Batal</button><button class="btn sm brass" id="umSave">Simpan</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="pwModal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-head"><h3 id="pwTitle">Akaun sedia digunakan</h3></div>
+    <div class="pdf-body">
+      <p style="margin:0 0 12px;font-size:13.5px">Berikan maklumat ini kepada <b id="pwNama"></b>:</p>
+      <div class="pwcard"><div><small>ID pengguna</small><b id="pwUser"></b></div><div><small>Kata laluan sementara</small><b id="pwPass" class="mono"></b></div></div>
+      <p class="hint" style="margin:12px 0 0">⚠ Kata laluan ini dipaparkan <b>sekali sahaja</b>. Pengguna wajib menukarnya semasa log masuk pertama.</p>
+    </div>
+    <div class="modal-foot"><span class="spacer"></span><button class="btn sm" id="pwCopy" style="border-color:var(--line-strong)">⧉ Salin maklumat</button><button class="btn sm brass" id="pwDone">Selesai</button></div>
+  </div>
+</div>
+
 <div class="modal-bg" id="guideModal">
   <div class="modal" style="max-width:720px">
     <div class="modal-head"><h3>Panduan pengisian carta alir</h3><button class="x" id="guideClose" aria-label="Tutup">&times;</button></div>
@@ -587,56 +706,416 @@ table.hier td.task{color:var(--ink)}
 
 <script>
 const SEED = {"meta": {"sektor": "Sektor Perancangan & Pengurusan PPD (S4PD)", "jpn": "Jabatan Pendidikan Negeri Kedah", "tarikh": "9 September 2026", "sumber": "Bilateral S4PD Bil. 1/2026 (23 Julai 2026)"}, "shortmap": {"DR MOHD LATIFI": "DR MOHD LATIFI BIN ABD GHANI", "EN. LUTHFI": "EN. LUTHFI BIN MOHD RADZI", "HJ. AHMAD HAMDI": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "HJ. HAMDI": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "EN. MOHD SHAHRIL": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "EN. SUFIYUDDIN": "EN. SUFIYUDDIN BIN AHMAD", "PN. ZARIYATI": "PN. NOOR ZARIYATI BINTI MOHAMMAD", "EN. DIN": "EN. DIN BIN MAT JUSOH", "EN. NOORULANUAR": "EN. NOORULANUAR BIN BAHARUDIN"}, "canon": {"DR MOHD LATIFI BIN ABD GHANI": "DR MOHD LATIFI", "EN. LUTHFI BIN MOHD RADZI": "EN. LUTHFI", "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR": "HJ. AHMAD HAMDI", "EN. MOHD SHAHRIL BIN IBENIL HARJAD": "EN. MOHD SHAHRIL", "EN. SUFIYUDDIN BIN AHMAD": "EN. SUFIYUDDIN", "PN. NOOR ZARIYATI BINTI MOHAMMAD": "PN. ZARIYATI", "EN. DIN BIN MAT JUSOH": "EN. DIN", "EN. NOORULANUAR BIN BAHARUDIN": "EN. NOORULANUAR"}, "officers": [{"id": 1, "bil": 1, "nama": "DR MOHD LATIFI BIN ABD GHANI", "short": "DR MOHD LATIFI", "rows": [{"task": "Maklum balas Syor Nazir dan Tindak Susul", "tag": "DR MOHD LATIFI"}, {"task": "Program Latihan (BPG)", "tag": "DR MOHD LATIFI"}, {"task": "Program Career Development Informative Kit (CerDIK)", "tag": "DR MOHD LATIFI"}, {"task": "Standard Guru Malaysia (SSKD-SGMy)", "tag": "DR MOHD LATIFI"}, {"task": "RPM 2026-2035 (Prakarsa)", "tag": "DR MOHD LATIFI"}, {"task": "Dialog Prestasi PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI Pengarah (PPTPA)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Inovasi dan Penyelidikan", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat Pengurusan JPN PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat SRO (Senior Responsible owner)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Portal DTPCare", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "EN. DIN"}, {"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 2, "bil": 2, "nama": "EN. LUTHFI BIN MOHD RADZI", "short": "EN. LUTHFI", "rows": [{"task": "Pengurusan Kewangan (Sektor)", "tag": "EN. LUTHFI"}, {"task": "Maklum balas Sidang Dewan Undangan Negeri (DUN)", "tag": "EN. LUTHFI"}, {"task": "Urus setia Bilateral S4PD", "tag": "EN. LUTHFI"}, {"task": "Menyelaras permohonan projek ICU", "tag": "EN. LUTHFI"}, {"task": "Maklum balas Sidang Parlimen", "tag": "EN. LUTHFI"}, {"task": "Menghadiri Mesyuarat UR20a berdasarkan ketetapan PlanMalaysia bagi mengesahkan pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. LUTHFI"}, {"task": "Menentusahkan reka bentuk konsep bagi setiap pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. LUTHFI"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan kesesuaian dan kebolehlaksanaan projek.", "tag": "EN. LUTHFI"}, {"task": "Menyelaras pangkalan data sebagai pusat sehenti bagi JPN dan PPD", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN.", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Mesyuarat Khas Pengarah *Pengarah,timbalan dan PPD", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}, {"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 3, "bil": 3, "nama": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "short": "HJ. AHMAD HAMDI", "rows": [{"task": "Dialog Prestasi PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI Pengarah (PPTPA)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Inovasi dan Penyelidikan", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat Pengurusan JPN PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat SRO (Senior Responsible Owner)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Portal DTPCare", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "EN. DIN"}, {"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 4, "bil": 4, "nama": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "short": "EN. MOHD SHAHRIL", "rows": [{"task": "Mengawal selia pengoperasian Sistem EMIS", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN melibatkan rendah, menengah, prasekolah, PPKI dan TVET", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras semakan ralat pengisian EMIS", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras dan membuat semakan kesahan data Modul Pengurusan Murid (MOEIS), Modul Pengurusan Guru (eOperasi) dan Modul Pengurusan Sekolah secara bulanan", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menguruskan perlantikan Guru Data dan Maklumat Sekolah (GDM)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras latihan penggunaan sistem EMIS kepada Guru Data dan Maklumat sekolah-sekolah", "tag": "EN. MOHD SHAHRIL"}, {"task": "Melatih serta membimbing pegawai-pegawai JPN dan Penolong-penolong PPD Perancangan dalam penyediaan dashboard", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras dan mengemaskini data repositori JPN Kedah", "tag": "EN. MOHD SHAHRIL"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Urus setia Mesyuarat Khas Pengarah (melibatkan Pengarah,Timbalan Pengarah dan PPD sahaja)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}, {"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 5, "bil": 5, "nama": "EN. SUFIYUDDIN BIN AHMAD", "short": "EN. SUFIYUDDIN", "rows": [{"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 6, "bil": 6, "nama": "PN. NOOR ZARIYATI BINTI MOHAMMAD", "short": "PN. ZARIYATI", "rows": [{"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "PN. ZARIYATI"}]}, {"id": 7, "bil": 7, "nama": "EN. DIN BIN MAT JUSOH", "short": "EN. DIN", "rows": [{"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 8, "bil": 8, "nama": "EN. NOORULANUAR BIN BAHARUDIN", "short": "EN. NOORULANUAR", "rows": [{"task": "Merancang dan menyelaras permohonan projek pembangunan termasuk skop projek dan anggaran kos bagi projek jangka panjang (RMK)", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan dan pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep bagi setiap pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan kesesuaian dan kebolehlaksanaan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}]}], "tugas": {"hierarki": [{"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB)."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras pangkalan data sebagai pusat sehenti bagi JPN dan PPD"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras dan mengurusetia mesyuarat cadangan arahan penempatan pegawai"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Membangunkan pelan strategik pembangunan pendidikan negeri yang selari dengan pelan jangka panjang KPM."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Menyelaras maklum balas berkaitan pendidikan kepada pihak berkepentingan"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Menyelaras dan memastikan pematuhan/pelaksanaan terhadap langkah-langkah penambahbaikan daripada hasil laporan audit dan naziran."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "NOOR ZARIYATI BINTI MOHAMMAD", "task": "Menyelaras, memantau dan memberi khidmat nasihat ke atas pematuhan dasar dan standard kualiti merentasi sektor serta pelaksanaan inisiatif kualiti, inovasi dan penyelidikan di peringkat JPN dan PPD."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "NOOR ZARIYATI BINTI MOHAMMAD", "task": "Merancang dan menyelaras pengurusan transformasi PPD."}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pemilihan program-program utama untuk dilaksanakan di peringkat negeri/wilayah dan PPD"}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pengurusan aduan awam di peringkat negeri / wilayah"}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pengurusan bencana di peringkat negeri"}], "unitTransformasi": ["RPM 2026-2035", "KPI Sektor/ KPI Pengarah (PPTPA)", "Program CerDIK", "MAKMur", "Dialog Prestasi", "Maklum balas Syor Nazir dan Tindak Susul", "Penarafan PPD", "Inovasi dan penyelidikan", "Aduan dan siasatan", "Pengurusan Bencana", "Reformasi Sekolah", "Mesyuarat Sektor Perancangan JPN PPD", "Mesyuarat Pengurusan JPN PPD", "Mesyuarat SRO (Senior Responsible owner)", "Program latihan (BPG)", "Takwim JPN"], "unitPembangunan": ["Merancang dan menyelaras projek pembangunan", "Menyelaras urusan pembukaan dan pemindahan sekolah", "Menyelaras pangkalan data sehenti", "Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "Mesyuarat Khas JPN PPD", "Mesyuarat Pengurusan Sektor Perancangan dan Pengurusan PPD (S4PD dalaman)/bilateral", "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "Maklum balas Sidang Dewan Undangan Negeri (DUN)", "Maklum balas Sidang Parlimen (pegawai penghubung Parlimen ialah UKK, maklum balas S4PD yang dok jawab)/ Maklum balas mesyuarat Pengarah bersama agensi luar", "Pengurusan Kewangan (Sektor)", "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "Mesyuarat Rundingan 20A di bawah Akta", "Mesyuarat Social Impact SIA"]}};
-/* ===== FASA 2: Tampal URL Apps Script Web App di sini selepas deploy ===== */
-const CONFIG = { API_URL: "https://script.google.com/macros/s/AKfycbwz1D6FIgtlbYwEwm5cn9kIHo9SoZ2sM9kXudGh8hDD5dGl3kZYNOjfmdVkS540G3pS/exec" };
-const LS_KEY = 'agihan_s4pd_v1';
-const SHORTS = Object.keys(SEED.canon).map(f=>SEED.canon[f]); // canonical shorts in officer order-ish
-let state = load();
+/* ===== Tampal URL Apps Script Web App di sini selepas deploy (kosong = MOD DEMO dalam pelayar) ===== */
+const CONFIG = { API_URL: "https://script.google.com/macros/s/AKfycbwqECpHclt1uZ2wsfEay6-62S4GL8cWHHlryhGS_yssNOywEoJMb1oJcNEro7SuiNfw/exec" };
+const LS_KEY = 'agihan_s4pd_v1';                 // data versi lama — dibaca sekali untuk mod demo
+const CACHE_KEY = 's4pd-cache-v2', SESI_KEY = 's4pd-sesi-v2';
+const SHORTS = Object.keys(SEED.canon).map(f=>SEED.canon[f]);
+let state = bacaCache();
 let editMode = false;
 let curOffId = state.officers[0] ? state.officers[0].id : null;
+let SESI = bacaSesi();
 
-function load(){
-  try{ const s = localStorage.getItem(LS_KEY); if(s) return JSON.parse(s); }catch(e){}
-  return JSON.parse(JSON.stringify(SEED));
-}
-function save(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
-
-/* ---------- FASA 2: segerak Google Sheet (JSONP baca / POST tulis) ---------- */
+function bacaCache(){ try{ const s=localStorage.getItem(CACHE_KEY); if(s){ const d=JSON.parse(s); if(d&&d.officers) return d; } }catch(e){} return JSON.parse(JSON.stringify({officers:SEED.officers})); }
+function save(){ try{ localStorage.setItem(CACHE_KEY, JSON.stringify(state)); }catch(e){} }
 function apiConfigured(){ return CONFIG.API_URL && /^https:\/\//.test(CONFIG.API_URL); }
 function setSync(t){ const el=document.getElementById('syncStat'); if(el) el.textContent=t; }
-function jsonp(params){ return new Promise((res,rej)=>{
-  const cb='__jp'+Math.random().toString(36).slice(2); const s=document.createElement('script');
-  const to=setTimeout(()=>{cleanup();rej(new Error('timeout'));},15000);
-  function cleanup(){clearTimeout(to);try{delete window[cb];}catch(e){} s.remove();}
-  window[cb]=d=>{cleanup();res(d);};
-  s.onerror=()=>{cleanup();rej(new Error('rangkaian'));};
-  const q=Object.keys(params).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(params[k])).join('&');
-  s.src=CONFIG.API_URL+'?'+q+'&callback='+cb; document.body.appendChild(s);
-});}
-async function sha256hex(str){ const b=new TextEncoder().encode(str); const h=await crypto.subtle.digest('SHA-256',b); return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join(''); }
-async function apiLoad(){ if(!apiConfigured())return; setSync('Memuat…');
-  try{ const d=await jsonp({action:'load'});
-    if(d&&d.ok&&d.data&&d.data.officers&&d.data.officers.length){ state=d.data; save(); curOffId=state.officers[0].id; renderAll(); setSync('✓ Dari Sheet'); toast('Data dimuat dari Google Sheet'); }
-    else { setSync('Sheet kosong'); toast('Sheet kosong — jalankan setupSheets() dahulu'); }
-  }catch(e){ setSync('⚠ Luar talian'); toast('Gagal muat — guna salinan tempatan'); }
+
+/* =====================================================================
+   TERAS S4PD — logik dikongsi oleh Code.gs (pelayan) dan mod demo (pelayar)
+   Semua semakan kebenaran berlaku DI SINI, bukan di antara muka.
+   ===================================================================== */
+var S4Core = (function(){
+  var SESI_TTL = 21600;            // 6 jam
+  var GAGAL_MAKS = 5, KUNCI_SAAT = 600;
+  var LOG_MAKS = 3000;
+
+  function err(kod, mesej, extra){ var o={ok:false, kod:kod, error:mesej}; if(extra) for(var k in extra) o[k]=extra[k]; return o; }
+  function ok(extra){ var o={ok:true}; if(extra) for(var k in extra) o[k]=extra[k]; return o; }
+  function str(v, max){ v = (v==null ? '' : String(v)); v = v.replace(/\r\n?/g,'\n'); return max ? v.slice(0,max) : v; }
+  function trimStr(v, max){ return str(v, max).trim(); }
+  function num(v){ var n = Number(v); return isFinite(n) ? n : null; }
+  function maxOf(arr, key){ var m=0; for(var i=0;i<arr.length;i++){ var n=Number(arr[i][key])||0; if(n>m) m=n; } return m; }
+  function find(arr, fn){ for(var i=0;i<arr.length;i++) if(fn(arr[i])) return arr[i]; return null; }
+  function idxOf(arr, fn){ for(var i=0;i<arr.length;i++) if(fn(arr[i])) return i; return -1; }
+  function copy(o){ return JSON.parse(JSON.stringify(o)); }
+
+  /* ---------- paparan awam (tiada maklumat pengguna) ---------- */
+  function publicData(db){
+    var offs = db.pegawai.slice().sort(function(a,b){ return a.bil-b.bil; });
+    return { officers: offs.map(function(o){
+      var rows = db.tugas.filter(function(t){ return t.officer_id===o.id; })
+                         .sort(function(a,b){ return a.urutan-b.urutan; })
+                         .map(function(t){ return { id:t.id, task:t.task, tag:t.tag, proses:t.proses||'', versi:t.versi,
+                                                    dikemas_oleh:t.dikemas_oleh||'', dikemas_pada:t.dikemas_pada||'' }; });
+      return { id:o.id, bil:o.bil, nama:o.nama, short:o.short, rows:rows };
+    }) };
+  }
+  function userPublic(u){ return { username:u.username, nama:u.nama, peranan:u.peranan, officer_id:u.officer_id,
+                                   aktif:!!u.aktif, tukar_wajib:!!u.tukar_wajib, dicipta_pada:u.dicipta_pada||'', log_masuk_akhir:u.log_masuk_akhir||'' }; }
+  function sesiUser(u){ return { username:u.username, nama:u.nama, peranan:u.peranan, officer_id:u.officer_id, tukar_wajib:!!u.tukar_wajib }; }
+
+  function logIt(db, env, siapa, tindakan, butiran){
+    db.log.push({ masa: env.now(), pengguna: siapa||'-', tindakan: tindakan, butiran: str(butiran, 500) });
+    if(db.log.length > LOG_MAKS) db.log.splice(0, db.log.length-LOG_MAKS);
+  }
+  function kataLaluanSah(p){ p=str(p); return p.length>=8 && /[A-Za-z]/.test(p) && /[0-9]/.test(p); }
+  function janaSementara(env){
+    var abjad='ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789', h=env.rand(16), s='';
+    for(var i=0;i<8;i++){ s += abjad.charAt(parseInt(h.substr(i*2,2),16) % abjad.length); }
+    return s.slice(0,4)+'-'+s.slice(4)+'7';
+  }
+  function tetapkanKataLaluan(u, pw, env){ u.salt = env.rand(16); u.hash = env.hash(pw, u.salt); u.sesi_versi = (Number(u.sesi_versi)||0)+1; }
+
+  /* ---------- sesi ---------- */
+  function sahkanSesi(db, token, env){
+    if(!token) return err('SESI','Sila log masuk.');
+    var s = env.sess.get('t:'+token);
+    if(!s) return err('SESI','Sesi tamat. Sila log masuk semula.');
+    var u = find(db.pengguna, function(x){ return x.username===s.username; });
+    if(!u || !u.aktif) { env.sess.del('t:'+token); return err('SESI','Akaun tidak aktif. Hubungi admin.'); }
+    if((Number(u.sesi_versi)||0) !== s.sv){ env.sess.del('t:'+token); return err('SESI','Sesi tamat (kata laluan atau akaun dikemas kini). Sila log masuk semula.'); }
+    return { ok:true, user:u };
+  }
+  function bolehUrus(u, officer_id){ return u.peranan==='admin' || (u.officer_id!=null && Number(u.officer_id)===Number(officer_id)); }
+  function tagSah(db, tag){ return !!find(db.pegawai, function(o){ return o.short===tag; }); }
+
+  /* ---------- tindakan ---------- */
+  var AWAM = { load:1, login:1 };
+  var BOLEH_SEMASA_TUKAR = { whoami:1, logout:1, tukar_kata_laluan:1 };
+  var ADMIN = { user_list:1, user_add:1, user_update:1, user_reset:1, officer_add:1, officer_update:1, officer_delete:1,
+                arkib_list:1, task_restore:1, log_list:1, replace_all:1 };
+  var TULIS = { login:1, logout:0, tukar_kata_laluan:1, task_add:1, task_update:1, task_delete:1, user_add:1, user_update:1,
+                user_reset:1, officer_add:1, officer_update:1, officer_delete:1, task_restore:1, replace_all:1 };
+
+  function handle(db, req, env){
+    var a = String(req && req.action || '');
+    var dirty = {};
+    var mark = function(){ for(var i=0;i<arguments.length;i++) dirty[arguments[i]]=1; };
+    var res = run();
+    return { res: res, dirty: Object.keys(dirty) };
+
+    function run(){
+      if(a==='load') return ok({ data: publicData(db) });
+      if(a==='login') return login();
+      if(!(a in BOLEH_SEMASA_TUKAR) && !(a in ADMIN) && !(a in TULIS)) return err('TINDAKAN','Tindakan tidak dikenali: '+a);
+      var s = sahkanSesi(db, req.token, env); if(!s.ok) return s;
+      var u = s.user;
+      if(u.tukar_wajib && !(a in BOLEH_SEMASA_TUKAR)) return err('TUKAR_WAJIB','Sila tukar kata laluan sementara dahulu.');
+      if(a in ADMIN && u.peranan!=='admin') return err('KEBENARAN','Tindakan ini untuk admin sahaja.');
+      switch(a){
+        case 'whoami': return ok({ user: sesiUser(u) });
+        case 'logout': env.sess.del('t:'+req.token); return ok();
+        case 'tukar_kata_laluan': return tukarKataLaluan(u);
+        case 'task_add': return taskAdd(u);
+        case 'task_update': return taskUpdate(u);
+        case 'task_delete': return taskDelete(u);
+        case 'user_list': return ok({ users: db.pengguna.map(userPublic), officers: publicData(db).officers.map(function(o){ return {id:o.id,nama:o.nama,short:o.short,bil:o.bil}; }) });
+        case 'user_add': return userAdd(u);
+        case 'user_update': return userUpdate(u);
+        case 'user_reset': return userReset(u);
+        case 'officer_add': return officerAdd(u);
+        case 'officer_update': return officerUpdate(u);
+        case 'officer_delete': return officerDelete(u);
+        case 'arkib_list': return ok({ arkib: db.arkib.slice().reverse() });
+        case 'task_restore': return taskRestore(u);
+        case 'log_list': return ok({ log: db.log.slice(-300).reverse() });
+        case 'replace_all': return replaceAll(u);
+      }
+      return err('TINDAKAN','Tindakan tidak dikenali.');
+    }
+
+    function login(){
+      var un = trimStr(req.username, 40).toLowerCase(), pw = str(req.password, 200);
+      if(!un || !pw) return err('INPUT','Masukkan ID pengguna dan kata laluan.');
+      var kunci = env.sess.get('g:'+un);
+      if(kunci && kunci.n >= GAGAL_MAKS) return err('DIKUNCI','Terlalu banyak cubaan gagal. Cuba lagi selepas 10 minit.');
+      var u = find(db.pengguna, function(x){ return x.username===un; });
+      if(!u || env.hash(pw, u.salt)!==u.hash){
+        var n = (kunci ? kunci.n : 0)+1; env.sess.put('g:'+un, {n:n}, KUNCI_SAAT);
+        return err('LOG_MASUK','ID pengguna atau kata laluan salah.'+(n>=3 && n<GAGAL_MAKS ? ' Baki cubaan: '+(GAGAL_MAKS-n)+'.' : ''));
+      }
+      if(!u.aktif) return err('TIDAK_AKTIF','Akaun ini tidak aktif. Hubungi admin.');
+      env.sess.del('g:'+un);
+      var token = env.rand(24);
+      env.sess.put('t:'+token, { username:u.username, sv:Number(u.sesi_versi)||0 }, SESI_TTL);
+      u.log_masuk_akhir = env.now(); mark('pengguna');
+      logIt(db, env, u.username, 'log_masuk', ''); mark('log');
+      return ok({ token: token, user: sesiUser(u) });
+    }
+    function tukarKataLaluan(u){
+      if(env.hash(str(req.lama,200), u.salt)!==u.hash) return err('KATA_LALUAN','Kata laluan semasa tidak tepat.');
+      if(!kataLaluanSah(req.baharu)) return err('LEMAH','Kata laluan baharu mesti sekurang-kurangnya 8 aksara, dengan huruf dan nombor.');
+      if(str(req.baharu)===str(req.lama)) return err('SAMA','Kata laluan baharu mesti berbeza daripada yang lama.');
+      tetapkanKataLaluan(u, str(req.baharu), env); u.tukar_wajib = false;
+      var token = env.rand(24); env.sess.del('t:'+req.token);
+      env.sess.put('t:'+token, { username:u.username, sv:u.sesi_versi }, SESI_TTL);
+      logIt(db, env, u.username, 'tukar_kata_laluan', ''); mark('pengguna','log');
+      return ok({ token: token, user: sesiUser(u) });
+    }
+
+    /* --- item (tugas) --- */
+    function officerOf(id){ return find(db.pegawai, function(o){ return o.id===Number(id); }); }
+    function taskAdd(u){
+      var o = officerOf(req.officer_id); if(!o) return err('TIADA','Pegawai tidak wujud.');
+      if(!bolehUrus(u, o.id)) return err('KEBENARAN','Anda hanya boleh menambah item dalam senarai anda sendiri.');
+      var teks = trimStr(req.task, 1000); if(!teks) return err('INPUT','Nyatakan tugas.');
+      var tag = trimStr(req.tag, 100) || o.short; if(!tagSah(db, tag)) return err('INPUT','Tag kluster tidak sah.');
+      var urutan = maxOf(db.tugas.filter(function(t){ return t.officer_id===o.id; }), 'urutan')+1;
+      var t = { id: Math.max(maxOf(db.tugas,'id'), maxOf(db.arkib,'id'))+1, officer_id:o.id, urutan:urutan, task:teks, tag:tag,
+                proses: str(req.proses, 20000), versi:1, dicipta_oleh:u.username, dicipta_pada:env.now(), dikemas_oleh:u.username, dikemas_pada:env.now() };
+      db.tugas.push(t); mark('tugas','log');
+      logIt(db, env, u.username, 'tambah_item', o.short+' · #'+t.id+' · '+teks);
+      return ok({ item: publicItem(t) });
+    }
+    function taskUpdate(u){
+      var t = find(db.tugas, function(x){ return x.id===Number(req.id); }); if(!t) return err('TIADA','Item tidak wujud (mungkin telah digugurkan).');
+      if(!bolehUrus(u, t.officer_id)) return err('KEBENARAN','Anda hanya boleh menyunting item anda sendiri.');
+      if(req.versi!=null && Number(req.versi)!==Number(t.versi))
+        return err('KONFLIK','Item ini telah dikemas kini oleh '+(t.dikemas_oleh||'pengguna lain')+'. Data terkini dimuat semula.', { item: publicItem(t) });
+      var ubah=[];
+      if(req.task!=null){ var tx=trimStr(req.task,1000); if(!tx) return err('INPUT','Tugas tidak boleh kosong.'); if(tx!==t.task){ t.task=tx; ubah.push('tugas'); } }
+      if(req.tag!=null){ var tg=trimStr(req.tag,100); if(!tagSah(db,tg)) return err('INPUT','Tag kluster tidak sah.'); if(tg!==t.tag){ t.tag=tg; ubah.push('tag'); } }
+      if(req.proses!=null){ var pr=str(req.proses,20000); if(pr!==t.proses){ t.proses=pr; ubah.push('carta alir'); } }
+      if(!ubah.length) return ok({ item: publicItem(t) });
+      t.versi = (Number(t.versi)||1)+1; t.dikemas_oleh=u.username; t.dikemas_pada=env.now(); mark('tugas','log');
+      logIt(db, env, u.username, 'sunting_item', '#'+t.id+' ('+ubah.join(', ')+')');
+      return ok({ item: publicItem(t) });
+    }
+    function taskDelete(u){
+      var i = idxOf(db.tugas, function(x){ return x.id===Number(req.id); }); if(i<0) return err('TIADA','Item tidak wujud.');
+      var t = db.tugas[i]; if(!bolehUrus(u, t.officer_id)) return err('KEBENARAN','Anda hanya boleh menggugurkan item anda sendiri.');
+      db.tugas.splice(i,1);
+      var ar = copy(t); ar.arkib_id = maxOf(db.arkib,'arkib_id')+1; ar.digugur_oleh=u.username; ar.digugur_pada=env.now(); db.arkib.push(ar);
+      mark('tugas','arkib','log'); logIt(db, env, u.username, 'gugur_item', '#'+t.id+' · '+t.task);
+      return ok({ id: t.id });
+    }
+    function taskRestore(u){
+      var i = idxOf(db.arkib, function(x){ return x.arkib_id===Number(req.arkib_id); }); if(i<0) return err('TIADA','Rekod arkib tidak wujud.');
+      var ar = db.arkib[i], o = officerOf(ar.officer_id); if(!o) return err('TIADA','Pegawai asal sudah tiada. Tambah semula pegawai dahulu.');
+      var t = { id: find(db.tugas,function(x){return x.id===ar.id;}) ? Math.max(maxOf(db.tugas,'id'),maxOf(db.arkib,'id'))+1 : ar.id,
+                officer_id:o.id, urutan: maxOf(db.tugas.filter(function(x){return x.officer_id===o.id;}),'urutan')+1,
+                task:ar.task, tag: tagSah(db, ar.tag) ? ar.tag : o.short, proses:ar.proses||'', versi:(Number(ar.versi)||1)+1,
+                dicipta_oleh:ar.dicipta_oleh||'', dicipta_pada:ar.dicipta_pada||'', dikemas_oleh:u.username, dikemas_pada:env.now() };
+      db.tugas.push(t); db.arkib.splice(i,1); mark('tugas','arkib','log');
+      logIt(db, env, u.username, 'pulih_item', '#'+t.id+' · '+t.task);
+      return ok({ item: publicItem(t), officer_id:o.id });
+    }
+    function publicItem(t){ return { id:t.id, officer_id:t.officer_id, task:t.task, tag:t.tag, proses:t.proses||'', versi:t.versi, dikemas_oleh:t.dikemas_oleh, dikemas_pada:t.dikemas_pada }; }
+
+    /* --- pengguna (admin) --- */
+    function adminAktif(kecuali){ return db.pengguna.filter(function(x){ return x.aktif && x.peranan==='admin' && x.username!==kecuali; }).length; }
+    function userAdd(u){
+      var un = trimStr(req.username,40).toLowerCase();
+      if(!/^[a-z0-9._-]{3,30}$/.test(un)) return err('INPUT','ID pengguna: 3–30 aksara (huruf kecil, nombor, . _ -).');
+      if(find(db.pengguna, function(x){ return x.username===un; })) return err('WUJUD','ID pengguna sudah digunakan.');
+      var nama = trimStr(req.nama,120); if(!nama) return err('INPUT','Nyatakan nama pengguna.');
+      var peranan = req.peranan==='admin' ? 'admin' : 'pengguna';
+      var oid = req.officer_id===''||req.officer_id==null ? null : num(req.officer_id);
+      if(oid!=null && !officerOf(oid)) return err('INPUT','Pegawai tidak wujud.');
+      if(peranan==='pengguna' && oid==null) return err('INPUT','Pengguna individu mesti dipautkan kepada seorang pegawai.');
+      var sementara = janaSementara(env);
+      var nu = { username:un, nama:nama, peranan:peranan, officer_id:oid, aktif:true, tukar_wajib:true, dicipta_pada:env.now(), log_masuk_akhir:'', sesi_versi:0 };
+      tetapkanKataLaluan(nu, sementara, env); db.pengguna.push(nu); mark('pengguna','log');
+      logIt(db, env, u.username, 'tambah_pengguna', un+' ('+peranan+')');
+      return ok({ user: userPublic(nu), kata_laluan_sementara: sementara });
+    }
+    function userUpdate(u){
+      var t = find(db.pengguna, function(x){ return x.username===trimStr(req.username,40).toLowerCase(); }); if(!t) return err('TIADA','Pengguna tidak wujud.');
+      var peranan = req.peranan==null ? t.peranan : (req.peranan==='admin'?'admin':'pengguna');
+      var aktif = req.aktif==null ? !!t.aktif : !!req.aktif;
+      var oid = req.officer_id===undefined ? t.officer_id : (req.officer_id===''||req.officer_id==null ? null : num(req.officer_id));
+      if(oid!=null && !officerOf(oid)) return err('INPUT','Pegawai tidak wujud.');
+      if(peranan==='pengguna' && oid==null) return err('INPUT','Pengguna individu mesti dipautkan kepada seorang pegawai.');
+      if(t.username===u.username && (!aktif || peranan!=='admin')) return err('DIRI','Anda tidak boleh menyahaktif atau menurunkan peranan akaun sendiri.');
+      if(t.peranan==='admin' && t.aktif && (peranan!=='admin' || !aktif) && adminAktif(t.username)===0) return err('ADMIN_AKHIR','Mesti ada sekurang-kurangnya seorang admin aktif.');
+      var nama = req.nama==null ? t.nama : trimStr(req.nama,120); if(!nama) return err('INPUT','Nama tidak boleh kosong.');
+      var putus = (!aktif && t.aktif) || peranan!==t.peranan || oid!==t.officer_id;
+      t.nama=nama; t.peranan=peranan; t.officer_id=oid; t.aktif=aktif; if(putus) t.sesi_versi=(Number(t.sesi_versi)||0)+1;
+      mark('pengguna','log'); logIt(db, env, u.username, 'kemas_kini_pengguna', t.username+(aktif?'':' (nyahaktif)'));
+      return ok({ user: userPublic(t) });
+    }
+    function userReset(u){
+      var t = find(db.pengguna, function(x){ return x.username===trimStr(req.username,40).toLowerCase(); }); if(!t) return err('TIADA','Pengguna tidak wujud.');
+      var sementara = janaSementara(env); tetapkanKataLaluan(t, sementara, env); t.tukar_wajib = true; env.sess.del('g:'+t.username);
+      mark('pengguna','log'); logIt(db, env, u.username, 'set_semula_kata_laluan', t.username);
+      return ok({ user: userPublic(t), kata_laluan_sementara: sementara });
+    }
+
+    /* --- pegawai (admin) --- */
+    function officerAdd(u){
+      var nama = trimStr(req.nama,160), sh = trimStr(req.short,60).toUpperCase();
+      if(!nama || !sh) return err('INPUT','Nyatakan nama penuh dan nama pendek (label kluster).');
+      if(find(db.pegawai, function(o){ return o.short===sh; })) return err('WUJUD','Nama pendek sudah digunakan.');
+      var o = { id: maxOf(db.pegawai,'id')+1, bil: db.pegawai.length+1, nama:nama, short:sh };
+      db.pegawai.push(o); mark('pegawai','log'); logIt(db, env, u.username, 'tambah_pegawai', sh);
+      return ok({ officer: o });
+    }
+    function officerUpdate(u){
+      var o = officerOf(req.id); if(!o) return err('TIADA','Pegawai tidak wujud.');
+      var nama = req.nama==null ? o.nama : trimStr(req.nama,160); if(!nama) return err('INPUT','Nama tidak boleh kosong.');
+      var sh = req.short==null ? o.short : trimStr(req.short,60).toUpperCase(); if(!sh) return err('INPUT','Nama pendek tidak boleh kosong.');
+      if(sh!==o.short && find(db.pegawai, function(x){ return x.short===sh; })) return err('WUJUD','Nama pendek sudah digunakan.');
+      if(sh!==o.short){ db.tugas.forEach(function(t){ if(t.tag===o.short) t.tag=sh; }); mark('tugas'); }
+      o.nama=nama; o.short=sh; mark('pegawai','log'); logIt(db, env, u.username, 'kemas_kini_pegawai', sh);
+      return ok({ officer: o });
+    }
+    function officerDelete(u){
+      var o = officerOf(req.id); if(!o) return err('TIADA','Pegawai tidak wujud.');
+      var bil=0;
+      for(var i=db.tugas.length-1;i>=0;i--){ var t=db.tugas[i]; if(t.officer_id===o.id){ var ar=copy(t); ar.arkib_id=maxOf(db.arkib,'arkib_id')+1; ar.digugur_oleh=u.username; ar.digugur_pada=env.now(); db.arkib.push(ar); db.tugas.splice(i,1); bil++; } }
+      var dipaut = db.pengguna.filter(function(x){ return Number(x.officer_id)===o.id; });
+      dipaut.forEach(function(x){ if(x.peranan!=='admin'){ x.aktif=false; x.sesi_versi=(Number(x.sesi_versi)||0)+1; } x.officer_id=null; });
+      db.pegawai = db.pegawai.filter(function(x){ return x.id!==o.id; });
+      db.pegawai.sort(function(a,b){ return a.bil-b.bil; }).forEach(function(x,k){ x.bil=k+1; });
+      mark('pegawai','tugas','arkib','pengguna','log');
+      logIt(db, env, u.username, 'padam_pegawai', o.short+' · '+bil+' item diarkibkan · '+dipaut.length+' akaun dinyahpaut');
+      return ok({ diarkib: bil, akaun: dipaut.length });
+    }
+    function replaceAll(u){
+      var offs = req.data && req.data.officers; if(!offs || !offs.length) return err('INPUT','Tiada data pegawai untuk diimport.');
+      var baru=[], tugas=[], id=0, tid=Math.max(maxOf(db.tugas,'id'), maxOf(db.arkib,'id'));
+      var nextId = maxOf(db.pegawai,'id');
+      offs.forEach(function(x, k){
+        var sh = trimStr(x.short,60).toUpperCase(); var lama = find(db.pegawai, function(o){ return o.short===sh; });
+        var oid = lama ? lama.id : (++nextId);
+        baru.push({ id:oid, bil:k+1, nama:trimStr(x.nama,160)||sh, short:sh });
+        (x.rows||[]).forEach(function(r, j){ tugas.push({ id:++tid, officer_id:oid, urutan:j+1, task:trimStr(r.task,1000), tag:trimStr(r.tag,100).toUpperCase()||sh,
+          proses:str(r.proses,20000), versi:1, dicipta_oleh:u.username, dicipta_pada:env.now(), dikemas_oleh:u.username, dikemas_pada:env.now() }); });
+      });
+      var sah = {}; baru.forEach(function(o){ sah[o.short]=1; });
+      tugas.forEach(function(t){ if(!sah[t.tag]){ var o=find(baru,function(x){return x.id===t.officer_id;}); t.tag=o.short; } });
+      db.tugas.forEach(function(t){ var ar=copy(t); ar.arkib_id=maxOf(db.arkib,'arkib_id')+1; ar.digugur_oleh=u.username+' (import)'; ar.digugur_pada=env.now(); db.arkib.push(ar); });
+      db.pegawai = baru; db.tugas = tugas;
+      db.pengguna.forEach(function(p){ if(p.officer_id!=null && !find(baru,function(o){return o.id===Number(p.officer_id);})) p.officer_id=null; });
+      mark('pegawai','tugas','arkib','pengguna','log');
+      logIt(db, env, u.username, 'import_excel', baru.length+' pegawai · '+tugas.length+' item');
+      return ok({ data: publicData(db) });
+    }
+  }
+
+  /* ---------- benih pangkalan data daripada SEED ---------- */
+  function seedDb(seed, env, adminPw){
+    var db = { pegawai:[], tugas:[], pengguna:[], arkib:[], log:[] }, tid=0;
+    seed.officers.forEach(function(o, k){
+      db.pegawai.push({ id:o.id, bil:k+1, nama:o.nama, short:o.short });
+      (o.rows||[]).forEach(function(r, j){ tid++; db.tugas.push({ id:tid, officer_id:o.id, urutan:j+1, task:r.task, tag:r.tag, proses:r.proses||'', versi:1,
+        dicipta_oleh:'sistem', dicipta_pada:env.now(), dikemas_oleh:'sistem', dikemas_pada:env.now() }); });
+    });
+    var ad = { username:'admin', nama:'Pentadbir Sistem', peranan:'admin', officer_id:null, aktif:true, tukar_wajib:true, dicipta_pada:env.now(), log_masuk_akhir:'', sesi_versi:0 };
+    tetapkanKataLaluan(ad, adminPw, env); db.pengguna.push(ad);
+    return db;
+  }
+
+  return { handle:handle, seedDb:seedDb, publicData:publicData, TULIS:TULIS, tetapkanKataLaluan:tetapkanKataLaluan, kataLaluanSah:kataLaluanSah };
+})();
+
+/* SHA-256 JavaScript tulen (segerak) — untuk mod demo pelayar */
+const sha256 = (function(){
+  const K=[], H0=[]; let n=2;
+  const prime=x=>{ for(let d=2;d*d<=x;d++) if(x%d===0) return false; return true; };
+  while(K.length<64){ if(prime(n)){ if(H0.length<8) H0.push((Math.sqrt(n)%1)*4294967296|0); K.push((Math.cbrt(n)%1)*4294967296|0); } n++; }
+  const ror=(x,r)=>(x>>>r)|(x<<(32-r));
+  return function(str){
+    const s=unescape(encodeURIComponent(String(str))), l=s.length, nb=((l+8)>>6)+1, w=new Array(nb*16).fill(0);
+    for(let i=0;i<l;i++) w[i>>2]|=(s.charCodeAt(i)&0xff)<<(24-(i%4)*8);
+    w[l>>2]|=0x80<<(24-(l%4)*8); w[nb*16-1]=l*8;
+    let H=H0.slice(); const W=new Array(64);
+    for(let i=0;i<w.length;i+=16){
+      let a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];
+      for(let j=0;j<64;j++){
+        if(j<16) W[j]=w[i+j]|0;
+        else { const x=W[j-15], y=W[j-2]; W[j]=(W[j-16]+(ror(x,7)^ror(x,18)^(x>>>3))+W[j-7]+(ror(y,17)^ror(y,19)^(y>>>10)))|0; }
+        const t1=(h+(ror(e,6)^ror(e,11)^ror(e,25))+((e&f)^(~e&g))+K[j]+W[j])|0, t2=((ror(a,2)^ror(a,13)^ror(a,22))+((a&b)^(a&c)^(b&c)))|0;
+        h=g; g=f; f=e; e=(d+t1)|0; d=c; c=b; b=a; a=(t1+t2)|0;
+      }
+      H=[(H[0]+a)|0,(H[1]+b)|0,(H[2]+c)|0,(H[3]+d)|0,(H[4]+e)|0,(H[5]+f)|0,(H[6]+g)|0,(H[7]+h)|0];
+    }
+    return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('');
+  };
+})();
+
+
+/* ---------- Backend demo (pelayar) — peraturan sama seperti Code.gs ---------- */
+const DEMO_DB_KEY='s4pd-demo-db-v2', DEMO_SESI_KEY='s4pd-demo-sesi-v2';
+const LOCAL = (function(){
+  let mem={}; try{ mem=JSON.parse(localStorage.getItem(DEMO_SESI_KEY))||{}; }catch(e){ mem={}; }
+  const simpanMem=()=>{ try{ localStorage.setItem(DEMO_SESI_KEY, JSON.stringify(mem)); }catch(e){} };
+  const env={
+    now:()=>new Date().toISOString(),
+    rand:n=>{ const a=new Uint8Array(n); if(window.crypto&&crypto.getRandomValues) crypto.getRandomValues(a); else for(let i=0;i<n;i++) a[i]=Math.random()*256|0;
+              return Array.from(a).map(b=>b.toString(16).padStart(2,'0')).join(''); },
+    hash:(pw,salt)=>{ let h=salt+'|'+pw; for(let i=0;i<20;i++) h=sha256(h+salt); return h; },
+    sess:{ get:k=>{ const v=mem[k]; if(!v) return null; if(v.exp<Date.now()){ delete mem[k]; simpanMem(); return null; } return v.v; },
+           put:(k,v,ttl)=>{ mem[k]={v:v, exp:Date.now()+(ttl||21600)*1000}; simpanMem(); },
+           del:k=>{ delete mem[k]; simpanMem(); } }
+  };
+  function benih(){
+    let asas=SEED;
+    try{ const lama=JSON.parse(localStorage.getItem(LS_KEY)); if(lama&&lama.officers&&lama.officers.length) asas=lama; }catch(e){}
+    const db=S4Core.seedDb(asas, env, 'admin123');
+    db.pengguna[0].tukar_wajib=false;
+    const sh=db.pegawai.find(o=>o.short==='EN. MOHD SHAHRIL')||db.pegawai[0];
+    const u={ username:'shahril', nama:'En. Mohd Shahril (demo)', peranan:'pengguna', officer_id:sh?sh.id:null, aktif:true, tukar_wajib:false,
+              dicipta_pada:env.now(), log_masuk_akhir:'', sesi_versi:0 };
+    S4Core.tetapkanKataLaluan(u,'demo1234',env); db.pengguna.push(u);
+    return db;
+  }
+  let db=null;
+  function muat(){ if(db) return db; try{ const s=localStorage.getItem(DEMO_DB_KEY); if(s) db=JSON.parse(s); }catch(e){} if(!db){ db=benih(); simpan(); } return db; }
+  function simpan(){ try{ localStorage.setItem(DEMO_DB_KEY, JSON.stringify(db)); }catch(e){} }
+  return {
+    handle(req){ const r=S4Core.handle(muat(), JSON.parse(JSON.stringify(req)), env); if(r.dirty.length) simpan(); return JSON.parse(JSON.stringify(r.res)); },
+    reset(){ db=null; mem={}; try{ localStorage.removeItem(DEMO_DB_KEY); localStorage.removeItem(DEMO_SESI_KEY); }catch(e){} }
+  };
+})();
+
+/* ---------- Panggilan API (pelayan sebenar atau demo) ---------- */
+async function api(action, data){
+  const req=Object.assign({action:action}, data||{});
+  if(SESI && SESI.token && action!=='login') req.token=SESI.token;
+  let res;
+  if(apiConfigured()){
+    try{ const r=await fetch(CONFIG.API_URL,{ method:'POST', body:JSON.stringify(req), redirect:'follow' }); res=await r.json(); }
+    catch(e){ res={ ok:false, kod:'RANGKAIAN', error:'Tidak dapat menghubungi pelayan. Semak sambungan internet dan cuba lagi.' }; }
+  } else {
+    await new Promise(r=>setTimeout(r,90));
+    res=LOCAL.handle(req);
+  }
+  if(!res || typeof res!=='object') res={ ok:false, kod:'PELAYAN', error:'Jawapan pelayan tidak sah.' };
+  if(!res.ok && res.kod==='SESI' && action!=='login' && action!=='logout') tamatSesi(res.error);
+  if(!res.ok && res.kod==='TUKAR_WAJIB') openTukar(true);
+  return res;
 }
-async function apiSave(){ if(!apiConfigured())return;
-  let pw=sessionStorage.getItem('s4pd_pw');
-  if(!pw){ pw=prompt('Kata laluan untuk simpan ke Google Sheet:'); if(!pw)return; }
-  setSync('Mengesah…'); let hash;
-  try{ hash=await sha256hex(pw); const v=await jsonp({action:'verify',pw:hash});
-    if(!(v&&v.ok)){ sessionStorage.removeItem('s4pd_pw'); setSync('✗ Kata laluan salah'); toast('Kata laluan salah'); return; }
-  }catch(e){ setSync('⚠ Gagal sambung'); toast('Gagal sambung ke Sheet'); return; }
-  sessionStorage.setItem('s4pd_pw',pw); setSync('Menyimpan…');
-  try{
-    await fetch(CONFIG.API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'save',pw:hash,data:state})});
-    await new Promise(r=>setTimeout(r,1000));
-    const d=await jsonp({action:'load'});
-    if(d&&d.ok&&d.data&&d.data.officers){ state=d.data; save(); if(!state.officers.some(o=>o.id===curOffId))curOffId=state.officers[0].id; renderAll(); }
-    setSync('✓ Disimpan'); toast('Berjaya disimpan ke Google Sheet');
-  }catch(e){ setSync('⚠ Gagal simpan'); toast('Gagal simpan ke Sheet'); }
+
+/* ---------- Sesi ---------- */
+function bacaSesi(){ try{ const s=JSON.parse(localStorage.getItem(SESI_KEY)); return s&&s.token&&s.user?s:null; }catch(e){ return null; } }
+function simpanSesi(s){ SESI=s; try{ if(s) localStorage.setItem(SESI_KEY, JSON.stringify(s)); else localStorage.removeItem(SESI_KEY); }catch(e){} updateAuthUI(); }
+function tamatSesi(msg){ if(!SESI) return; simpanSesi(null); editMode=false; renderPegawai(); toast(msg||'Sesi tamat. Sila log masuk semula.'); }
+function isAdmin(){ return !!(SESI && SESI.user && SESI.user.peranan==='admin' && !SESI.user.tukar_wajib); }
+function bolehSunting(oid){ if(!SESI||!SESI.user||SESI.user.tukar_wajib) return false; return SESI.user.peranan==='admin' || (SESI.user.officer_id!=null && Number(SESI.user.officer_id)===Number(oid)); }
+
+/* ---------- Muat data ---------- */
+async function muatData(senyap){
+  setSync('Memuat…');
+  const r=await api('load');
+  if(r.ok && r.data && r.data.officers){
+    state=r.data; save();
+    if(!state.officers.some(o=>o.id===curOffId)) curOffId=state.officers[0]?state.officers[0].id:null;
+    renderAll(); setSync('✓ Terkini '+new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'}));
+    return true;
+  }
+  setSync('⚠ Salinan tempatan');
+  if(!senyap) toast(r.error||'Gagal memuat data');
+  return false;
 }
-function resetData(){ if(confirm('Set semula kepada data asal? Semua suntingan tempatan akan hilang.')){ state = JSON.parse(JSON.stringify(SEED)); curOffId = state.officers[0].id; save(); renderAll(); toast('Data asal dipulihkan'); } }
+function resetData(){
+  if(apiConfigured()) return;
+  if(confirm('Set semula data demo?\nSemua suntingan, akaun dan log dalam mod demo akan dipadam.')){
+    LOCAL.reset(); simpanSesi(null); editMode=false; muatData(); toast('Data demo dipulihkan');
+  }
+}
+
 
 /* ---------- derivations ---------- */
 function officerByShort(sh){ return state.officers.find(o=>o.short===sh); }
@@ -653,8 +1132,8 @@ function renderAll(){ renderMeta(); renderRingkasan(); renderMatrix(); renderPeg
 
 function renderMeta(){
   document.getElementById('mhSub').textContent = SEED.meta.sektor + ' · ' + SEED.meta.jpn;
-  document.getElementById('foot').innerHTML = 'Sumber: '+SEED.meta.sumber+' · Kemas kini '+SEED.meta.tarikh+
-    ' · Data disimpan dalam pelayar anda (localStorage). Fasa 2: sambungan Google Sheets untuk kongsi antara pegawai.';
+  document.getElementById('foot').innerHTML = 'Sumber: '+SEED.meta.sumber+' · Kemas kini '+SEED.meta.tarikh+' · '+
+    (apiConfigured() ? 'Disambung ke Google Sheet — perubahan dikongsi antara pegawai.' : '<b>Mod demo</b> — data disimpan dalam pelayar ini sahaja. Tetapkan CONFIG.API_URL untuk berkongsi melalui Google Sheet.');
 }
 
 function renderRingkasan(){
@@ -788,14 +1267,23 @@ function tagOptions(sel, own){
 function renderPegawai(){
   const o=state.officers.find(x=>x.id===curOffId);
   const body=document.getElementById('offBody');
-  if(!o){ body.innerHTML='<div class="emptystate"><b>Tiada pegawai.</b><br>Tambah pegawai baharu untuk bermula.</div>'; return; }
+  const bs = o ? bolehSunting(o.id) : false;
+  if(editMode && !bs) editMode=false;
+  document.getElementById('editbar').classList.toggle('hidden',!editMode);
+  const be=document.getElementById('btnEdit');
+  be.classList.toggle('hidden', !bs); be.textContent = editMode?'✎ Menyunting…':'✎ Sunting';
+  const nota=document.getElementById('roNote');
+  if(!SESI) nota.innerHTML='<span>👁 <b>Mod paparan sahaja.</b> Log masuk untuk menambah atau menyunting tugas anda.</span><button class="btn sm brass" data-ro="login">🔑 Log masuk</button>';
+  else if(SESI.user.tukar_wajib) nota.innerHTML='<span>🔒 Tukar kata laluan sementara anda untuk mula menyunting.</span><button class="btn sm brass" data-ro="tukar">Tukar kata laluan</button>';
+  else if(o && !bs) nota.innerHTML='<span>👁 Senarai ini dipaparkan sahaja — anda boleh menyunting senarai anda sendiri.</span>'+(SESI.user.officer_id!=null?'<button class="btn sm" data-ro="milik">Ke senarai saya</button>':'');
+  else nota.innerHTML='';
+  nota.classList.toggle('hidden', !nota.innerHTML);
+  if(!o){ body.innerHTML='<div class="emptystate"><b>Tiada pegawai.</b>'+(isAdmin()?'<br>Tambah pegawai melalui Panel Admin.':'')+'</div>'; return; }
 
-  // ordered groups: teras first (own short), then each pelapis tag in first-appearance order
   const order=[]; o.rows.forEach(r=>{ if(!order.includes(r.tag)) order.push(r.tag); });
   order.sort((a,b)=> (a===o.short?-1:0) - (b===o.short?-1:0) );
-
   let h='<div class="tasklist">';
-  if(o.rows.length===0){ h+='<div class="emptystate">Belum ada tugas. Tekan <b>＋ Tambah tugas</b>.</div>'; }
+  if(o.rows.length===0){ h+='<div class="emptystate">Belum ada tugas.'+(bs?' Tekan <b>✎ Sunting</b> → <b>＋ Tambah tugas</b>.':'')+'</div>'; }
   order.forEach(tag=>{
     const rows=o.rows.filter(r=>r.tag===tag);
     if(rows.length===0) return;
@@ -805,16 +1293,14 @@ function renderPegawai(){
        (isTeras?'':'<span style="color:var(--muted);font-weight:500">('+shortLabel(tag)+')</span>')+'</div>';
     rows.forEach(r=>{
       const gi=o.rows.indexOf(r);
+      const cb='<button class="carta-btn'+(r.proses&&r.proses.trim()?' has':'')+'" data-carta="'+gi+'" title="Carta alir" aria-label="Carta alir">'+flowIcon()+'</button>';
       if(editMode){
         h+='<div class="trow"><span class="idx">'+(gi+1)+'</span><div class="rowedit">'+
-           '<textarea data-ei="'+gi+'">'+escapeHtml(r.task)+'</textarea>'+
+           '<textarea data-ei="'+gi+'" data-id="'+r.id+'">'+escapeHtml(r.task)+'</textarea>'+
            '<select data-ti="'+gi+'" style="min-width:170px">'+tagOptions(r.tag,o.short)+'</select>'+
-           '<button class="btn sm icon" data-del="'+gi+'" style="color:var(--danger);border-color:#e5c3c3">🗑</button>'+
-           '<button class="carta-btn'+(r.proses&&r.proses.trim()?' has':'')+'" data-carta="'+gi+'" title="Carta alir" aria-label="Carta alir">'+flowIcon()+'</button>'+
-           '</div></div>';
+           '<button class="btn sm icon" data-del="'+gi+'" title="Gugurkan item" style="color:var(--danger);border-color:#e5c3c3">🗑</button>'+cb+'</div></div>';
       }else{
-        h+='<div class="trow"><span class="idx">'+(gi+1)+'</span><div class="txt" data-carta="'+gi+'">'+escapeHtml(r.task)+'</div>'+
-           '<button class="carta-btn'+(r.proses&&r.proses.trim()?' has':'')+'" data-carta="'+gi+'" title="Carta alir" aria-label="Carta alir">'+flowIcon()+'</button></div>';
+        h+='<div class="trow"><span class="idx">'+(gi+1)+'</span><div class="txt" data-carta="'+gi+'">'+escapeHtml(r.task)+'</div>'+cb+'</div>';
       }
     });
   });
@@ -822,19 +1308,48 @@ function renderPegawai(){
   body.innerHTML=h;
 
   if(editMode){
-    body.querySelectorAll('textarea[data-ei]').forEach(t=>t.addEventListener('input',e=>{
-      o.rows[+e.target.dataset.ei].task=e.target.value; save();
-    }));
-    body.querySelectorAll('select[data-ti]').forEach(s=>s.addEventListener('change',e=>{
-      o.rows[+e.target.dataset.ti].tag=e.target.value; save(); renderPegawai();
+    body.querySelectorAll('textarea[data-ei]').forEach(t=>{
+      t.addEventListener('input',e=>{ const r=o.rows[+e.target.dataset.ei]; if(!r) return; r.task=e.target.value; jadualSimpan(r); });
+      t.addEventListener('blur',e=>{ const r=o.rows[+e.target.dataset.ei]; if(r) segeraSimpan(r); });
+    });
+    body.querySelectorAll('select[data-ti]').forEach(s=>s.addEventListener('change',async e=>{
+      const r=o.rows[+e.target.dataset.ti]; if(!r) return;
+      await simpanItem(r,{tag:e.target.value}); renderPegawai(); renderRingkasan(); renderMatrix(); renderTasks();
     }));
     body.querySelectorAll('button[data-del]').forEach(b=>b.addEventListener('click',e=>{
-      o.rows.splice(+e.currentTarget.dataset.del,1); save(); renderPegawai();
+      const r=o.rows[+e.currentTarget.dataset.del]; if(r) gugurItem(o,r);
     }));
   }
   body.querySelectorAll('[data-carta]').forEach(el=>el.addEventListener('click',ev=>{
     ev.stopPropagation(); openCarta(o.id, +el.getAttribute('data-carta'));
   }));
+}
+
+/* ---------- simpanan per item (bergilir, dengan semakan versi) ---------- */
+const GILIR=new Map(), TUNDA=new Map();
+function setSavePill(t,k){ const p=document.getElementById('savePill'); if(!p) return; p.textContent=t; p.className='savepill'+(k?' '+k:''); }
+function simpanItem(r, fields){
+  if(r.id==null){ toast('Data belum dimuat sepenuhnya — cuba sebentar lagi'); return Promise.resolve(false); }
+  const id=r.id, dahulu=GILIR.get(id)||Promise.resolve();
+  const p=dahulu.then(async ()=>{
+    setSavePill('● Menyimpan…','busy');
+    const res=await api('task_update', Object.assign({ id:id, versi:r.versi }, fields));
+    if(res.ok){ const it=res.item; r.task=it.task; r.tag=it.tag; r.proses=it.proses; r.versi=it.versi; r.dikemas_oleh=it.dikemas_oleh; r.dikemas_pada=it.dikemas_pada;
+      save(); setSavePill('✓ Disimpan','ok'); return true; }
+    setSavePill('⚠ Tidak disimpan','err');
+    if(res.kod==='KONFLIK'){ toast(res.error); await muatData(true); }
+    else if(res.kod!=='SESI' && res.kod!=='TUKAR_WAJIB') toast(res.error||'Gagal menyimpan');
+    return false;
+  });
+  GILIR.set(id, p.catch(()=>{})); return p;
+}
+function jadualSimpan(r){ setSavePill('● Menaip…','busy'); clearTimeout(TUNDA.get(r.id)); TUNDA.set(r.id, setTimeout(()=>{ TUNDA.delete(r.id); simpanItem(r,{task:r.task}); }, 800)); }
+function segeraSimpan(r){ if(TUNDA.has(r.id)){ clearTimeout(TUNDA.get(r.id)); TUNDA.delete(r.id); simpanItem(r,{task:r.task}); } }
+async function gugurItem(o, r){
+  if(!confirm('Gugurkan item ini?\n\n“'+r.task.slice(0,120)+'”\n\nItem akan disimpan dalam arkib dan boleh dipulihkan oleh admin.')) return;
+  const res=await api('task_delete',{id:r.id});
+  if(!res.ok){ if(res.kod!=='SESI') toast(res.error); return; }
+  o.rows=o.rows.filter(x=>x.id!==r.id); save(); renderAll(); toast('Item digugurkan (disimpan dalam arkib)');
 }
 
 function renderTasks(){
@@ -896,29 +1411,57 @@ function renderStruktur(){
 function escapeHtml(s){ return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 /* ---------- editing actions ---------- */
-function setEdit(on){ editMode=on; document.getElementById('editbar').classList.toggle('hidden',!on);
-  document.getElementById('btnEdit').textContent = on?'✎ Menyunting…':'✎ Sunting'; renderPegawai(); }
+function setEdit(on){ if(on && !bolehSunting(curOffId)) return; editMode=on; renderPegawai(); }
+function curOfficer(){ return state.officers.find(x=>x.id===curOffId); }
 
 document.getElementById('btnEdit').onclick=()=>setEdit(!editMode);
 document.getElementById('btnPdfAll').onclick=()=>openPdf('all');
 document.getElementById('btnPdfOne').onclick=()=>{ if(curOffId==null){ toast('Pilih pegawai dahulu'); return; } openPdf(curOffId); };
-document.getElementById('btnDone').onclick=()=>{ setEdit(false); renderAll(); toast('Suntingan disimpan'); };
-document.getElementById('btnAddRow').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
-  o.rows.push({task:'Tugas baharu', tag:o.short}); save(); renderPegawai(); };
-document.getElementById('btnRenameOff').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
-  const nm=prompt('Nama penuh pegawai:', o.nama); if(nm && nm.trim()){ o.nama=nm.trim(); save(); renderPegawaiSelect(); renderPegawai(); renderRingkasan(); renderMatrix(); } };
-document.getElementById('btnDelOff').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
-  if(confirm('Padam '+o.nama+'? Tugas pelapis di pegawai lain yang merujuk kluster ini tidak dipadam automatik.')){
-    state.officers=state.officers.filter(x=>x.id!==o.id);
-    state.officers.forEach((x,i)=>x.bil=i+1);
-    curOffId=state.officers[0]?state.officers[0].id:null; save(); renderAll(); setEdit(false); toast('Pegawai dipadam'); } };
-document.getElementById('btnAddOfficer').onclick=()=>{
-  const nm=prompt('Nama penuh pegawai baharu:'); if(!nm||!nm.trim())return;
-  const short=prompt('Nama pendek (label kluster, cth: EN. FIRDAUS):', nm.trim().split(' ').slice(0,2).join(' ')); if(!short)return;
-  const id=Math.max(0,...state.officers.map(o=>o.id))+1;
-  state.officers.push({id,bil:state.officers.length+1,nama:nm.trim(),short:short.trim(),rows:[]});
-  curOffId=id; save(); renderAll(); setEdit(true); toast('Pegawai ditambah — mula tambah tugas'); };
-document.getElementById('offSelect').onchange=e=>{ curOffId=+e.target.value; renderPegawai(); };
+document.getElementById('btnDone').onclick=()=>{ TUNDA.forEach((t,id)=>{ const o=curOfficer(); const r=o&&o.rows.find(x=>x.id===id); if(r) segeraSimpan(r); }); setEdit(false); renderAll(); toast('Selesai menyunting'); };
+document.getElementById('btnAddRow').onclick=async()=>{
+  const o=curOfficer(); if(!o||!bolehSunting(o.id)) return;
+  const b=document.getElementById('btnAddRow'); b.disabled=true;
+  const res=await api('task_add',{ officer_id:o.id, task:'Tugas baharu', tag:o.short });
+  b.disabled=false;
+  if(!res.ok){ if(res.kod!=='SESI') toast(res.error); return; }
+  const it=res.item; o.rows.push({ id:it.id, task:it.task, tag:it.tag, proses:'', versi:it.versi });
+  save(); renderPegawai(); renderRingkasan(); renderMatrix(); renderTasks();
+  const ta=document.querySelector('#offBody textarea[data-id="'+it.id+'"]'); if(ta){ ta.scrollIntoView({block:'center'}); ta.focus(); ta.select(); }
+  toast('Item ditambah — taip nama tugas');
+};
+document.getElementById('btnRenameOff').onclick=async()=>{ const o=curOfficer(); if(!o||!isAdmin()) return;
+  const nm=prompt('Nama penuh pegawai:', o.nama); if(!nm||!nm.trim()) return;
+  const res=await api('officer_update',{ id:o.id, nama:nm.trim() }); if(!res.ok){ toast(res.error); return; }
+  await muatData(true); toast('Nama pegawai dikemas kini'); };
+document.getElementById('btnDelOff').onclick=()=>{ const o=curOfficer(); if(o) padamPegawai(o); };
+document.getElementById('btnAddOfficer').onclick=()=>tambahPegawai();
+document.getElementById('offSelect').onchange=e=>{ curOffId=+e.target.value; editMode=false; renderPegawai(); };
+document.getElementById('roNote').addEventListener('click',e=>{ const b=e.target.closest('[data-ro]'); if(!b) return;
+  if(b.dataset.ro==='login') openLogin(); else if(b.dataset.ro==='tukar') openTukar(true);
+  else if(b.dataset.ro==='milik' && SESI){ curOffId=Number(SESI.user.officer_id); renderPegawaiSelect(); renderPegawai(); } });
+
+async function tambahPegawai(){
+  if(!isAdmin()) return;
+  const nm=prompt('Nama penuh pegawai baharu:'); if(!nm||!nm.trim()) return;
+  const sh=prompt('Nama pendek (label kluster, cth: EN. FIRDAUS):', nm.trim().split(' ').slice(0,2).join(' ')); if(!sh||!sh.trim()) return;
+  const res=await api('officer_add',{ nama:nm.trim(), short:sh.trim() }); if(!res.ok){ toast(res.error); return false; }
+  curOffId=res.officer.id; await muatData(true); toast('Pegawai ditambah'); return true;
+}
+async function padamPegawai(o){
+  if(!isAdmin()) return false;
+  if(!confirm('Padam '+o.nama+'?\n\n• '+o.rows.length+' item akan diarkibkan (boleh dipulihkan)\n• Akaun pengguna yang dipautkan akan dinyahaktif')) return false;
+  const res=await api('officer_delete',{ id:o.id }); if(!res.ok){ toast(res.error); return false; }
+  editMode=false; await muatData(true); toast('Pegawai dipadam · '+res.diarkib+' item diarkibkan'); return true;
+}
+async function importKePelayan(offs){
+  if(!isAdmin()){ toast('Import Excel untuk admin sahaja'); return; }
+  const n=offs.reduce((a,o)=>a+o.rows.length,0);
+  if(!confirm('Import '+offs.length+' pegawai ('+n+' item)?\n\nSemua item sedia ada akan digantikan. Item lama disimpan dalam arkib.')) return;
+  const res=await api('replace_all',{ data:{ officers:offs } });
+  if(!res.ok){ toast(res.error); return; }
+  state=res.data; save(); curOffId=state.officers[0]?state.officers[0].id:null; editMode=false; renderAll();
+  toast('Import berjaya: '+offs.length+' pegawai');
+}
 
 /* ---------- tabs ---------- */
 document.getElementById('tabs').addEventListener('click',e=>{
@@ -926,6 +1469,7 @@ document.getElementById('tabs').addEventListener('click',e=>{
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
   b.classList.add('active'); document.getElementById('pane-'+b.dataset.p).classList.add('active');
+  if(b.dataset.p==='admin') renderAdmin();
 });
 document.getElementById('taskSearch').addEventListener('input',renderTasks);
 
@@ -937,7 +1481,7 @@ exMenu.addEventListener('click',e=>{ const b=e.target.closest('button[data-x]');
 document.getElementById('btnReset').onclick=resetData;
 
 /* ---------- import ---------- */
-document.getElementById('btnImport').onclick=()=>document.getElementById('fileInput').click();
+document.getElementById('btnImport').onclick=()=>{ if(!isAdmin()){ toast('Import Excel untuk admin sahaja'); return; } document.getElementById('fileInput').click(); };
 document.getElementById('fileInput').addEventListener('change',ev=>{
   const f=ev.target.files[0]; if(!f)return;
   const rd=new FileReader();
@@ -968,7 +1512,7 @@ function importExcel(buf){
     if(task){ const tag=normShort(catUse)||cur.short; cur.rows.push({task,tag}); }
   }
   if(offs.length===0){ alert('Tiada data pegawai dijumpai dalam sheet "'+shName+'".'); return; }
-  state.officers=offs; curOffId=offs[0].id; save(); renderAll(); toast('Import berjaya: '+offs.length+' pegawai');
+  importKePelayan(offs);
 }
 
 /* ---------- export ---------- */
@@ -1501,7 +2045,13 @@ function openCarta(oid,ri){ const o=state.officers.find(x=>x.id===oid); if(!o)re
   document.getElementById('cartaInput').value=r.proses||'';
   document.getElementById('cartaTheme').innerHTML=themeOptions();
   document.querySelectorAll('#cartaModeTabs button').forEach(b=>b.classList.toggle('on',b.dataset.m===cartaMode));
-  setIn(cartaIn); drawCarta(); document.getElementById('cartaModal').classList.add('open'); }
+  const bs=bolehSunting(oid);
+  document.getElementById('cartaInput').readOnly=!bs;
+  document.getElementById('cartaSave').classList.toggle('hidden',!bs);
+  document.getElementById('cartaInTabs').classList.toggle('hidden',!bs);
+  document.getElementById('cartaRO').classList.toggle('hidden',bs);
+  if(bs) setIn(cartaIn); else { document.getElementById('inTeks').classList.remove('hidden'); document.getElementById('inBorang').classList.add('hidden'); }
+  drawCarta(); document.getElementById('cartaModal').classList.add('open'); }
 function drawCarta(){ const steps=parseFlow(document.getElementById('cartaInput').value);
   const svg = cartaMode==='rasmi'
     ? renderFlowRasmi(steps,{header:true, aktiviti:cartaCtx?cartaCtx.ri+1:'', title:document.getElementById('cartaTitle').textContent}).svg
@@ -1512,7 +2062,12 @@ document.getElementById('cartaInput').addEventListener('input',drawCarta);
 document.getElementById('cartaClose').onclick=closeCarta;
 document.getElementById('cartaModal').addEventListener('click',e=>{ if(e.target.id==='cartaModal') closeCarta(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('cartaModal').classList.contains('open')) closeCarta(); });
-document.getElementById('cartaSave').onclick=()=>{ if(!cartaCtx)return; const o=state.officers.find(x=>x.id===cartaCtx.oid); o.rows[cartaCtx.ri].proses=document.getElementById('cartaInput').value; save(); renderPegawai(); toast('Carta alir disimpan'); closeCarta(); };
+document.getElementById('cartaSave').onclick=async()=>{ if(!cartaCtx) return; const o=state.officers.find(x=>x.id===cartaCtx.oid); const r=o&&o.rows[cartaCtx.ri]; if(!r) return;
+  if(!bolehSunting(o.id)){ toast('Anda tiada kebenaran menyunting carta ini'); return; }
+  const b=document.getElementById('cartaSave'); b.disabled=true; b.textContent='Menyimpan…';
+  const okk=await simpanItem(r,{ proses:document.getElementById('cartaInput').value });
+  b.disabled=false; b.textContent='Simpan';
+  if(okk){ renderPegawai(); toast('Carta alir disimpan'); closeCarta(); } };
 document.getElementById('cartaSvg').onclick=()=>{ const svg=document.querySelector('#cartaPreview svg'); if(!svg)return; const blob=new Blob([svg.outerHTML],{type:'image/svg+xml;charset=utf-8'}); dl(URL.createObjectURL(blob),cartaFname()+'.svg'); toast('SVG dimuat turun'); };
 document.getElementById('cartaPng').onclick=()=>{ const svg=document.querySelector('#cartaPreview svg'); if(!svg)return;
   const xml=new XMLSerializer().serializeToString(svg); const src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(xml)));
@@ -1522,17 +2077,6 @@ document.getElementById('cartaGuideBtn').onclick=openGuide;
 document.getElementById('guideClose').onclick=closeGuide;
 document.getElementById('guideModal').addEventListener('click',e=>{ if(e.target.id==='guideModal') closeGuide(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('guideModal').classList.contains('open')) closeGuide(); });
-
-renderAll();
-
-/* aktifkan lapisan Sheet hanya bila API_URL ditetapkan */
-if(apiConfigured()){
-  document.getElementById('syncWrap').classList.remove('hidden');
-  document.getElementById('btnPull').onclick=apiLoad;
-  document.getElementById('btnPush').onclick=apiSave;
-  apiLoad();
-  if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
-}
 
 /* ================= DEMO CARTA ALIR ================= */
 const DEMOS=[
@@ -1761,9 +2305,11 @@ function updUseWarn(){ const o=useOfficer(), v=document.getElementById('useTask'
   document.getElementById('useWarn').style.display=(r&&r.proses&&r.proses.trim())?'block':'none'; }
 function openUse(){
   const d=DEMOS[demoIdx];
-  if(!state.officers.length){ toast('Tiada pegawai dalam data'); return; }
+  if(!SESI){ toast('Log masuk dahulu untuk menggunakan contoh pada tugas anda'); openLogin(); return; }
+  const eds=state.officers.filter(o=>bolehSunting(o.id));
+  if(!eds.length){ toast(SESI.user.tukar_wajib?'Tukar kata laluan sementara dahulu':'Tiada senarai tugas yang boleh anda sunting'); return; }
   document.getElementById('useTxt').innerHTML='Contoh: <b>'+escapeHtml(d.title)+'</b><br>Pilih tugas sasaran. Contoh dibuka dalam editor untuk dilaraskan dahulu — data hanya berubah bila anda tekan <b>Simpan</b>.';
-  document.getElementById('useOff').innerHTML=state.officers.map(o=>'<option value="'+o.id+'"'+(o.id===curOffId?' selected':'')+'>'+o.bil+'. '+escapeHtml(o.nama)+'</option>').join('');
+  document.getElementById('useOff').innerHTML=eds.map(o=>'<option value="'+o.id+'"'+(o.id===curOffId?' selected':'')+'>'+o.bil+'. '+escapeHtml(o.nama)+'</option>').join('');
   fillUseTasks(); document.getElementById('useModal').classList.add('open');
 }
 function closeUse(){ document.getElementById('useModal').classList.remove('open'); }
@@ -1931,6 +2477,214 @@ document.addEventListener('keydown',e=>{ if(!document.getElementById('slideModal
 
 renderDemoChips(); renderDemo();
 
+
+/* ================= LOG MASUK & PANEL ADMIN ================= */
+const $id=id=>document.getElementById(id);
+function inisial(n){ return String(n||'?').replace(/\b(en|pn|dr|hj|hjh|tn)\.?\s+/gi,'').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'?'; }
+function fmtMasa(iso){ if(!iso) return '—'; const d=new Date(iso); if(isNaN(d)) return String(iso);
+  const p=n=>String(n).padStart(2,'0'); return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes()); }
+function switchTab(p){ const b=document.querySelector('.tab[data-p="'+p+'"]'); if(b) b.click(); }
+
+function updateAuthUI(){
+  const box=$id('authBox'); if(!box) return;
+  if(!SESI){ box.innerHTML='<button class="btn brass" data-u="login">🔑 Log masuk</button>'; }
+  else { const u=SESI.user;
+    box.innerHTML='<div class="dropwrap"><button class="userchip" data-u="menu" aria-haspopup="true"><span class="uav">'+escapeHtml(inisial(u.nama))+'</span>'+
+      '<span class="unm">'+escapeHtml(u.nama)+'</span><span class="urole '+(u.peranan==='admin'?'admin':'')+'">'+(u.peranan==='admin'?'Admin':'Pengguna')+'</span><span class="ucaret">▾</span></button>'+
+      '<div class="menu" id="userMenu"><div class="mlabel">Log masuk sebagai '+escapeHtml(u.username)+'</div>'+
+      (u.peranan==='admin'?'<button data-u="admin">🛠 Panel Admin</button>':'')+
+      (u.officer_id!=null?'<button data-u="milik">📋 Senarai tugas saya</button>':'')+
+      '<button data-u="tukar">🔑 Tukar kata laluan</button><button data-u="keluar">⎋ Log keluar</button></div></div>';
+  }
+  $id('tabAdmin').classList.toggle('hidden', !isAdmin());
+  if(!isAdmin() && $id('pane-admin').classList.contains('active')) switchTab('ringkasan');
+  ['btnImport','btnAddOfficer','btnRenameOff','btnDelOff'].forEach(id=>{ const el=$id(id); if(el) el.classList.toggle('hidden', !isAdmin()); });
+  $id('btnReset').classList.toggle('hidden', !!apiConfigured());
+  document.body.classList.toggle('logged-in', !!SESI);
+  renderPegawai();
+}
+$id('authBox').addEventListener('click',e=>{
+  const b=e.target.closest('[data-u]'); if(!b) return; const a=b.dataset.u; e.stopPropagation();
+  const m=$id('userMenu');
+  if(a==='menu'){ if(m) m.classList.toggle('open'); return; }
+  if(m) m.classList.remove('open');
+  if(a==='login') openLogin();
+  else if(a==='admin') switchTab('admin');
+  else if(a==='milik'){ curOffId=Number(SESI.user.officer_id); renderPegawaiSelect(); renderPegawai(); switchTab('pegawai'); }
+  else if(a==='tukar') openTukar(false);
+  else if(a==='keluar') doLogout();
+});
+document.addEventListener('click',()=>{ const m=$id('userMenu'); if(m) m.classList.remove('open'); });
+
+/* --- log masuk --- */
+function openLogin(){
+  $id('lgErr').textContent=''; $id('lgPw').value=''; $id('lgDemo').classList.toggle('hidden', !!apiConfigured());
+  $id('loginModal').classList.add('open'); setTimeout(()=>$id('lgUser').focus(),60);
+}
+function closeLogin(){ $id('loginModal').classList.remove('open'); }
+async function doLogin(){
+  const u=$id('lgUser').value.trim(), p=$id('lgPw').value, b=$id('lgGo');
+  if(!u||!p){ $id('lgErr').textContent='Masukkan ID pengguna dan kata laluan.'; return; }
+  b.disabled=true; b.textContent='Mengesahkan…'; $id('lgErr').textContent='';
+  const res=await api('login',{ username:u, password:p });
+  b.disabled=false; b.textContent='Log masuk';
+  if(!res.ok){ $id('lgErr').textContent=res.error||'Gagal log masuk.'; $id('lgPw').select(); return; }
+  closeLogin(); simpanSesi({ token:res.token, user:res.user });
+  toast('Selamat datang, '+res.user.nama);
+  if(res.user.tukar_wajib){ openTukar(true); return; }
+  if(res.user.peranan!=='admin' && res.user.officer_id!=null){ curOffId=Number(res.user.officer_id); renderPegawaiSelect(); renderPegawai(); switchTab('pegawai'); }
+}
+async function doLogout(){ await api('logout'); simpanSesi(null); editMode=false; renderPegawai(); toast('Anda telah log keluar'); }
+$id('lgGo').onclick=doLogin; $id('lgClose').onclick=closeLogin;
+['lgUser','lgPw'].forEach(id=>$id(id).addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); }));
+$id('loginModal').addEventListener('click',e=>{ if(e.target.id==='loginModal') closeLogin(); });
+
+/* --- tukar kata laluan --- */
+let tukarWajib=false;
+function openTukar(wajib){
+  if(!SESI) return; tukarWajib=!!wajib;
+  ['tkLama','tkBaru','tkSah'].forEach(id=>$id(id).value=''); $id('tkErr').textContent='';
+  $id('tkNote').classList.toggle('hidden', !tukarWajib); $id('tkClose').classList.toggle('hidden', tukarWajib); $id('tkBatal').classList.toggle('hidden', tukarWajib);
+  $id('tukarModal').classList.add('open'); setTimeout(()=>$id('tkLama').focus(),60);
+}
+function closeTukar(){ if(tukarWajib) return; $id('tukarModal').classList.remove('open'); }
+async function doTukar(){
+  const lama=$id('tkLama').value, baru=$id('tkBaru').value, sah=$id('tkSah').value, b=$id('tkGo');
+  if(!lama||!baru){ $id('tkErr').textContent='Isi semua ruangan.'; return; }
+  if(baru!==sah){ $id('tkErr').textContent='Pengesahan kata laluan tidak sepadan.'; return; }
+  if(!S4Core.kataLaluanSah(baru)){ $id('tkErr').textContent='Sekurang-kurangnya 8 aksara, dengan huruf dan nombor.'; return; }
+  b.disabled=true; b.textContent='Menyimpan…';
+  const res=await api('tukar_kata_laluan',{ lama:lama, baharu:baru });
+  b.disabled=false; b.textContent='Simpan kata laluan';
+  if(!res.ok){ $id('tkErr').textContent=res.error; return; }
+  tukarWajib=false; $id('tukarModal').classList.remove('open'); simpanSesi({ token:res.token, user:res.user });
+  toast('Kata laluan dikemas kini');
+  if(res.user.peranan!=='admin' && res.user.officer_id!=null){ curOffId=Number(res.user.officer_id); renderPegawaiSelect(); renderPegawai(); switchTab('pegawai'); }
+}
+$id('tkGo').onclick=doTukar; $id('tkClose').onclick=closeTukar; $id('tkBatal').onclick=closeTukar;
+['tkLama','tkBaru','tkSah'].forEach(id=>$id(id).addEventListener('keydown',e=>{ if(e.key==='Enter') doTukar(); }));
+document.querySelectorAll('[data-eye]').forEach(b=>b.addEventListener('click',()=>{ const i=$id(b.dataset.eye); i.type=i.type==='password'?'text':'password'; }));
+
+/* ================= PANEL ADMIN ================= */
+let admSec='pengguna', admData={ users:[], officers:[] };
+const TINDAKAN_LBL={ log_masuk:'Log masuk', tukar_kata_laluan:'Tukar kata laluan', tambah_item:'Tambah item', sunting_item:'Sunting item',
+  gugur_item:'Gugur item', pulih_item:'Pulih item', tambah_pengguna:'Tambah pengguna', kemas_kini_pengguna:'Kemas kini pengguna',
+  set_semula_kata_laluan:'Set semula kata laluan', tambah_pegawai:'Tambah pegawai', kemas_kini_pegawai:'Kemas kini pegawai',
+  padam_pegawai:'Padam pegawai', import_excel:'Import Excel' };
+$id('admTabs').addEventListener('click',e=>{ const b=e.target.closest('[data-a]'); if(!b) return; admSec=b.dataset.a; renderAdmin(); });
+function offNama(id){ const o=state.officers.find(x=>x.id===Number(id)); return o?o.nama:'—'; }
+async function renderAdmin(){
+  if(!isAdmin()) return;
+  document.querySelectorAll('#admTabs button').forEach(b=>b.classList.toggle('on',b.dataset.a===admSec));
+  const box=$id('admBody'); box.innerHTML='<div class="adm-loading">Memuat…</div>';
+  const salah=r=>{ box.innerHTML='<div class="emptystate"><b>Tidak dapat memuat.</b><br>'+escapeHtml(r.error||'')+'</div>'; };
+  if(admSec==='pengguna' || admSec==='pegawai'){
+    const r=await api('user_list'); if(!r.ok) return salah(r); admData=r;
+    box.innerHTML = admSec==='pengguna' ? htmlPengguna(r.users) : htmlPegawai(r.users);
+  } else if(admSec==='arkib'){
+    const r=await api('arkib_list'); if(!r.ok) return salah(r);
+    box.innerHTML = !r.arkib.length ? '<div class="emptystate"><b>Arkib kosong.</b><br>Item yang digugurkan akan disimpan di sini.</div>' :
+      '<div class="adm-bar"><span>'+r.arkib.length+' item dalam arkib</span></div><div class="adm-scroll"><table class="adm-tbl"><thead><tr><th>Item</th><th>Pegawai</th><th>Digugur oleh</th><th>Bila</th><th></th></tr></thead><tbody>'+
+      r.arkib.map(a=>'<tr><td class="wrap">'+escapeHtml(a.task)+(a.proses&&a.proses.trim()?' <span class="mini-tag">carta alir</span>':'')+'</td><td>'+escapeHtml(offNama(a.officer_id))+'</td><td>'+escapeHtml(a.digugur_oleh||'')+'</td><td class="nw">'+fmtMasa(a.digugur_pada)+'</td>'+
+        '<td><button class="btn sm" data-pulih="'+a.arkib_id+'">↺ Pulihkan</button></td></tr>').join('')+'</tbody></table></div>';
+  } else {
+    const r=await api('log_list'); if(!r.ok) return salah(r);
+    box.innerHTML = !r.log.length ? '<div class="emptystate">Tiada aktiviti direkodkan.</div>' :
+      '<div class="adm-bar"><span>'+r.log.length+' aktiviti terkini</span></div><div class="adm-scroll"><table class="adm-tbl"><thead><tr><th>Masa</th><th>Pengguna</th><th>Tindakan</th><th>Butiran</th></tr></thead><tbody>'+
+      r.log.map(l=>'<tr><td class="nw">'+fmtMasa(l.masa)+'</td><td>'+escapeHtml(l.pengguna)+'</td><td><span class="act-pill '+escapeHtml(l.tindakan)+'">'+escapeHtml(TINDAKAN_LBL[l.tindakan]||l.tindakan)+'</span></td><td class="wrap">'+escapeHtml(l.butiran)+'</td></tr>').join('')+'</tbody></table></div>';
+  }
+}
+function htmlPengguna(us){
+  const aktif=us.filter(u=>u.aktif).length;
+  return '<div class="adm-bar"><span>'+us.length+' akaun · '+aktif+' aktif</span><button class="btn sm brass" data-uadd>＋ Tambah pengguna</button></div>'+
+    '<div class="adm-scroll"><table class="adm-tbl"><thead><tr><th>ID pengguna</th><th>Nama</th><th>Peranan</th><th>Pegawai dipaut</th><th>Status</th><th>Log masuk terakhir</th><th></th></tr></thead><tbody>'+
+    us.map(u=>{ const diri=SESI&&u.username===SESI.user.username;
+      const st=!u.aktif?'<span class="st off">Tidak aktif</span>':(u.tukar_wajib?'<span class="st warn">Menunggu tukar kata laluan</span>':'<span class="st on">Aktif</span>');
+      return '<tr class="'+(u.aktif?'':'dim')+'"><td class="nw"><b>'+escapeHtml(u.username)+'</b>'+(diri?' <span class="mini-tag">anda</span>':'')+'</td><td>'+escapeHtml(u.nama)+'</td>'+
+        '<td><span class="urole '+(u.peranan==='admin'?'admin':'')+'">'+(u.peranan==='admin'?'Admin':'Pengguna')+'</span></td><td>'+escapeHtml(u.officer_id!=null?offNama(u.officer_id):'—')+'</td>'+
+        '<td>'+st+'</td><td class="nw">'+fmtMasa(u.log_masuk_akhir)+'</td><td class="nw acts">'+
+        '<button class="btn sm" data-uedit="'+escapeHtml(u.username)+'" title="Sunting">✎</button>'+
+        '<button class="btn sm" data-ureset="'+escapeHtml(u.username)+'" title="Set semula kata laluan">🔑</button>'+
+        (diri?'':'<button class="btn sm" data-utoggle="'+escapeHtml(u.username)+'" title="'+(u.aktif?'Nyahaktif':'Aktifkan')+'">'+(u.aktif?'⏻ Nyahaktif':'✓ Aktifkan')+'</button>')+
+        '</td></tr>'; }).join('')+'</tbody></table></div>';
+}
+function htmlPegawai(us){
+  return '<div class="adm-bar"><span>'+state.officers.length+' pegawai</span><button class="btn sm brass" data-oadd>＋ Tambah pegawai</button></div>'+
+    '<div class="adm-scroll"><table class="adm-tbl"><thead><tr><th>Bil</th><th>Nama</th><th>Nama pendek (kluster)</th><th>Item</th><th>Akaun dipaut</th><th></th></tr></thead><tbody>'+
+    state.officers.map(o=>{ const ak=us.filter(u=>Number(u.officer_id)===o.id);
+      return '<tr><td>'+o.bil+'</td><td>'+escapeHtml(o.nama)+'</td><td><span class="tagpill teras">'+escapeHtml(o.short)+'</span></td><td>'+o.rows.length+'</td>'+
+        '<td>'+(ak.length?ak.map(u=>escapeHtml(u.username)).join(', '):'<span class="st warn">Tiada akaun</span>')+'</td>'+
+        '<td class="nw acts"><button class="btn sm" data-oedit="'+o.id+'">✎ Sunting</button><button class="btn sm danger" data-odel="'+o.id+'">🗑 Padam</button></td></tr>'; }).join('')+
+    '</tbody></table></div>';
+}
+$id('admBody').addEventListener('click',async e=>{
+  const b=e.target.closest('button'); if(!b) return; const d=b.dataset;
+  if('uadd' in d) return openUserModal(null);
+  if(d.uedit) return openUserModal(admData.users.find(u=>u.username===d.uedit));
+  if(d.ureset){ if(!confirm('Set semula kata laluan untuk "'+d.ureset+'"?\nKata laluan sementara baharu akan dijana dan sesi aktif pengguna ditamatkan.')) return;
+    const r=await api('user_reset',{ username:d.ureset }); if(!r.ok) return toast(r.error); showPw(r.user, r.kata_laluan_sementara, true); return renderAdmin(); }
+  if(d.utoggle){ const u=admData.users.find(x=>x.username===d.utoggle); if(!u) return;
+    if(u.aktif && !confirm('Nyahaktif akaun "'+u.username+'"? Pengguna tidak dapat log masuk sehingga diaktifkan semula.')) return;
+    const r=await api('user_update',{ username:u.username, aktif:!u.aktif }); if(!r.ok) return toast(r.error); toast(u.aktif?'Akaun dinyahaktif':'Akaun diaktifkan'); return renderAdmin(); }
+  if('oadd' in d){ if(await tambahPegawai()) renderAdmin(); return; }
+  if(d.oedit){ const o=state.officers.find(x=>x.id===+d.oedit); if(!o) return;
+    const nm=prompt('Nama penuh pegawai:', o.nama); if(nm===null) return;
+    const sh=prompt('Nama pendek (label kluster). Semua tag kluster yang merujuk nama lama akan dikemas kini:', o.short); if(sh===null) return;
+    const r=await api('officer_update',{ id:o.id, nama:nm.trim()||o.nama, short:sh.trim()||o.short }); if(!r.ok) return toast(r.error);
+    await muatData(true); toast('Pegawai dikemas kini'); return renderAdmin(); }
+  if(d.odel){ const o=state.officers.find(x=>x.id===+d.odel); if(o && await padamPegawai(o)) renderAdmin(); return; }
+  if(d.pulih){ const r=await api('task_restore',{ arkib_id:+d.pulih }); if(!r.ok) return toast(r.error); await muatData(true); toast('Item dipulihkan ke senarai '+offNama(r.officer_id)); return renderAdmin(); }
+});
+
+/* --- modal pengguna --- */
+let umEdit=null;
+function openUserModal(u){
+  umEdit=u||null;
+  $id('umTitle').textContent = u ? 'Sunting pengguna' : 'Tambah pengguna';
+  $id('umUser').value = u?u.username:''; $id('umUser').disabled=!!u;
+  $id('umNama').value = u?u.nama:''; $id('umPeranan').value = u?u.peranan:'pengguna';
+  $id('umOff').innerHTML='<option value="">— Tiada (untuk admin sahaja) —</option>'+state.officers.map(o=>'<option value="'+o.id+'">'+o.bil+'. '+escapeHtml(o.nama)+'</option>').join('');
+  $id('umOff').value = u&&u.officer_id!=null ? String(u.officer_id) : (u?'':String(curOffId||''));
+  $id('umAktifWrap').classList.toggle('hidden', !u); $id('umAktif').checked = u?!!u.aktif:true;
+  $id('umHint').classList.toggle('hidden', !!u); $id('umErr').textContent='';
+  $id('userModal').classList.add('open'); setTimeout(()=>$id(u?'umNama':'umUser').focus(),60);
+}
+function closeUserModal(){ $id('userModal').classList.remove('open'); }
+$id('umCancel').onclick=closeUserModal; $id('umClose').onclick=closeUserModal;
+$id('umSave').onclick=async()=>{
+  const data={ username:$id('umUser').value.trim().toLowerCase(), nama:$id('umNama').value.trim(), peranan:$id('umPeranan').value, officer_id:$id('umOff').value };
+  if(umEdit) data.aktif=$id('umAktif').checked;
+  const b=$id('umSave'); b.disabled=true;
+  const r=await api(umEdit?'user_update':'user_add', data); b.disabled=false;
+  if(!r.ok){ $id('umErr').textContent=r.error; return; }
+  closeUserModal(); renderAdmin();
+  if(!umEdit) showPw(r.user, r.kata_laluan_sementara, false); else toast('Pengguna dikemas kini');
+};
+
+/* --- modal kata laluan sementara --- */
+function showPw(u, pw, reset){
+  $id('pwTitle').textContent = reset ? 'Kata laluan ditetapkan semula' : 'Akaun sedia digunakan';
+  $id('pwUser').textContent=u.username; $id('pwPass').textContent=pw; $id('pwNama').textContent=u.nama;
+  $id('pwModal').classList.add('open');
+  $id('pwCopy').onclick=()=>copyText('Agihan Tugas S4PD\nID pengguna: '+u.username+'\nKata laluan sementara: '+pw+'\nLog masuk di: '+location.href.split('#')[0]+'\n(Anda perlu menukar kata laluan semasa log masuk pertama.)');
+}
+$id('pwDone').onclick=()=>$id('pwModal').classList.remove('open');
+document.addEventListener('keydown',e=>{ if(e.key!=='Escape') return;
+  if($id('loginModal').classList.contains('open')) closeLogin();
+  else if($id('userModal').classList.contains('open')) closeUserModal();
+  else if($id('tukarModal').classList.contains('open')) closeTukar(); });
+
+/* ---------- permulaan ---------- */
+renderAll(); updateAuthUI();
+(async()=>{
+  await muatData(true);
+  if(SESI){ const r=await api('whoami'); if(r.ok){ simpanSesi({ token:SESI.token, user:r.user }); if(r.user.tukar_wajib) openTukar(true); } }
+})();
+if(apiConfigured()){
+  document.getElementById('syncWrap').classList.remove('hidden');
+  document.getElementById('btnPull').onclick=()=>muatData();
+  if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
 </script>
 </body>
 </html>
