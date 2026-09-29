@@ -169,6 +169,177 @@ table.hier td.task{color:var(--ink)}
 /* editing toolbar */
 .editbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
 .editbar .spacer{flex:1}
+/* ---------- Laporan cetak / PDF ---------- */
+#printRoot{display:none}
+/* ---------- Demo ---------- */
+.demo-head{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;justify-content:space-between}
+.demo-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.dchip{display:flex;flex-direction:column;align-items:flex-start;gap:4px;border:1px solid var(--line-strong);background:#fff;border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer;text-align:left;max-width:250px;line-height:1.3}
+.dchip.on{border-color:var(--brass);background:#fffcf3;box-shadow:0 0 0 2px var(--brass-soft)}
+.dk{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:1px 6px;border-radius:4px}
+.dk.umum{background:var(--teal-soft);color:var(--teal)}.dk.s4pd{background:#f4ead0;color:#8a6500}
+.demo-card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.demo-top{padding:18px 20px 14px}
+.demo-kick{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--brass)}
+.demo-top h3{font-family:'Fraunces',Georgia,serif;font-size:21px;color:var(--navy);margin:3px 0 6px;line-height:1.25}
+.demo-top p{margin:0;color:var(--muted);font-size:13.5px;max-width:82ch;line-height:1.55}
+.demo-ciri{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.demo-ciri span{font-size:11.5px;font-weight:600;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--navy)}
+.demo-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper)}
+.demo-bar .spacer{flex:1}
+.demo-bar select{font-size:12.5px;padding:5px 8px}
+.demo-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr)}
+.demo-src{padding:16px 18px;border-right:1px solid var(--line)}
+.demo-out{padding:16px 18px;min-width:0}
+.demo-svg{overflow:auto;display:flex;justify-content:center}
+.demo-svg svg,.sl-svg svg,.mk-flow svg{max-width:100%;height:auto}
+.demo-note{padding:10px 20px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);font-style:italic}
+.demo-src pre,.sl-code{background:#fbfaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;word-break:break-word;margin:6px 0 0;color:var(--ink)}
+.hl-yes{color:#0F6E56;font-weight:600}.hl-no{color:#C62828;font-weight:600}.hl-meta{color:#6b7682}.hl-col{color:#9a6a00}
+.hl-hur{color:var(--teal)}.hl-dec{color:#8a6500;font-weight:700}.hl-go{color:#1d4f91;font-weight:600}
+@media(max-width:760px){.demo-grid{grid-template-columns:1fr}.demo-src{border-right:0;border-bottom:1px solid var(--line)}}
+/* ---------- Slide panduan ---------- */
+.slides-bg{position:fixed;inset:0;background:#0b1e31;z-index:200;display:none}
+.slides-bg.open{display:flex}
+.slides{display:flex;flex-direction:column;width:100%;height:100%;color:#fff}
+.sl-top{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sl-brand{font-weight:700;font-size:13px;color:var(--brass-soft);flex:1;letter-spacing:.02em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sl-count{font-size:12.5px;color:#9fb3c8}
+.sl-top button{background:none;border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:8px;padding:3px 10px;cursor:pointer;font-size:15px}
+.sl-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.sl-slide{background:#fff;color:var(--ink);border-radius:18px;width:100%;max-width:1180px;min-height:min(620px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:30px;align-items:center;padding:36px 40px;box-shadow:0 30px 80px rgba(0,0,0,.4);border-top:6px solid var(--brass);animation:fade .3s ease}
+.sl-slide.novis{grid-template-columns:1fr}
+.sl-slide.cover{background:linear-gradient(135deg,#0F2942,#1c3d5a);color:#fff}
+.sl-kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);font-weight:700;margin-bottom:8px}
+.sl-slide h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(24px,3.1vw,38px);line-height:1.15;margin:0 0 14px;color:var(--navy)}
+.sl-slide.cover h2{color:#fff;font-size:clamp(28px,4.2vw,50px)}
+.sl-text p,.sl-text li{font-size:clamp(14px,1.3vw,17px);line-height:1.6}
+.sl-text p{margin:0 0 10px}
+.sl-slide.cover .sl-text p,.sl-slide.cover .sl-text li{color:#dbe5ef}
+.sl-text ol,.sl-text ul{padding-left:22px;margin:6px 0 10px}
+.sl-text li{margin-bottom:6px}
+.sl-text code{background:#f4ead0;color:#5c4300;border-radius:4px;padding:0 5px;font-size:.92em}
+.sl-slide.cover code{background:rgba(255,255,255,.12);color:#fff}
+.sl-hint{font-size:13px!important;color:#9fb3c8!important;margin-top:16px!important}
+.sl-vis{display:flex;flex-direction:column;gap:12px;justify-content:center;min-width:0}
+.sl-svg{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto;max-height:64vh;display:flex;justify-content:center}
+.sl-slide.cover .sl-svg{background:#fff;border-color:transparent}
+.sl-code{font-size:12px}
+.sl-nav{display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid rgba(255,255,255,.1)}
+.sl-nav>button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:9px;padding:8px 14px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.sl-nav>button.primary{background:var(--brass);border-color:var(--brass);color:#231a00}
+.sl-nav>button:disabled{opacity:.3;cursor:default}
+.sl-dots{flex:1;display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.sl-dots button{width:9px;height:9px;border-radius:5px;border:0;background:rgba(255,255,255,.25);padding:0;cursor:pointer;transition:width .2s}
+.sl-dots button.on{background:var(--brass);width:22px}
+.sl-sym{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sl-symc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px}
+.sl-symc svg{max-width:100%;height:auto}
+.sl-symc b{font-size:13px;color:var(--navy)}.sl-symc small{font-size:11.5px;color:var(--muted)}
+.sl-mock{border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:12px}
+.mk-head{background:var(--navy);color:#fff;padding:9px 12px;display:flex;justify-content:space-between;border-bottom:3px solid var(--brass);font-weight:600}
+.mk-body{display:grid;grid-template-columns:1fr 1.2fr}
+.mk-left{padding:10px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.mk-right{padding:10px;background:var(--paper);display:flex;flex-direction:column;gap:8px;min-width:0}
+.mk-tabs{display:flex;gap:0;border:1px solid var(--line-strong);border-radius:7px;overflow:hidden;align-self:flex-start}
+.mk-tabs b,.mk-tabs span{padding:3px 9px;font-size:11px}.mk-tabs b{background:var(--navy);color:#fff}
+.mk-lines{display:flex;flex-direction:column;gap:7px;padding:8px;border:1px solid var(--line);border-radius:8px;flex:1}
+.mk-lines i{display:block;height:7px;border-radius:4px;background:#d5dbe3}.mk-lines i.s{margin-left:14px;background:#e9dcb4}
+.mk-flow{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px;display:flex;justify-content:center}
+.mk-cap{font-size:11px;font-weight:700;color:var(--brass)}
+.mk-foot{display:flex;gap:10px;align-items:center;padding:8px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.mk-foot b{background:var(--brass);color:#231a00;border-radius:6px;padding:3px 9px}.mk-foot .r{margin-left:auto}
+.sl-fmock{border:1px solid #d9b968;background:#fffcf3;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;font-size:13px;box-shadow:var(--shadow)}
+.mf-top{display:flex;gap:6px;align-items:center}
+.mf-sel{flex:1;border:1px solid var(--line-strong);border-radius:6px;padding:5px 8px;background:#fff}
+.mf-ic{border:1px solid var(--line-strong);border-radius:6px;padding:4px 8px;background:#fff}.mf-ic.del{color:var(--danger)}
+.mf-in{border:1px solid var(--line-strong);border-radius:6px;padding:6px 9px;background:#fff}.mf-soft{color:#9aa3ad}
+.mf-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sl-fmock small{font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.04em;display:block;margin-bottom:2px}
+.mf-chips{display:flex;gap:5px;flex-wrap:wrap;align-items:center}.mf-chips small{display:inline;margin:0 4px 0 0}
+.mf-chip{font-size:11px;font-weight:600;border:1px solid var(--line-strong);border-radius:999px;padding:2px 8px;background:#fff;color:var(--navy)}
+.mf-chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.mf-sw{width:20px;height:20px;border-radius:50%;border:1px solid rgba(15,41,66,.35)}.mf-sw.on{outline:2px solid var(--navy);outline-offset:2px}
+.sl-stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.sl-statn{font-family:'Fraunces',Georgia,serif;font-size:46px;color:var(--navy);line-height:1}.sl-statn span{font-size:22px;color:var(--muted)}
+.sl-statl{font-size:13px;color:var(--muted);margin-top:6px}
+.sl-statbar{height:10px;border-radius:5px;background:#e3e6ea;margin-top:12px;overflow:hidden}.sl-statbar i{display:block;height:100%;background:var(--brass)}
+.sl-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sl-tiles div{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:3px;border-top:4px solid var(--navy)}
+.sl-tiles b{color:var(--navy);font-size:14px}.sl-tiles small{color:var(--muted);font-size:12px}
+@media(max-width:760px){.sl-slide{grid-template-columns:1fr;padding:22px 20px;gap:16px;min-height:0;align-items:start}.sl-stage{align-items:flex-start;padding:10px}
+  .sl-svg{max-height:none}.sl-sym{grid-template-columns:repeat(2,minmax(0,1fr))}.sl-tiles{grid-template-columns:1fr}.sl-nav>button{padding:8px 10px}.mk-body{grid-template-columns:1fr}}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:8px;overflow:hidden;flex:none;align-self:flex-start}
+.seg button{border:0;background:#fff;padding:5px 12px;font:inherit;font-size:12.5px;font-weight:600;color:var(--navy);cursor:pointer}
+.seg button+button{border-left:1px solid var(--line-strong)}
+.seg button.on{background:var(--navy);color:#fff}
+.in-pane{display:flex;flex-direction:column;gap:9px;flex:1;min-height:0}
+.cform{display:flex;flex-direction:column;gap:9px}
+.fstep{border:1px solid var(--line);border-radius:10px;padding:9px;background:#fff;display:flex;flex-direction:column;gap:6px}
+.fstep.dec{border-color:#d9b968;background:#fffcf3}
+.fstep-top{display:flex;gap:5px;align-items:center}
+.fstep-top select{flex:1;min-width:0}
+.fstep input,.fstep select,.fstep textarea{font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box}
+.fstep textarea{min-height:0;resize:vertical;line-height:1.45}
+.fnum{background:var(--brass);color:#231a00;font-weight:700;font-size:12px;min-width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.ficon{border:1px solid var(--line-strong);background:#fff;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:12px;flex:none}
+.ficon[disabled]{opacity:.3;cursor:default}
+.ficon.del{color:var(--danger)}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.fmini{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.fchips{display:flex;flex-wrap:wrap;gap:4px}
+.fchip{font:inherit;font-size:11px;font-weight:600;padding:2px 8px;border:1px solid var(--line-strong);border-radius:999px;background:#fff;color:var(--navy);cursor:pointer}
+.fchip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.fcolors{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fsw{width:22px;height:22px;border-radius:50%;border:1px solid rgba(15,41,66,.35);padding:0;cursor:pointer;flex:none}
+.fsw.on,.fstep input.fsw-pick.on{outline:2px solid var(--navy);outline-offset:2px}
+.fsw-lalai{font:inherit;font-size:11px;font-weight:600;padding:2px 8px;border:1px solid var(--line-strong);border-radius:999px;background:#fff;color:var(--navy);cursor:pointer}
+.fsw-lalai.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.fstep input.fsw-pick{width:28px;height:24px;padding:1px;border:1px solid var(--line-strong);border-radius:6px;cursor:pointer;background:#fff;flex:none}
+.carta-right{display:flex;flex-direction:column;min-height:0;min-width:0}
+.pv-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:9px 14px;border-bottom:1px solid var(--line);background:#fff}
+.pv-bar .fmini{margin:0}
+.pv-bar select{font-size:12.5px;padding:4px 8px}
+.carta-right .carta-preview{flex:1}
+.pdf-body{padding:16px;overflow:auto}
+.fmtopt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.fmtopt:has(input:checked){border-color:var(--brass);background:#fffcf3}
+.fmtopt span{display:flex;flex-direction:column;gap:2px;font-size:13.5px}
+.fmtopt small{color:var(--muted);font-size:12px}
+.rep-chart.rasmi{padding-left:0}
+@media print{
+  body>*:not(#printRoot){display:none!important}
+  #printRoot{display:block!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{margin:14mm}
+}
+#printRoot{color:#0F2942;font-family:'Plus Jakarta Sans',Arial,sans-serif}
+.rep-cover{padding:2mm 0 6mm;border-bottom:3px solid #B8860B;margin-bottom:8mm}
+.rep-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#B8860B;font-weight:700}
+.rep-title{font-family:'Fraunces',Georgia,serif;font-size:30px;margin:6px 0 2px;color:#0F2942}
+.rep-sub{font-size:15px;font-weight:600}
+.rep-meta{font-size:12px;color:#4a5a6a;margin-top:8px;line-height:1.55}
+.rep-section{margin-bottom:8mm}
+.rep-h2{font-family:'Fraunces',Georgia,serif;font-size:18px;color:#0F2942;border-left:4px solid #B8860B;padding-left:10px;margin:0 0 8px}
+.rep-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.rep-tbl th,.rep-tbl td{border:1px solid #d8dee6;padding:6px 8px;text-align:center}
+.rep-tbl thead th{background:#0F2942;color:#fff;font-weight:600}
+.rep-tbl tr.tot td{background:#f4f1e7}
+.rep-legend{font-size:12px;color:#4a5a6a;margin-top:6px}
+.rep-officer{break-before:page;page-break-before:always}
+.rep-ohead{display:flex;align-items:center;gap:10px;background:#0F2942;color:#fff;padding:8px 12px;border-radius:8px;margin-bottom:8px}
+.rep-obil{background:#B8860B;color:#231a00;font-weight:700;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.rep-onm{font-weight:700;font-size:15px;flex:1}
+.rep-ocount{font-size:11.5px;opacity:.92}
+.rep-grp{font-size:11.5px;font-weight:700;color:#9a6a00;text-transform:uppercase;letter-spacing:.04em;margin:11px 0 5px}
+.rep-task{break-inside:avoid;page-break-inside:avoid;border:1px solid #e3e7ec;border-radius:8px;padding:8px 11px;margin-bottom:8px}
+.rep-tasktop{display:flex;gap:9px;align-items:flex-start;margin-bottom:4px}
+.rep-tnum{background:#f4f1e7;color:#0F2942;font-weight:700;min-width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+.rep-ttext{font-size:13.5px;font-weight:600;line-height:1.4}
+.rep-chart{padding:4px 0 2px 31px}
+.rep-chart svg{max-width:100%;height:auto}
+.rep-nochart{margin:2px 0 2px 31px;font-size:12px;color:#9a6a00;background:#fdf7e9;border:1px dashed #d9b968;border-radius:6px;padding:5px 10px;display:inline-block}
+.rep-empty{font-size:12.5px;color:#4a5a6a;font-style:italic}
+.rep-matrix .matrix{font-size:11px}
 .savepill{font-size:12px;color:var(--ok);display:inline-flex;align-items:center;gap:6px}
 .notice{background:#fff8e8;border:1px solid var(--brass-soft);border-radius:10px;padding:12px 15px;
   font-size:13px;color:#6a5310;margin-bottom:18px;display:flex;gap:10px;align-items:flex-start}
@@ -187,12 +358,12 @@ table.hier td.task{color:var(--ink)}
 @media(hover:none){.carta-btn{opacity:1}}
 .modal-bg{position:fixed;inset:0;background:rgba(15,41,66,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
 .modal-bg.open{display:flex}
-.modal{background:#fff;border-radius:16px;max-width:940px;width:100%;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.modal{background:#fff;border-radius:16px;max-width:1080px;width:100%;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.35)}
 .modal-head{background:var(--navy);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--brass)}
 .modal-head h3{font-size:16px;color:#fff;flex:1;line-height:1.3;font-weight:600}
 .modal-head .x{background:none;border:0;color:#cdd9e6;font-size:24px;line-height:1;padding:0 6px;border-radius:6px;cursor:pointer}
 .modal-head .x:hover{background:#1c3d5a;color:#fff}
-.modal-body{display:grid;grid-template-columns:330px 1fr;flex:1;min-height:0}
+.modal-body{display:grid;grid-template-columns:370px 1fr;flex:1;min-height:0}
 .carta-edit{border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:9px;overflow:auto}
 .carta-edit label{font-size:12.5px;font-weight:700;color:var(--navy)}
 .carta-edit .hint{font-size:11.5px;color:var(--muted);line-height:1.55;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
@@ -202,7 +373,7 @@ table.hier td.task{color:var(--ink)}
 .carta-preview svg{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);max-width:100%;height:auto}
 .modal-foot{border-top:1px solid var(--line);padding:11px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff}
 .modal-foot .spacer{flex:1}
-@media(max-width:720px){.modal-body{grid-template-columns:1fr;overflow:auto}.carta-edit{border-right:0;border-bottom:1px solid var(--line)}.carta-edit textarea{min-height:150px}}
+@media(max-width:720px){.carta-right .carta-preview{min-height:320px}.modal-body{grid-template-columns:1fr;overflow:auto}.carta-edit{border-right:0;border-bottom:1px solid var(--line)}.carta-edit textarea{min-height:150px}}
 .gitem{display:flex;gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:#fff}
 .ginfo{flex:1;min-width:0}
 .gname{font-weight:700;color:var(--navy);font-size:14px}
@@ -255,6 +426,7 @@ table.hier td.task{color:var(--ink)}
   <button class="tab" data-p="pegawai">Ikut Pegawai</button>
   <button class="tab" data-p="tugas">Ikut Tugas</button>
   <button class="tab" data-p="struktur">Struktur &amp; Unit</button>
+  <button class="tab" data-p="demo">Demo Carta Alir</button>
 </div></div></nav>
 
 <main><div class="wrap">
@@ -292,6 +464,8 @@ table.hier td.task{color:var(--ink)}
       <button class="btn sm brass" id="btnAddRow">＋ Tambah tugas</button>
       <button class="btn sm" id="btnRenameOff" style="border-color:var(--line-strong)">✎ Nama / jawatan</button>
       <button class="btn sm" id="btnDelOff" style="color:var(--danger);border-color:#e5c3c3">🗑 Padam pegawai</button>
+      <button class="btn sm" id="btnPdfOne" style="border-color:var(--line-strong)">⬇ PDF pegawai ini</button>
+      <button class="btn sm" id="btnPdfAll" style="border-color:var(--line-strong)">⬇ PDF semua</button>
       <span class="spacer"></span>
       <span class="savepill">● Disimpan automatik</span>
       <button class="btn sm brass" id="btnDone">Selesai</button>
@@ -321,6 +495,15 @@ table.hier td.task{color:var(--ink)}
     </div>
   </section>
 
+  <!-- DEMO CARTA ALIR -->
+  <section class="pane" id="pane-demo">
+    <div class="pane-head demo-head"><div><h2>Demo carta alir</h2>
+      <p>Contoh carta siap beserta pernyataannya — tulis begini, jadi begini. Togol Ringkas / Rasmi, salin pernyataan, atau guna terus pada tugas sebenar.</p></div>
+      <button class="btn brass" id="btnSlides">▶ Slide panduan</button></div>
+    <div class="demo-chips" id="demoChips"></div>
+    <div class="demo-card" id="demoCard"></div>
+  </section>
+
   <div class="foot" id="foot"></div>
 </div></main>
 
@@ -329,11 +512,19 @@ table.hier td.task{color:var(--ink)}
     <div class="modal-head"><h3 id="cartaTitle"></h3><button class="x" id="cartaClose" aria-label="Tutup">&times;</button></div>
     <div class="modal-body">
       <div class="carta-edit">
-        <label>Langkah proses</label>
-        <div class="hint">Satu langkah, satu baris. Baris berakhir dengan <code>?</code> jadi nod keputusan (rombus). <b>MULA</b> &amp; <b>TAMAT</b> ditambah automatik.</div>
-        <textarea id="cartaInput" placeholder="Terima arahan / dokumen&#10;Semak kelengkapan?&#10;Sedia maklum balas&#10;Hantar untuk kelulusan&#10;Rekod dan failkan"></textarea>
+        <div class="seg" id="cartaInTabs"><button data-in="teks" class="on">✎ Teks</button><button data-in="borang">☰ Borang</button></div>
+        <div id="inTeks" class="in-pane">
+        <div class="hint">Satu langkah, satu baris. Keputusan: <code>?</code> di hujung atau <code>[?]</code> di awalan, diikuti <code>Ya → teruskan</code> / <code>Tidak → 1</code>. Untuk format rasmi, tambah sub-baris <code>Oleh: KPP, PP</code>, <code>Tempoh: 1 minggu</code> dan <code>- huraian</code>. Warnakan simbol: <code>Warna: kuning</code>. Atau guna tab <b>Borang</b>.</div>
+        <textarea id="cartaInput" placeholder="Menerima arahan melaksanakan tugas&#10;  Oleh: PPN, TPP&#10;  Tempoh: 1 hari&#10;Semak kelengkapan?&#10;  Ya → teruskan&#10;  Tidak → 1&#10;Rekod dan failkan"></textarea>
+        </div>
+        <div id="inBorang" class="in-pane hidden"><div id="cartaForm" class="cform"></div></div>
       </div>
-      <div class="carta-preview" id="cartaPreview"></div>
+      <div class="carta-right">
+        <div class="pv-bar"><span class="fmini">Paparan</span>
+          <div class="seg" id="cartaModeTabs"><button data-m="ringkas">Ringkas</button><button data-m="rasmi">Rasmi</button></div>
+          <span class="fmini">Warna</span><select id="cartaTheme" aria-label="Warna simbol"></select></div>
+        <div class="carta-preview" id="cartaPreview"></div>
+      </div>
     </div>
     <div class="modal-foot">
       <button class="btn sm brass" id="cartaSave">Simpan</button>
@@ -345,6 +536,44 @@ table.hier td.task{color:var(--ink)}
   </div>
 </div>
 
+<div class="modal-bg" id="pdfModal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-head"><h3>Jana PDF</h3><button class="x" id="pdfClose" aria-label="Tutup">&times;</button></div>
+    <div class="pdf-body">
+      <p id="pdfScopeTxt" style="margin:0 0 12px;font-size:13.5px"></p>
+      <div class="fmini" style="margin-bottom:6px">Format carta alir</div>
+      <label class="fmtopt"><input type="radio" name="pdfFmt" value="ringkas"><span><b>Ringkas</b><small>Teks dalam simbol, aliran menegak</small></span></label>
+      <label class="fmtopt"><input type="radio" name="pdfFmt" value="rasmi"><span><b>Rasmi (4 lajur)</b><small>Tanggungjawab · Simbol · Proses Kerja · Tempoh Masa</small></span></label>
+      <div class="fmini" style="margin:12px 0 6px">Warna simbol</div>
+      <select id="pdfTheme" style="width:100%"></select>
+      <p class="hint" style="margin:12px 0 0">Dalam dialog cetak, pilih <b>Simpan sebagai PDF</b> dan tandakan <b>Background graphics</b>.</p>
+    </div>
+    <div class="modal-foot"><span class="spacer"></span><button class="btn sm" id="pdfCancel" style="border-color:var(--line-strong)">Batal</button><button class="btn sm brass" id="pdfGo">Jana PDF</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="useModal">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-head"><h3>Guna contoh pada tugas</h3><button class="x" id="useClose" aria-label="Tutup">&times;</button></div>
+    <div class="pdf-body">
+      <p id="useTxt" style="margin:0 0 12px;font-size:13.5px;line-height:1.55"></p>
+      <div class="fmini">Pegawai</div><select id="useOff" style="width:100%;margin-bottom:10px"></select>
+      <div class="fmini">Tugas</div><select id="useTask" style="width:100%"></select>
+      <p class="hint" id="useWarn" style="margin:10px 0 0;display:none">✓ Tugas ini sudah ada carta alir. Contoh hanya menggantikannya jika anda tekan <b>Simpan</b> dalam editor.</p>
+    </div>
+    <div class="modal-foot"><span class="spacer"></span><button class="btn sm" id="useCancel" style="border-color:var(--line-strong)">Batal</button><button class="btn sm brass" id="useGo">Buka dalam editor</button></div>
+  </div>
+</div>
+
+<div class="slides-bg" id="slideModal" role="dialog" aria-label="Slide panduan carta alir">
+  <div class="slides">
+    <div class="sl-top"><span class="sl-brand">Panduan Carta Alir · Agihan Tugas S4PD</span><span class="sl-count" id="slCount"></span>
+      <button id="slFs" title="Skrin penuh" aria-label="Skrin penuh">⛶</button><button id="slClose" title="Tutup" aria-label="Tutup">×</button></div>
+    <div class="sl-stage" id="slStage"></div>
+    <div class="sl-nav"><button id="slPrev">‹ Sebelum</button><div class="sl-dots" id="slDots"></div><button id="slNext" class="primary">Seterusnya ›</button></div>
+  </div>
+</div>
+
 <div class="modal-bg" id="guideModal">
   <div class="modal" style="max-width:720px">
     <div class="modal-head"><h3>Panduan pengisian carta alir</h3><button class="x" id="guideClose" aria-label="Tutup">&times;</button></div>
@@ -353,6 +582,8 @@ table.hier td.task{color:var(--ink)}
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div id="printRoot"></div>
 
 <script>
 const SEED = {"meta": {"sektor": "Sektor Perancangan & Pengurusan PPD (S4PD)", "jpn": "Jabatan Pendidikan Negeri Kedah", "tarikh": "9 September 2026", "sumber": "Bilateral S4PD Bil. 1/2026 (23 Julai 2026)"}, "shortmap": {"DR MOHD LATIFI": "DR MOHD LATIFI BIN ABD GHANI", "EN. LUTHFI": "EN. LUTHFI BIN MOHD RADZI", "HJ. AHMAD HAMDI": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "HJ. HAMDI": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "EN. MOHD SHAHRIL": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "EN. SUFIYUDDIN": "EN. SUFIYUDDIN BIN AHMAD", "PN. ZARIYATI": "PN. NOOR ZARIYATI BINTI MOHAMMAD", "EN. DIN": "EN. DIN BIN MAT JUSOH", "EN. NOORULANUAR": "EN. NOORULANUAR BIN BAHARUDIN"}, "canon": {"DR MOHD LATIFI BIN ABD GHANI": "DR MOHD LATIFI", "EN. LUTHFI BIN MOHD RADZI": "EN. LUTHFI", "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR": "HJ. AHMAD HAMDI", "EN. MOHD SHAHRIL BIN IBENIL HARJAD": "EN. MOHD SHAHRIL", "EN. SUFIYUDDIN BIN AHMAD": "EN. SUFIYUDDIN", "PN. NOOR ZARIYATI BINTI MOHAMMAD": "PN. ZARIYATI", "EN. DIN BIN MAT JUSOH": "EN. DIN", "EN. NOORULANUAR BIN BAHARUDIN": "EN. NOORULANUAR"}, "officers": [{"id": 1, "bil": 1, "nama": "DR MOHD LATIFI BIN ABD GHANI", "short": "DR MOHD LATIFI", "rows": [{"task": "Maklum balas Syor Nazir dan Tindak Susul", "tag": "DR MOHD LATIFI"}, {"task": "Program Latihan (BPG)", "tag": "DR MOHD LATIFI"}, {"task": "Program Career Development Informative Kit (CerDIK)", "tag": "DR MOHD LATIFI"}, {"task": "Standard Guru Malaysia (SSKD-SGMy)", "tag": "DR MOHD LATIFI"}, {"task": "RPM 2026-2035 (Prakarsa)", "tag": "DR MOHD LATIFI"}, {"task": "Dialog Prestasi PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI Pengarah (PPTPA)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Inovasi dan Penyelidikan", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat Pengurusan JPN PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat SRO (Senior Responsible owner)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Portal DTPCare", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "EN. DIN"}, {"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 2, "bil": 2, "nama": "EN. LUTHFI BIN MOHD RADZI", "short": "EN. LUTHFI", "rows": [{"task": "Pengurusan Kewangan (Sektor)", "tag": "EN. LUTHFI"}, {"task": "Maklum balas Sidang Dewan Undangan Negeri (DUN)", "tag": "EN. LUTHFI"}, {"task": "Urus setia Bilateral S4PD", "tag": "EN. LUTHFI"}, {"task": "Menyelaras permohonan projek ICU", "tag": "EN. LUTHFI"}, {"task": "Maklum balas Sidang Parlimen", "tag": "EN. LUTHFI"}, {"task": "Menghadiri Mesyuarat UR20a berdasarkan ketetapan PlanMalaysia bagi mengesahkan pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. LUTHFI"}, {"task": "Menentusahkan reka bentuk konsep bagi setiap pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. LUTHFI"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan kesesuaian dan kebolehlaksanaan projek.", "tag": "EN. LUTHFI"}, {"task": "Menyelaras pangkalan data sebagai pusat sehenti bagi JPN dan PPD", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN.", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Mesyuarat Khas Pengarah *Pengarah,timbalan dan PPD", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}, {"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 3, "bil": 3, "nama": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "short": "HJ. AHMAD HAMDI", "rows": [{"task": "Dialog Prestasi PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI Pengarah (PPTPA)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Inovasi dan Penyelidikan", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat Pengurusan JPN PPD", "tag": "HJ. AHMAD HAMDI"}, {"task": "Mesyuarat SRO (Senior Responsible Owner)", "tag": "HJ. AHMAD HAMDI"}, {"task": "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "tag": "HJ. AHMAD HAMDI"}, {"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Portal DTPCare", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "EN. DIN"}, {"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 4, "bil": 4, "nama": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "short": "EN. MOHD SHAHRIL", "rows": [{"task": "Mengawal selia pengoperasian Sistem EMIS", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN melibatkan rendah, menengah, prasekolah, PPKI dan TVET", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras semakan ralat pengisian EMIS", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras dan membuat semakan kesahan data Modul Pengurusan Murid (MOEIS), Modul Pengurusan Guru (eOperasi) dan Modul Pengurusan Sekolah secara bulanan", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menguruskan perlantikan Guru Data dan Maklumat Sekolah (GDM)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras latihan penggunaan sistem EMIS kepada Guru Data dan Maklumat sekolah-sekolah", "tag": "EN. MOHD SHAHRIL"}, {"task": "Melatih serta membimbing pegawai-pegawai JPN dan Penolong-penolong PPD Perancangan dalam penyediaan dashboard", "tag": "EN. MOHD SHAHRIL"}, {"task": "Menyelaras dan mengemaskini data repositori JPN Kedah", "tag": "EN. MOHD SHAHRIL"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Urus setia Mesyuarat Khas Pengarah (melibatkan Pengarah,Timbalan Pengarah dan PPD sahaja)", "tag": "EN. MOHD SHAHRIL"}, {"task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}, {"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 5, "bil": 5, "nama": "EN. SUFIYUDDIN BIN AHMAD", "short": "EN. SUFIYUDDIN", "rows": [{"task": "Penjaminan Kualiti PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Mesyuarat Sektor Perancangan JPN PPD", "tag": "EN. SUFIYUDDIN"}, {"task": "Menyelaras Pengurusan Dialog Prestasi", "tag": "EN. SUFIYUDDIN"}, {"task": "MAKMur - kaunseling SPMu", "tag": "EN. SUFIYUDDIN"}, {"task": "Pengurusan Reformasi Sekolah - Pembangunan", "tag": "EN. SUFIYUDDIN"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (J3P) Negeri Kedah", "tag": "EN. SUFIYUDDIN"}]}, {"id": 6, "bil": 6, "nama": "PN. NOOR ZARIYATI BINTI MOHAMMAD", "short": "PN. ZARIYATI", "rows": [{"task": "KPI DMU/ Sektor/Jabatan", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Reformasi Sekolah - Program", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Pelan Taktikal/Pelan Operasi", "tag": "PN. ZARIYATI"}, {"task": "Pengurusan Takwim JPN", "tag": "PN. ZARIYATI"}, {"task": "Menyelaras pengurusan aduan dan siasatan  JPN Kedah", "tag": "PN. ZARIYATI"}]}, {"id": 7, "bil": 7, "nama": "EN. DIN BIN MAT JUSOH", "short": "EN. DIN", "rows": [{"task": "Menyelaras Pengurusan Bencana", "tag": "EN. DIN"}, {"task": "Menyelaras pengurusan Dashboard Aduan", "tag": "EN. DIN"}, {"task": "Menyelaras Aset sektor (Pegawai Aset Sektor)", "tag": "EN. DIN"}]}, {"id": 8, "bil": 8, "nama": "EN. NOORULANUAR BIN BAHARUDIN", "short": "EN. NOORULANUAR", "rows": [{"task": "Merancang dan menyelaras permohonan projek pembangunan termasuk skop projek dan anggaran kos bagi projek jangka panjang (RMK)", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras keperluan pembangunan bagi urusan pembukaan dan pemindahan sekolah", "tag": "EN. NOORULANUAR"}, {"task": "Urus setia Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "tag": "EN. NOORULANUAR"}, {"task": "Menentusahkan reka bentuk konsep bagi setiap pembinaan baharu bangunan sekolah kerajaan.", "tag": "EN. NOORULANUAR"}, {"task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan kesesuaian dan kebolehlaksanaan projek.", "tag": "EN. NOORULANUAR"}, {"task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB).", "tag": "EN. NOORULANUAR"}]}], "tugas": {"hierarki": [{"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Merancang dan menyelaras projek pembangunan termasuk skop dan anggaran kos bagi projek jangka panjang"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Menyelaras keperluan pembangunan bagi urusan pembukaan / pemindahan sekolah"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "EN. NOORULANUAR BIN BAHARUDIN", "task": "Menyelaras dan menentukan keperluan dan agihan peruntukan kewangan JPN dan PPD (OBB)."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras keperluan unjuran enrolmen, kelas dan guru di sekolah-sekolah bawah kawalan JPN."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras pangkalan data sebagai pusat sehenti bagi JPN dan PPD"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Melaksanakan verifikasi infra di tapak bagi menentusahkan projek."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "EN. LUTHFI BIN MOHD RADZI", "kpp": "EN. MOHD SHAHRIL BIN IBENIL HARJAD", "pp": "", "task": "Menyelaras dan mengurusetia mesyuarat cadangan arahan penempatan pegawai"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Membangunkan pelan strategik pembangunan pendidikan negeri yang selari dengan pelan jangka panjang KPM."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Menyelaras maklum balas berkaitan pendidikan kepada pihak berkepentingan"}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "EN. SUFIYUDDIN BIN AHMAD", "task": "Menyelaras dan memastikan pematuhan/pelaksanaan terhadap langkah-langkah penambahbaikan daripada hasil laporan audit dan naziran."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "NOOR ZARIYATI BINTI MOHAMMAD", "task": "Menyelaras, memantau dan memberi khidmat nasihat ke atas pematuhan dasar dan standard kualiti merentasi sektor serta pelaksanaan inisiatif kualiti, inovasi dan penyelidikan di peringkat JPN dan PPD."}, {"tp": "PN HAJAH NOOR ASHIKIN BINTI YUSOFF", "kppk": "DR MOHD LATIFI BIN ABD GHANI", "kpp": "HJ. AHMAD HAMDI BIN DATO' SYEIKH HAJI OMAR", "pp": "NOOR ZARIYATI BINTI MOHAMMAD", "task": "Merancang dan menyelaras pengurusan transformasi PPD."}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pemilihan program-program utama untuk dilaksanakan di peringkat negeri/wilayah dan PPD"}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pengurusan aduan awam di peringkat negeri / wilayah"}, {"tp": "", "kppk": "", "kpp": "", "pp": "EN. DIN BIN MAT JUSOH", "task": "Menyelaras pengurusan bencana di peringkat negeri"}], "unitTransformasi": ["RPM 2026-2035", "KPI Sektor/ KPI Pengarah (PPTPA)", "Program CerDIK", "MAKMur", "Dialog Prestasi", "Maklum balas Syor Nazir dan Tindak Susul", "Penarafan PPD", "Inovasi dan penyelidikan", "Aduan dan siasatan", "Pengurusan Bencana", "Reformasi Sekolah", "Mesyuarat Sektor Perancangan JPN PPD", "Mesyuarat Pengurusan JPN PPD", "Mesyuarat SRO (Senior Responsible owner)", "Program latihan (BPG)", "Takwim JPN"], "unitPembangunan": ["Merancang dan menyelaras projek pembangunan", "Menyelaras urusan pembukaan dan pemindahan sekolah", "Menyelaras pangkalan data sehenti", "Mesyuarat Jawatankuasa Pengesanan dan Pengesahan Pegawai Perkhidmatan Pendidikan (J5P)", "Mesyuarat Khas JPN PPD", "Mesyuarat Pengurusan Sektor Perancangan dan Pengurusan PPD (S4PD dalaman)/bilateral", "Maklum balas Mesyuarat Pengurusan Pendidikan Ketua Pengarah Pendidikan Malaysia (MPPKPPM)", "Maklum balas Sidang Dewan Undangan Negeri (DUN)", "Maklum balas Sidang Parlimen (pegawai penghubung Parlimen ialah UKK, maklum balas S4PD yang dok jawab)/ Maklum balas mesyuarat Pengarah bersama agensi luar", "Pengurusan Kewangan (Sektor)", "Mesyuarat Jawatankuasa Pelaksanaan Projek Pembangunan (JPPP) Negeri Kedah", "Mesyuarat Rundingan 20A di bawah Akta", "Mesyuarat Social Impact SIA"]}};
@@ -457,9 +688,8 @@ function renderRingkasan(){
   }).join('');
 }
 
-function renderMatrix(){
+function matrixHTML(){
   const offs=state.officers;
-  const cols=offs.map(o=>o.short);
   let h='<table class="matrix"><thead><tr><th style="text-align:left">Pegawai \\ Kluster</th>';
   offs.forEach(o=>{ h+='<th title="'+o.nama+'">'+o.short+'</th>'; });
   h+='</tr></thead><tbody>';
@@ -474,7 +704,72 @@ function renderMatrix(){
     h+='</tr>';
   });
   h+='</tbody></table>';
-  document.getElementById('matrixWrap').innerHTML=h;
+  return h;
+}
+function renderMatrix(){ document.getElementById('matrixWrap').innerHTML=matrixHTML(); }
+function ringkasanTableHTML(list){
+  const offs=list||state.officers;
+  let h='<table class="rep-tbl"><thead><tr><th>Bil</th><th style="text-align:left">Pegawai</th><th>Teras</th><th>Pelapis</th><th>Jumlah</th></tr></thead><tbody>';
+  offs.forEach(o=>{ h+='<tr><td>'+o.bil+'</td><td style="text-align:left">'+escapeHtml(o.nama)+'</td><td>'+terasCount(o)+'</td><td>'+pelapisCount(o)+'</td><td>'+o.rows.length+'</td></tr>'; });
+  const tT=offs.reduce((s,o)=>s+terasCount(o),0), tP=offs.reduce((s,o)=>s+pelapisCount(o),0), tJ=offs.reduce((s,o)=>s+o.rows.length,0);
+  h+='<tr class="tot"><td></td><td style="text-align:left"><b>Jumlah</b></td><td><b>'+tT+'</b></td><td><b>'+tP+'</b></td><td><b>'+tJ+'</b></td></tr>';
+  return h+'</tbody></table>';
+}
+function reportHTML(scope,fmt){
+  const all = scope==='all';
+  const offs = all ? state.officers.slice() : state.officers.filter(o=>o.id===scope);
+  if(!offs.length) return null;
+  const m=SEED.meta;
+  let today; try{ today=new Date().toLocaleDateString('ms-MY',{day:'numeric',month:'long',year:'numeric'}); }catch(e){ today=new Date().toLocaleDateString(); }
+  let h='<div class="rep-cover">'+
+    '<div class="rep-kicker">'+escapeHtml(m.jpn)+'</div>'+
+    '<h1 class="rep-title">Agihan Tugas &amp; Carta Alir</h1>'+
+    '<div class="rep-sub">'+escapeHtml(m.sektor)+'</div>'+
+    '<div class="rep-meta">Sumber: '+escapeHtml(m.sumber)+'<br>Kemas kini data: '+escapeHtml(m.tarikh)+' · Dijana: '+escapeHtml(today)+
+    (all?'':'<br>Laporan pegawai: <b>'+escapeHtml(offs[0].nama)+'</b>')+'</div></div>';
+  if(all){
+    h+='<div class="rep-section"><h2 class="rep-h2">Ringkasan Beban Tugas</h2>'+ringkasanTableHTML()+'</div>';
+    h+='<div class="rep-section rep-matrix"><h2 class="rep-h2">Matriks Agihan</h2>'+matrixHTML()+
+       '<div class="rep-legend">● Pemilik kluster (teras) &nbsp;·&nbsp; ○ Pelapis</div></div>';
+  }else{
+    h+='<div class="rep-section"><h2 class="rep-h2">Ringkasan</h2>'+ringkasanTableHTML(offs)+'</div>';
+  }
+  offs.forEach(o=>{
+    h+='<div class="rep-officer"><div class="rep-ohead"><span class="rep-obil">'+o.bil+'</span>'+
+       '<span class="rep-onm">'+escapeHtml(o.nama)+'</span>'+
+       '<span class="rep-ocount">'+terasCount(o)+' teras · '+pelapisCount(o)+' pelapis · '+o.rows.length+' jumlah</span></div>';
+    if(!o.rows.length){ h+='<div class="rep-empty">Tiada tugas direkodkan.</div></div>'; return; }
+    const order=[]; o.rows.forEach(r=>{ if(!order.includes(r.tag)) order.push(r.tag); });
+    order.sort((a,b)=> (a===o.short?-1:0)-(b===o.short?-1:0));
+    order.forEach(tag=>{
+      const rows=o.rows.filter(r=>r.tag===tag); if(!rows.length) return;
+      const isT=tag===o.short;
+      h+='<div class="rep-grp">'+(isT?'Tugas teras · '+tag:'Pelapis kepada '+escapeHtml(shortLabel(tag))+' · '+tag)+'</div>';
+      rows.forEach(r=>{
+        const gi=o.rows.indexOf(r);
+        const chart=(r.proses&&r.proses.trim())
+          ? (fmt==='rasmi'
+              ? '<div class="rep-chart rasmi">'+renderFlowRasmi(parseFlow(r.proses)).svg+'</div>'
+              : '<div class="rep-chart">'+renderFlow(parseFlow(r.proses)).svg+'</div>')
+          : '<div class="rep-nochart">Belum ada carta alir</div>';
+        h+='<div class="rep-task"><div class="rep-tasktop"><span class="rep-tnum">'+(gi+1)+'</span>'+
+           '<span class="rep-ttext">'+escapeHtml(r.task)+'</span></div>'+chart+'</div>';
+      });
+    });
+    h+='</div>';
+  });
+  return h;
+}
+function buildReport(scope,fmt){
+  const all = scope==='all';
+  const h=reportHTML(scope,fmt);
+  if(h==null){ toast('Tiada pegawai untuk dijana'); return; }
+  document.getElementById('printRoot').innerHTML=h;
+  const prev=document.title, offs = all ? state.officers : state.officers.filter(o=>o.id===scope);
+  document.title = all ? 'Agihan Tugas S4PD — Semua Pegawai' : ('Agihan Tugas — '+offs[0].nama);
+  const restore=()=>{ document.title=prev; window.removeEventListener('afterprint',restore); };
+  window.addEventListener('afterprint',restore);
+  window.print();
 }
 
 function renderPegawaiSelect(){
@@ -605,6 +900,8 @@ function setEdit(on){ editMode=on; document.getElementById('editbar').classList.
   document.getElementById('btnEdit').textContent = on?'✎ Menyunting…':'✎ Sunting'; renderPegawai(); }
 
 document.getElementById('btnEdit').onclick=()=>setEdit(!editMode);
+document.getElementById('btnPdfAll').onclick=()=>openPdf('all');
+document.getElementById('btnPdfOne').onclick=()=>{ if(curOffId==null){ toast('Pilih pegawai dahulu'); return; } openPdf(curOffId); };
 document.getElementById('btnDone').onclick=()=>{ setEdit(false); renderAll(); toast('Suntingan disimpan'); };
 document.getElementById('btnAddRow').onclick=()=>{ const o=state.officers.find(x=>x.id===curOffId); if(!o)return;
   o.rows.push({task:'Tugas baharu', tag:o.short}); save(); renderPegawai(); };
@@ -754,77 +1051,274 @@ function classifyLine(raw){
   return {type:'process', text:l};
 }
 function parseFlow(text){
-  const lines=(text||'').split('\n').map(s=>s.trim()).filter(s=>s && !/^(mula|tamat)$/i.test(s));
-  const nodes=[{type:'start',text:'MULA'}];
-  lines.forEach(l=>nodes.push(classifyLine(l)));
-  nodes.push({type:'end',text:'TAMAT'});
-  return nodes;
+  const raw=(text||'').split('\n');
+  const steps=[]; let lastDec=null, last=null;
+  raw.forEach(line=>{
+    let l=line.trim(); if(!l) return;
+    // sub-baris format rasmi: Oleh / Tempoh / - huraian
+    const om=l.match(/^(oleh|tanggungjawab|tanggung\s+jawab|pic)\s*[:：]\s*(.*)$/i);
+    if(om && last){ last.oleh=om[2].trim(); return; }
+    const wm=l.match(/^(warna|colou?r)\s*[:：]\s*(.*)$/i);
+    if(wm && last){ const v=wm[2].trim(); if(!v||/^(lalai|tiada|default|asal)$/i.test(v)) delete last.warna; else last.warna=v; return; }
+    const tm=l.match(/^(tempoh(?:\s+masa)?|masa)\s*[:：]\s*(.*)$/i);
+    if(tm && last){ last.tempoh=tm[2].trim(); return; }
+    const hm=l.match(/^[-•*]\s+(.+)$/);
+    if(hm && last){ last.huraian=(last.huraian?last.huraian+'\n':'')+hm[1].trim(); return; }
+    // sub-baris cabang: "Ya -> ..." / "Tidak: ..."
+    const bm=l.match(/^(ya|tidak)\s*(?:->|=>|→|[:\-–—])\s*(.*)$/i);
+    if(bm && lastDec){ (/^ya$/i.test(bm[1])?(lastDec.ya=bm[2].trim()):(lastDec.tidak=bm[2].trim())); return; }
+    if(/^(mula|tamat)$/i.test(l)) return;
+    let ya=null,tidak=null,goto=null;
+    const par=l.match(/\(([^)]*)\)\s*$/);
+    if(par){
+      const ins=par[1]; let hit=false;
+      const gy=ins.match(/(?:^|,)\s*ya\s*[:=]\s*([^,]+)/i); if(gy){ya=gy[1].trim();hit=true;}
+      const gt=ins.match(/(?:^|,)\s*tidak\s*[:=]\s*([^,]+)/i); if(gt){tidak=gt[1].trim();hit=true;}
+      const gg=ins.match(/(?:^|,)\s*(?:pergi|goto|ke)\s*[:=]\s*([^,]+)/i); if(gg){goto=gg[1].trim();hit=true;}
+      if(hit) l=l.slice(0,par.index).trim();
+    }
+    const forced=/^\[(p|io|d|s)\]/i.test(l);
+    let isDec=false; const pre=l.match(/^\[\?\]\s*/);
+    if(pre){ isDec=true; l=l.slice(pre[0].length).trim(); }
+    if(!forced && /\?\s*$/.test(l)) isDec=true;
+    let node;
+    if(isDec){ node={type:'decision', text:l.replace(/\?\s*$/,'').trim()+' ?'}; if(ya!=null)node.ya=ya; if(tidak!=null)node.tidak=tidak; lastDec=node; }
+    else {
+      const am=l.match(/(?:->|=>|→)\s*([^>→]+)$/);
+      if(am && goto==null){ goto=am[1].trim(); l=l.slice(0,l.length-am[0].length).trim(); }
+      const cl=classifyLine(l); node={type:cl.type, text:cl.text}; if(goto!=null) node.goto=goto;
+      lastDec = cl.type==='decision' ? node : null;
+    }
+    steps.push(node); last=node;
+  });
+  return steps;
 }
+function resolveTarget(tok,nextIdx,K){
+  tok=String(tok==null?'':tok).trim().toLowerCase();
+  if(tok===''||/^(teruskan|seterusnya|next|ya)$/.test(tok)) return nextIdx;
+  if(/^(tamat|akhir|end|selesai)$/.test(tok)) return K+1;
+  if(/^(mula|start|awal)$/.test(tok)) return 0;
+  const m=tok.match(/(\d+)/); if(m){ let p=parseInt(m[1]); if(p<1)p=1; if(p>K)p=K; return p; }
+  return nextIdx;
+}
+/* --- penyusun balik: langkah -> teks (Teks ⇄ Borang sentiasa selari) --- */
+function typeTag(st){
+  if(st.type==='decision') return '';
+  const t=(st.text||'').trim();
+  if(!/\?\s*$/.test(t) && classifyLine(t).type===st.type) return '';
+  return ({process:'[P] ',io:'[IO] ',document:'[D] ',subprocess:'[S] '})[st.type]||'';
+}
+function serializeFlow(steps){
+  const out=[];
+  steps.forEach(st=>{
+    let t=(st.text||'').replace(/\s+/g,' ').trim();
+    if(st.type==='decision'){ t=t.replace(/\s*\?\s*$/,'').trim(); out.push((t||'Keputusan')+'?'); }
+    else { if(!t) t='Langkah'; const g=(st.goto!=null&&String(st.goto).trim()!=='')?' → '+String(st.goto).trim():''; out.push(typeTag({type:st.type,text:t})+t+g); }
+    if(st.huraian) String(st.huraian).split('\n').map(s=>s.trim()).filter(Boolean).forEach(h=>out.push('  - '+h));
+    if(st.type==='decision'){
+      if(st.ya!=null&&String(st.ya).trim()!=='') out.push('  Ya → '+String(st.ya).trim());
+      if(st.tidak!=null&&String(st.tidak).trim()!=='') out.push('  Tidak → '+String(st.tidak).trim());
+    }
+    if(st.oleh&&String(st.oleh).trim()) out.push('  Oleh: '+String(st.oleh).trim());
+    if(st.tempoh&&String(st.tempoh).trim()) out.push('  Tempoh: '+String(st.tempoh).trim());
+    if(st.warna&&String(st.warna).trim()) out.push('  Warna: '+String(st.warna).trim());
+  });
+  return out.join('\n');
+}
+function tokToSel(t){ t=String(t==null?'':t).trim().toLowerCase();
+  if(!t||/^(teruskan|seterusnya|next|ya)$/.test(t)) return '';
+  if(/^(tamat|akhir|end|selesai)$/.test(t)) return 'tamat';
+  const m=t.match(/(\d+)/); return m?m[1]:''; }
+function remapTargets(steps,map){
+  steps.forEach(st=>['ya','tidak','goto'].forEach(k=>{
+    if(st[k]==null) return; const s=tokToSel(st[k]); if(!/^\d+$/.test(s)) return; const n=+s;
+    if(Object.prototype.hasOwnProperty.call(map,n)){ if(map[n]==null) delete st[k]; else st[k]=String(map[n]); }
+  }));
+}
+function stepMove(steps,i,j){ if(j<0||j>=steps.length||i===j) return; const t=steps[i]; steps[i]=steps[j]; steps[j]=t; const m={}; m[i+1]=j+1; m[j+1]=i+1; remapTargets(steps,m); }
+function stepDel(steps,i){ const K=steps.length; steps.splice(i,1); const m={}; for(let n=1;n<=K;n++){ m[n]= n===i+1 ? null : (n>i+1 ? n-1 : n); } remapTargets(steps,m); }
+
 function wrapText(t,max){
   const words=(t||'').split(/\s+/).filter(Boolean); const lines=[]; let cur='';
   words.forEach(w=>{ if(!cur){cur=w;} else if((cur+' '+w).length<=max){cur+=' '+w;} else {lines.push(cur);cur=w;} });
   if(cur)lines.push(cur); return lines.length?lines:[' '];
 }
-function renderFlow(nodes){
-  const CW=7.3, LH=18, PADX=18, GAP=30, TOP=22;
-  const items=nodes.map(n=>{
-    let max,minW;
-    if(n.type==='start'||n.type==='end'){max=40;minW=96;}
-    else if(n.type==='decision'){max=24;minW=150;}
-    else {max=32;minW=150;}
-    const lines=wrapText(n.text,max);
-    const longest=Math.max.apply(null,lines.map(l=>l.length));
-    let w=Math.max(minW, Math.round(longest*CW)+2*PADX);
-    let h=lines.length*LH+18;
-    if(n.type==='start'||n.type==='end'){h=42;}
-    if(n.type==='decision'){w+=44;h+=16;}
-    if(n.type==='io'){w+=28;}
-    if(n.type==='document'){h+=10;}
-    if(n.type==='subprocess'){w+=24;}
-    return {n,lines,w,h};
-  });
-  const maxW=Math.max.apply(null,items.map(i=>i.w));
-  const W=maxW+90, cx=Math.round(W/2);
-  let y=TOP; const parts=[]; const centers=[];
-  items.forEach(it=>{
-    const {n,lines,w,h}=it; const x=Math.round(cx-w/2); const cyTop=y, cyMid=Math.round(y+h/2);
-    centers.push({top:cyTop,bot:cyTop+h,mid:cyMid});
-    const weight=(n.type==='process')?'400':'600';
-    const txt=(fill)=>lines.map((l,li)=>'<text x="'+cx+'" y="'+Math.round(cyMid-(lines.length-1)*LH/2+li*LH)+'" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="13.5" font-weight="'+weight+'" fill="'+fill+'">'+escapeHtml(l)+'</text>').join('');
-    const NV='#0F2942';
-    if(n.type==='start'||n.type==='end'){
-      const fill=n.type==='start'?'#B8860B':NV, tc=n.type==='start'?'#231a00':'#ffffff';
-      parts.push('<rect x="'+x+'" y="'+cyTop+'" width="'+w+'" height="'+h+'" rx="'+(h/2)+'" fill="'+fill+'"/>'+txt(tc));
-    }else if(n.type==='decision'){
-      const pts=[cx+','+cyTop,(x+w)+','+cyMid,cx+','+(cyTop+h),x+','+cyMid].join(' ');
-      parts.push('<polygon points="'+pts+'" fill="#fdf7e9" stroke="#B8860B" stroke-width="1.5"/>'+txt(NV));
-    }else if(n.type==='io'){
-      const s=16, pts=[(x+s)+','+cyTop,(x+w)+','+cyTop,(x+w-s)+','+(cyTop+h),x+','+(cyTop+h)].join(' ');
-      parts.push('<polygon points="'+pts+'" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+txt(NV));
-    }else if(n.type==='document'){
-      const b=cyTop+h-6;
-      const d='M'+x+' '+cyTop+' L'+(x+w)+' '+cyTop+' L'+(x+w)+' '+b+' Q'+(x+w*0.75)+' '+(b+11)+' '+(x+w*0.5)+' '+b+' T'+x+' '+b+' Z';
-      parts.push('<path d="'+d+'" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+txt(NV));
-    }else if(n.type==='subprocess'){
-      parts.push('<rect x="'+x+'" y="'+cyTop+'" width="'+w+'" height="'+h+'" rx="6" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+
-        '<line x1="'+(x+8)+'" y1="'+cyTop+'" x2="'+(x+8)+'" y2="'+(cyTop+h)+'" stroke="'+NV+'" stroke-width="1.2"/>'+
-        '<line x1="'+(x+w-8)+'" y1="'+cyTop+'" x2="'+(x+w-8)+'" y2="'+(cyTop+h)+'" stroke="'+NV+'" stroke-width="1.2"/>'+txt(NV));
-    }else{
-      parts.push('<rect x="'+x+'" y="'+cyTop+'" width="'+w+'" height="'+h+'" rx="8" fill="#ffffff" stroke="'+NV+'" stroke-width="1.5"/>'+txt(NV));
+/* --- tema warna (tetapan, disimpan dalam pelayar) --- */
+const THEMES={
+  identiti:{label:'Identiti app — navy & brass', line:'#0F2942', text:'#0F2942', proc:'#ffffff', procS:'#0F2942', dec:'#fdf7e9', decS:'#B8860B', start:'#B8860B', startT:'#231a00', end:'#0F2942', endT:'#ffffff', seS:'none', ya:'#0F6E56', tidak:'#E24B4A', dash:'', badge:'#B8860B', badgeT:'#231a00'},
+  kuning:{label:'Rasmi — kuning (ikut contoh)', line:'#000000', text:'#000000', proc:'#FFFF66', procS:'#000000', dec:'#FFFF66', decS:'#000000', start:'#ffffff', startT:'#000000', end:'#ffffff', endT:'#000000', seS:'#000000', ya:'#000000', tidak:'#C62828', dash:'', badge:'#000000', badgeT:'#ffffff'},
+  hitamputih:{label:'Hitam putih — jimat dakwat', line:'#000000', text:'#000000', proc:'#ffffff', procS:'#000000', dec:'#ffffff', decS:'#000000', start:'#ffffff', startT:'#000000', end:'#ffffff', endT:'#000000', seS:'#000000', ya:'#000000', tidak:'#000000', dash:'5 3', badge:'#000000', badgeT:'#ffffff'}
+};
+let FT=THEMES.identiti, FT_KEY='identiti';
+try{ const t0=localStorage.getItem('s4pd-carta-theme'); if(THEMES[t0]){ FT=THEMES[t0]; FT_KEY=t0; } }catch(e){}
+function setTheme(k){ if(!THEMES[k]) k='identiti'; FT=THEMES[k]; FT_KEY=k; try{ localStorage.setItem('s4pd-carta-theme',k); }catch(e){} }
+function themeOptions(){ return Object.keys(THEMES).map(k=>'<option value="'+k+'"'+(k===FT_KEY?' selected':'')+'>'+THEMES[k].label+'</option>').join(''); }
+
+const LH=18;
+function measure(n){
+  let max,minW;
+  if(n.type==='start'||n.type==='end'){max=40;minW=96;}
+  else if(n.type==='decision'){max=20;minW=150;}
+  else {max=32;minW=150;}
+  const txt0 = n.type==='decision' ? String(n.text||'').replace(/\s+\?$/,'?') : n.text;
+  const lines=wrapText(txt0,max);
+  const longest=Math.max.apply(null,lines.map(l=>l.length));
+  let w=Math.max(minW, Math.round(longest*(n.type==='decision'?8:7.3))+36);
+  let h=lines.length*LH+18;
+  if(n.type==='start'||n.type==='end') h=42;
+  if(n.type==='decision'){w=Math.round(w*1.45)+20;h=Math.round(h*1.35)+14;}
+  if(n.type==='io') w+=28;
+  if(n.type==='document') h+=10;
+  if(n.type==='subprocess') w+=24;
+  return {lines,w,h};
+}
+const PALETTE={kuning:'#FFFF66',oren:'#FFD8A8',merah:'#FFC4C4','merah jambu':'#FFD1E8',ungu:'#E3D4FF',biru:'#CFE3FF',hijau:'#C8F0C8',kelabu:'#E3E6EA',putih:'#FFFFFF'};
+const COLOR_ALIAS={jingga:'oren',orange:'oren',yellow:'kuning',green:'hijau',blue:'biru',red:'merah',pink:'merah jambu',merahjambu:'merah jambu',purple:'ungu',grey:'kelabu',gray:'kelabu',white:'putih'};
+function normWarna(tok){ if(!tok) return ''; const t=String(tok).trim().toLowerCase(); return COLOR_ALIAS[t]||t; }
+function colorOf(tok){ if(!tok) return null; const t=normWarna(tok);
+  if(/^#([0-9a-f]{3}|[0-9a-f]{6})$/.test(t)) return t.length===4?'#'+t[1]+t[1]+t[2]+t[2]+t[3]+t[3]:t;
+  return PALETTE[t]||null; }
+function inkOn(hex){ if(!hex) return null; const n=parseInt(hex.slice(1),16), r=(n>>16)&255, g=(n>>8)&255, b=n&255;
+  return (0.299*r+0.587*g+0.114*b)<140 ? '#ffffff' : null; }
+function shapeSVG(type,x,y,w,h,rx,fo){
+  const cx=Math.round(x+w/2), cy=Math.round(y+h/2), sw=' stroke-width="1.5"';
+  if(type==='start'||type==='end'){ const f=type==='start'?FT.start:FT.end; return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(h/2)+'" fill="'+f+'"'+(FT.seS!=='none'?' stroke="'+FT.seS+'"'+sw:'')+'/>'; }
+  if(type==='decision') return '<polygon points="'+[cx+','+y,(x+w)+','+cy,cx+','+(y+h),x+','+cy].join(' ')+'" fill="'+(fo||FT.dec)+'" stroke="'+FT.decS+'"'+sw+'/>';
+  if(type==='io'){ const k=16; return '<polygon points="'+[(x+k)+','+y,(x+w)+','+y,(x+w-k)+','+(y+h),x+','+(y+h)].join(' ')+'" fill="'+(fo||FT.proc)+'" stroke="'+FT.procS+'"'+sw+'/>'; }
+  if(type==='document'){ const b=y+h-6; return '<path d="M'+x+' '+y+' L'+(x+w)+' '+y+' L'+(x+w)+' '+b+' Q'+(x+w*0.75)+' '+(b+11)+' '+(x+w*0.5)+' '+b+' T'+x+' '+b+' Z" fill="'+(fo||FT.proc)+'" stroke="'+FT.procS+'"'+sw+'/>'; }
+  if(type==='subprocess') return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx==null?6:rx)+'" fill="'+(fo||FT.proc)+'" stroke="'+FT.procS+'"'+sw+'/>'+
+    '<line x1="'+(x+8)+'" y1="'+y+'" x2="'+(x+8)+'" y2="'+(y+h)+'" stroke="'+FT.procS+'" stroke-width="1.2"/>'+
+    '<line x1="'+(x+w-8)+'" y1="'+y+'" x2="'+(x+w-8)+'" y2="'+(y+h)+'" stroke="'+FT.procS+'" stroke-width="1.2"/>';
+  return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+(rx==null?8:rx)+'" fill="'+(fo||FT.proc)+'" stroke="'+FT.procS+'"'+sw+'/>';
+}
+function emitNode(n,x,cyTop,cx,lines,w,h,num){
+  const cyMid=Math.round(cyTop+h/2);
+  const weight=(n.type==='process')?'400':'600';
+  const fo=(n.type==='start'||n.type==='end')?null:colorOf(n.warna), ink=inkOn(fo);
+  const tc = n.type==='start'?FT.startT : n.type==='end'?FT.endT : (ink||FT.text);
+  let s=shapeSVG(n.type,x,cyTop,w,h,null,fo);
+  s+=lines.map((l,li)=>'<text x="'+cx+'" y="'+Math.round(cyMid-(lines.length-1)*LH/2+li*LH)+'" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="13.5" font-weight="'+weight+'" fill="'+tc+'">'+escapeHtml(l)+'</text>').join('');
+  if(num){ s+='<circle cx="'+x+'" cy="'+cyMid+'" r="10" fill="'+FT.badge+'"/><text x="'+x+'" y="'+cyMid+'" text-anchor="middle" dominant-baseline="central" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="11" font-weight="700" fill="'+FT.badgeT+'">'+num+'</text>'; }
+  return s;
+}
+const FA_DEF='<defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>';
+function nodePreview(n){
+  const m=measure(n); const W=m.w+40, cx=Math.round(W/2), x=cx-Math.round(m.w/2), H=m.h+32;
+  return {svg:'<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+emitNode(n,x,16,cx,m.lines,m.w,m.h,0)+'</svg>'};
+}
+function buildEdges(steps){
+  const K=steps.length; const edges=[{from:0,to:1,label:''}];
+  steps.forEach((st,si)=>{ const idx=si+1, nextIdx=idx+1;
+    if(st.type==='decision'){
+      edges.push({from:idx,to:resolveTarget(st.ya,nextIdx,K),label:'Ya'});
+      if(st.tidak!=null && String(st.tidak).trim()!=='') edges.push({from:idx,to:resolveTarget(st.tidak,nextIdx,K),label:'Tidak',tidak:true});
+    } else {
+      edges.push({from:idx,to:(st.goto!=null&&String(st.goto).trim()!=='')?resolveTarget(st.goto,nextIdx,K):nextIdx,label:''});
     }
-    y=cyTop+h+GAP;
   });
-  let conn='';
-  for(let i=0;i<centers.length-1;i++){
-    const a=centers[i], b=centers[i+1];
-    conn+='<line x1="'+cx+'" y1="'+a.bot+'" x2="'+cx+'" y2="'+(b.top-2)+'" stroke="#0F2942" stroke-width="1.5" marker-end="url(#fa)"/>';
-    if(nodes[i].type==='decision') conn+='<text x="'+(cx+9)+'" y="'+Math.round((a.bot+b.top)/2)+'" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="11.5" font-weight="600" fill="#0F6E56">Ya</text>';
-  }
+  let lanes=0;
+  edges.forEach(e=>{ e.straight=(e.to===e.from+1 && e.label!=='Tidak'); if(!e.straight) e.lane=lanes++; });
+  return {edges,lanes};
+}
+function renderFlow(steps){
+  const TOP=22, GAP=30, K=steps.length;
+  const nodes=[{type:'start',text:'MULA'}].concat(steps,[{type:'end',text:'TAMAT'}]);
+  const meas=nodes.map(measure);
+  const maxW=Math.max.apply(null,meas.map(m=>m.w));
+  const leftPad=40, cx=leftPad+Math.round(maxW/2), maxNodeRight=cx+Math.round(maxW/2);
+  let y=TOP; const pos=[];
+  meas.forEach(m=>{ pos.push({top:y,h:m.h,mid:Math.round(y+m.h/2)}); y+=m.h+GAP; });
   const H=y-GAP+TOP;
-  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+
-    '<defs><marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#0F2942" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>'+
-    conn+parts.join('')+'</svg>';
-  return {svg,W,H};
+  const {edges,lanes}=buildEdges(steps);
+  const laneGap=24, gutterBase=maxNodeRight+56;
+  const W=Math.max(gutterBase+(lanes>0?(lanes-1)*laneGap:0)+58, maxNodeRight+40);
+  const parts=[];
+  nodes.forEach((n,i)=>{ const m=meas[i], x=Math.round(cx-m.w/2), num=(i>=1&&i<=K)?i:0; parts.push(emitNode(n,x,pos[i].top,cx,m.lines,m.w,m.h,num)); });
+  const conn=[];
+  edges.forEach(e=>{ const a=pos[e.from], b=pos[e.to];
+    if(e.straight){
+      conn.push('<line x1="'+cx+'" y1="'+(a.top+a.h)+'" x2="'+cx+'" y2="'+(b.top-2)+'" stroke="'+FT.line+'" stroke-width="1.5" marker-end="url(#fa)"/>');
+      if(e.label==='Ya') conn.push('<text x="'+(cx+9)+'" y="'+Math.round((a.top+a.h+b.top)/2)+'" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="11.5" font-weight="600" fill="'+FT.ya+'" dominant-baseline="central">Ya</text>');
+    } else {
+      const col=e.tidak?FT.tidak:FT.line, laneX=gutterBase+e.lane*laneGap, dash=(e.tidak&&FT.dash)?' stroke-dasharray="'+FT.dash+'"':'';
+      const ax=cx+Math.round(meas[e.from].w/2), ay=a.mid, bx=cx+Math.round(meas[e.to].w/2), by=b.mid;
+      conn.push('<path d="M'+ax+' '+ay+' L'+laneX+' '+ay+' L'+laneX+' '+by+' L'+bx+' '+by+'" fill="none" stroke="'+col+'" stroke-width="1.5" stroke-linecap="round"'+dash+' marker-end="url(#fa)"/>');
+      if(e.label) conn.push('<text x="'+(ax+8)+'" y="'+(ay-7)+'" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="11.5" font-weight="600" fill="'+col+'" dominant-baseline="central">'+e.label+'</text>');
+    }
+  });
+  return {svg:'<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+FA_DEF+conn.join('')+parts.join('')+'</svg>', W, H};
+}
+/* --- Format RASMI: Tanggungjawab | Simbol | Proses Kerja | Tempoh Masa --- */
+function renderFlowRasmi(steps,opts){
+  opts=opts||{};
+  const FF='Arial,Helvetica,sans-serif', LR=17, K=steps.length;
+  const {edges,lanes}=buildEdges(steps);
+  const PADL=14, wT=108, laneGap=15, gutW=14+Math.max(lanes,1)*laneGap, colS=168, gapP=12, wP=300, gapM=12, wM=112, PADR=14;
+  const xT=PADL, xS=xT+wT+gutW, cxS=xS+Math.round(colS/2)+4, xP=xS+colS+gapP, xM=xP+wP+gapM, W=xM+wM+PADR;
+  const T=(x,y,s,o)=>{ o=o||{}; return '<text x="'+x+'" y="'+y+'" text-anchor="'+(o.a||'start')+'" dominant-baseline="central" font-family="'+FF+'" font-size="'+(o.fs||13)+'" font-weight="'+(o.fw||'400')+'" fill="'+(o.fill||FT.text)+'"'+(o.u?' text-decoration="underline"':'')+'>'+escapeHtml(s)+'</text>'; };
+  const parts=[], conn=[];
+  let y=14;
+  if(opts.header){
+    parts.push(T(PADL,y+9,'CARTA ALIR',{fs:15,fw:'700'})); y+=30;
+    if(opts.aktiviti){ parts.push(T(PADL,y+9,'Aktiviti '+opts.aktiviti,{fs:14,fw:'700',u:true})); y+=28; }
+    if(opts.title){ wrapText(opts.title,78).forEach(l=>{ parts.push(T(PADL,y+9,l,{fs:14})); y+=20; }); }
+    y+=14;
+  }
+  const ovW=92, ovH=40, hdrH=46, hdrMid=y+Math.round(hdrH/2);
+  parts.push(T(xT+Math.round(wT/2),hdrMid,'TANGGUNGJAWAB',{a:'middle',fs:11.5,fw:'700',u:true}));
+  parts.push(T(xP+Math.round(wP/2),hdrMid,'PROSES KERJA',{a:'middle',fs:11.5,fw:'700',u:true}));
+  parts.push(T(xM+Math.round(wM/2),hdrMid,'TEMPOH MASA',{a:'middle',fs:11.5,fw:'700',u:true}));
+  const pos=[];
+  pos[0]={top:hdrMid-ovH/2,bot:hdrMid+ovH/2,mid:hdrMid,left:cxS-ovW/2};
+  y+=hdrH+18;
+  const bodyTop=y;
+  steps.forEach((st,i)=>{
+    const olehArr=String(st.oleh||'').split(/[,;\/\n]|\s+dan\s+/i).map(s=>s.trim()).filter(Boolean);
+    const tL=[]; olehArr.forEach(o=>wrapText(o,13).forEach(l=>tL.push(l)));
+    const title=(st.type==='decision')?String(st.text||'').replace(/\s*\?\s*$/,'?'):String(st.text||'');
+    const hL=[]; String(st.huraian||'').split('\n').map(s=>s.trim()).filter(Boolean).forEach(h=>wrapText(h,42).forEach(l=>hL.push(l)));
+    const pL=wrapText(title,hL.length?38:40);
+    const mL=st.tempoh?wrapText(String(st.tempoh),14):[];
+    const sw=st.type==='decision'?104:(st.type==='io'?108:96), sh=st.type==='decision'?58:(st.type==='document'?50:44);
+    const pH=pL.length*LR+(hL.length?6+hL.length*LR:0);
+    const rowH=Math.max(sh, tL.length*LR, pH, mL.length*LR)+26;
+    const mid=y+Math.round(rowH/2), top=mid-Math.round(sh/2), sx=cxS-Math.round(sw/2);
+    const fo=colorOf(st.warna);
+    parts.push(shapeSVG(st.type,sx,top,sw,sh,0,fo));
+    parts.push(T(cxS,mid,String(i+1),{a:'middle',fs:12,fw:'700',fill:inkOn(fo)||FT.text}));
+    let ty=mid-Math.round((tL.length-1)*LR/2); tL.forEach(l=>{ parts.push(T(xT+Math.round(wT/2),ty,l,{a:'middle'})); ty+=LR; });
+    let py=mid-Math.round(pH/2)+Math.round(LR/2);
+    pL.forEach(l=>{ parts.push(T(xP+12,py,l,{fw:hL.length?'700':'400'})); py+=LR; });
+    if(hL.length){ py+=6; hL.forEach(l=>{ parts.push(T(xP+12,py,l)); py+=LR; }); }
+    let my=mid-Math.round((mL.length-1)*LR/2); mL.forEach(l=>{ parts.push(T(xM+12,my,l)); my+=LR; });
+    pos[i+1]={top,bot:top+sh,mid,left:sx+(st.type==='io'?8:0)};
+    y+=rowH;
+  });
+  const bodyBot=y;
+  if(K>0){
+    parts.push('<rect x="'+xP+'" y="'+bodyTop+'" width="'+wP+'" height="'+(bodyBot-bodyTop)+'" fill="none" stroke="'+FT.line+'" stroke-width="1.2"/>');
+    parts.push('<rect x="'+xM+'" y="'+bodyTop+'" width="'+wM+'" height="'+(bodyBot-bodyTop)+'" fill="none" stroke="'+FT.line+'" stroke-width="1.2"/>');
+  }
+  y+=18;
+  const endMid=y+ovH/2;
+  pos[K+1]={top:endMid-ovH/2,bot:endMid+ovH/2,mid:endMid,left:cxS-ovW/2};
+  [[0,'MULA'],[K+1,'TAMAT']].forEach(pr=>{ const p=pos[pr[0]], isS=pr[0]===0, f=isS?FT.start:FT.end;
+    parts.push('<ellipse cx="'+cxS+'" cy="'+p.mid+'" rx="'+(ovW/2)+'" ry="'+(ovH/2)+'" fill="'+f+'" stroke="'+(FT.seS!=='none'?FT.seS:f)+'" stroke-width="1.5"/>');
+    parts.push(T(cxS,p.mid,pr[1],{a:'middle',fs:12.5,fw:'600',fill:isS?FT.startT:FT.endT})); });
+  const H=Math.round(endMid+ovH/2+16);
+  const outCount={};
+  edges.forEach(e=>{ const a=pos[e.from], b=pos[e.to];
+    if(e.straight){
+      conn.push('<line x1="'+cxS+'" y1="'+a.bot+'" x2="'+cxS+'" y2="'+(b.top-2)+'" stroke="'+FT.line+'" stroke-width="1.4" marker-end="url(#fa)"/>');
+      if(e.label==='Ya') conn.push(T(cxS+8,Math.round((a.bot+b.top)/2),'Ya',{fs:11.5,fw:'700',fill:FT.ya}));
+    } else {
+      const col=e.tidak?FT.tidak:FT.line, laneX=xS-8-e.lane*laneGap, dash=(e.tidak&&FT.dash)?' stroke-dasharray="'+FT.dash+'"':'';
+      const k=(outCount[e.from]=(outCount[e.from]||0)+1), ay=a.mid+(k>1?9:0), by=b.mid;
+      conn.push('<path d="M'+cxS+' '+ay+' L'+laneX+' '+ay+' L'+laneX+' '+by+' L'+(b.left-2)+' '+by+'" fill="none" stroke="'+col+'" stroke-width="1.4" stroke-linejoin="round"'+dash+' marker-end="url(#fa)"/>');
+      if(e.label) conn.push(T(Math.round(a.left)-5,ay-9,e.label,{a:'end',fs:11,fw:'700',fill:col}));
+    }
+  });
+  return {svg:'<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+FA_DEF+'<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="#ffffff"/>'+conn.join('')+parts.join('')+'</svg>', W, H};
 }
 /* ---------- Panduan simbol ---------- */
 const GUIDE=[
@@ -838,16 +1332,164 @@ const GUIDE=[
 function openGuide(){
   const box=document.getElementById('guideBody');
   box.innerHTML=GUIDE.map(g=>{
-    const {svg}=renderFlow([g.node]);
+    const {svg}=nodePreview(g.node);
     const ex = g.ex==='(automatik)' ? '<i style="color:var(--muted)">automatik</i>' : '<code>'+escapeHtml(g.ex)+'</code>';
     return '<div class="gitem"><div class="ginfo"><div class="gname">'+g.sim+' <span class="gshape">'+g.bentuk+'</span></div>'+
       '<div class="gdesc">'+g.desc+'</div><div class="gex">Contoh: '+ex+'</div></div>'+
       '<div class="gsvg">'+svg+'</div></div>';
   }).join('') +
+  '<div class="gnote"><b>Cabang keputusan (Ya / Tidak):</b> setiap langkah dinombor automatik. Di bawah keputusan, letak baris cabang:<br>'+
+  '<code>Semak lengkap?</code><br><code>&nbsp;&nbsp;Ya → teruskan</code><br><code>&nbsp;&nbsp;Tidak → 1</code><br>'+
+  '• <code>Ya → teruskan</code> = ke langkah bawah · <code>Tidak → 1</code> = <b>patah balik</b> ke langkah 1 (boleh nombor lain, atau <code>tamat</code>).<br>'+
+  '• Boleh juga tulis dalam kurungan: <code>Semak lengkap? (tidak: 1)</code>.<br>'+
+  '• Langkah biasa boleh ubah hala / gelung: <code>Pulangkan kepada pemohon → 1</code>.<br>'+
+  '• Awalan <code>[?]</code> turut dikenali sebagai keputusan (selaras Penjana Carta Alir).</div>'+
+  '<div class="gnote"><b>Warna simbol (pilihan):</b> tambah sub-baris <code>Warna: kuning</code> di bawah langkah untuk menonjolkannya. '+
+  'Pilihan: kuning, oren, merah, merah jambu, ungu, biru, hijau, kelabu, putih — atau kod hex seperti <code>Warna: #FFD700</code>. '+
+  '<code>Warna: lalai</code> kembali ke warna tema. Warna pilihan mengatasi tema untuk simbol itu sahaja.</div>'+
+  '<div class="gnote"><b>Format rasmi (4 lajur):</b> tambah sub-baris di bawah mana-mana langkah:<br>'+
+  '<code>Menganalisis situasi</code><br><code>&nbsp;&nbsp;- Membuat analisis dalam dan luaran</code><br><code>&nbsp;&nbsp;Oleh: TPP, KPPK, KPP</code><br><code>&nbsp;&nbsp;Tempoh: 1 minggu</code><br>'+
+  '• <code>- …</code> = huraian di bawah tajuk langkah · <code>Oleh:</code> = lajur Tanggungjawab · <code>Tempoh:</code> = lajur Tempoh Masa.<br>'+
+  '• Tukar paparan <b>Ringkas / Rasmi</b> di atas pratonton. Tab <b>Borang</b> mengisi semua ini tanpa sintaks.</div>'+
   '<div class="gnote"><b>Paksa simbol (pilihan):</b> letak tag di depan ayat — <code>[K]</code> keputusan, <code>[P]</code> proses, <code>[IO]</code> input/output, <code>[D]</code> dokumen, <code>[S]</code> sub-proses. Contoh: <code>[D] Perakuan selesai</code>.</div>';
   document.getElementById('guideModal').classList.add('open');
 }
 function closeGuide(){ document.getElementById('guideModal').classList.remove('open'); }
+/* ---------- Borang langkah & mod paparan ---------- */
+let cartaMode='ringkas', cartaIn='teks', formSteps=[];
+try{ const m0=localStorage.getItem('s4pd-carta-mode'); if(m0==='rasmi'||m0==='ringkas') cartaMode=m0;
+     const i0=localStorage.getItem('s4pd-carta-input'); if(i0==='teks'||i0==='borang') cartaIn=i0; }catch(e){}
+const ROLES=['PPN','TPP','KPPK','KPP','PP','PT'];
+const TYPE_LBL={process:'Proses',decision:'Keputusan',io:'Input / Output',document:'Dokumen',subprocess:'Sub-proses'};
+function targetOpts(sel,K,blankLbl){
+  let h='<option value=""'+(sel===''?' selected':'')+'>'+blankLbl+'</option>';
+  for(let i=1;i<=K;i++) h+='<option value="'+i+'"'+(sel===String(i)?' selected':'')+'>Langkah '+i+'</option>';
+  return h+'<option value="tamat"'+(sel==='tamat'?' selected':'')+'>Tamat</option>';
+}
+function olehArr(s){ return String(s||'').split(/[,;\/]/).map(x=>x.trim()).filter(Boolean); }
+function syncFromForm(){ document.getElementById('cartaInput').value=serializeFlow(formSteps); drawCarta(); }
+function renderForm(){
+  const K=formSteps.length, box=document.getElementById('cartaForm');
+  let h='';
+  if(!K) h+='<div class="hint">Belum ada langkah. Tekan <b>＋ Tambah langkah</b> untuk bermula.</div>';
+  formSteps.forEach((st,i)=>{
+    const dec=st.type==='decision';
+    const title=dec?String(st.text||'').replace(/\s*\?\s*$/,''):String(st.text||'');
+    const roles=olehArr(st.oleh).map(x=>x.toUpperCase());
+    h+='<div class="fstep'+(dec?' dec':'')+'" data-i="'+i+'">'+
+      '<div class="fstep-top"><span class="fnum">'+(i+1)+'</span>'+
+      '<select data-f="type" aria-label="Jenis simbol">'+Object.keys(TYPE_LBL).map(k=>'<option value="'+k+'"'+(k===st.type?' selected':'')+'>'+TYPE_LBL[k]+'</option>').join('')+'</select>'+
+      '<button class="ficon" data-act="up" title="Naik" aria-label="Naik"'+(i===0?' disabled':'')+'>↑</button>'+
+      '<button class="ficon" data-act="down" title="Turun" aria-label="Turun"'+(i===K-1?' disabled':'')+'>↓</button>'+
+      '<button class="ficon del" data-act="del" title="Padam" aria-label="Padam langkah">🗑</button></div>'+
+      '<input type="text" data-f="text" placeholder="'+(dec?'Soalan keputusan, cth: Dokumen lengkap':'Langkah, cth: Semak dokumen')+'" value="'+escapeHtml(title)+'">'+
+      '<textarea data-f="huraian" rows="2" placeholder="Huraian (pilihan) — satu perkara satu baris">'+escapeHtml(st.huraian||'')+'</textarea>'+
+      '<div class="frow2"><div><div class="fmini">Tanggungjawab</div><input type="text" data-f="oleh" placeholder="cth: KPP, PP" value="'+escapeHtml(st.oleh||'')+'"></div>'+
+      '<div><div class="fmini">Tempoh masa</div><input type="text" data-f="tempoh" placeholder="cth: 1 minggu" value="'+escapeHtml(st.tempoh||'')+'"></div></div>'+
+      '<div class="fchips">'+ROLES.map(r=>'<button class="fchip'+(roles.includes(r)?' on':'')+'" data-role="'+r+'">'+r+'</button>').join('')+'</div>'+
+      (function(){ const nw=normWarna(st.warna), custom=!!st.warna&&!PALETTE[nw];
+        return '<div class="fcolors"><span class="fmini" style="margin:0 2px 0 0">Warna</span>'+
+          '<button class="fsw-lalai'+(!st.warna?' on':'')+'" data-color="">Lalai</button>'+
+          Object.keys(PALETTE).map(k=>'<button class="fsw'+(nw===k?' on':'')+'" data-color="'+k+'" title="'+k+'" aria-label="Warna '+k+'" style="background:'+PALETTE[k]+'"></button>').join('')+
+          '<input type="color" class="fsw-pick'+(custom?' on':'')+'" data-f="warna" title="Warna lain" aria-label="Pilih warna lain" value="'+((colorOf(st.warna)||'#ffff66').toLowerCase())+'">'+
+        '</div>'; })()+
+      (dec
+        ? '<div class="frow2"><div><div class="fmini" style="color:#0F6E56">Ya →</div><select data-f="ya">'+targetOpts(tokToSel(st.ya),K,'Langkah bawah')+'</select></div>'+
+          '<div><div class="fmini" style="color:#C62828">Tidak → (patah balik)</div><select data-f="tidak">'+targetOpts((st.tidak==null||String(st.tidak).trim()==='')?'':tokToSel(st.tidak),K,'Tiada')+'</select></div></div>'
+        : '<div><div class="fmini">Seterusnya →</div><select data-f="goto">'+targetOpts(tokToSel(st.goto),K,'Langkah bawah')+'</select></div>')+
+      '</div>';
+  });
+  h+='<button class="btn sm brass" id="fAdd" style="align-self:flex-start">＋ Tambah langkah</button>';
+  box.innerHTML=h;
+}
+(function(){
+  const fbox=document.getElementById('cartaForm');
+  fbox.addEventListener('input',e=>{
+    const el=e.target, card=el.closest('.fstep'); if(!card||!el.dataset.f||el.tagName==='SELECT') return;
+    const st=formSteps[+card.dataset.i], f=el.dataset.f; if(!st) return;
+    if(f==='text') st.text = st.type==='decision' ? el.value.trim()+' ?' : el.value;
+    else st[f]=el.value;
+    if(f==='warna') card.querySelectorAll('.fsw,.fsw-lalai,.fsw-pick').forEach(x=>x.classList.toggle('on',x===el));
+    if(f==='oleh'){ const rs=olehArr(st.oleh).map(x=>x.toUpperCase()); card.querySelectorAll('.fchip').forEach(c=>c.classList.toggle('on',rs.includes(c.dataset.role))); }
+    syncFromForm();
+  });
+  fbox.addEventListener('change',e=>{
+    const el=e.target, card=el.closest('.fstep'); if(!card||el.tagName!=='SELECT') return;
+    const st=formSteps[+card.dataset.i], f=el.dataset.f; if(!st) return;
+    if(f==='type'){
+      const old=st.type; st.type=el.value;
+      if(el.value==='decision'&&old!=='decision'){ st.text=String(st.text||'').replace(/\s*\?\s*$/,'')+' ?'; delete st.goto; }
+      else if(old==='decision'&&el.value!=='decision'){ st.text=String(st.text||'').replace(/\s*\?\s*$/,''); delete st.ya; delete st.tidak; }
+      syncFromForm(); renderForm(); return;
+    }
+    if(f==='ya'||f==='tidak'||f==='goto'){ if(el.value) st[f]=el.value; else delete st[f]; syncFromForm(); }
+  });
+  fbox.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return; e.preventDefault();
+    if(b.id==='fAdd'){
+      formSteps.push({type:'process',text:'Langkah baharu'}); syncFromForm(); renderForm();
+      const cards=fbox.querySelectorAll('.fstep'), lc=cards[cards.length-1];
+      if(lc){ const inp=lc.querySelector('input[data-f=text]'); lc.scrollIntoView({block:'nearest'}); inp.focus(); inp.select(); }
+      return;
+    }
+    const card=b.closest('.fstep'); if(!card) return; const i=+card.dataset.i, st=formSteps[i]; if(!st) return;
+    if(b.dataset.color!==undefined){
+      const v=b.dataset.color; if(v) st.warna=v; else delete st.warna;
+      card.querySelectorAll('.fsw,.fsw-lalai,.fsw-pick').forEach(x=>x.classList.toggle('on',x===b));
+      syncFromForm(); return;
+    }
+    if(b.dataset.role){
+      const arr=olehArr(st.oleh), r=b.dataset.role, idx=arr.findIndex(x=>x.toUpperCase()===r);
+      if(idx>=0) arr.splice(idx,1); else arr.push(r);
+      st.oleh=arr.join(', '); card.querySelector('input[data-f=oleh]').value=st.oleh; b.classList.toggle('on',idx<0);
+      syncFromForm(); return;
+    }
+    const act=b.dataset.act;
+    if(act==='up') stepMove(formSteps,i,i-1);
+    else if(act==='down') stepMove(formSteps,i,i+1);
+    else if(act==='del'){ if(!confirm('Padam langkah '+(i+1)+'? Rujukan cabang ke langkah ini akan dibuang.')) return; stepDel(formSteps,i); }
+    else return;
+    syncFromForm(); renderForm();
+  });
+})();
+function setIn(mode){
+  cartaIn=mode; try{ localStorage.setItem('s4pd-carta-input',mode); }catch(e){}
+  document.querySelectorAll('#cartaInTabs button').forEach(b=>b.classList.toggle('on',b.dataset.in===mode));
+  document.getElementById('inTeks').classList.toggle('hidden',mode!=='teks');
+  document.getElementById('inBorang').classList.toggle('hidden',mode!=='borang');
+  if(mode==='borang'){ formSteps=parseFlow(document.getElementById('cartaInput').value); renderForm(); }
+}
+function setMode(m){
+  cartaMode=m; try{ localStorage.setItem('s4pd-carta-mode',m); }catch(e){}
+  document.querySelectorAll('#cartaModeTabs button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  drawCarta();
+}
+document.querySelectorAll('#cartaInTabs button').forEach(b=>b.addEventListener('click',()=>setIn(b.dataset.in)));
+document.querySelectorAll('#cartaModeTabs button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.m)));
+document.getElementById('cartaTheme').addEventListener('change',e=>{ setTheme(e.target.value); drawCarta(); });
+
+/* ---------- Dialog jana PDF ---------- */
+let pdfScope=null;
+function openPdf(scope){
+  pdfScope=scope;
+  const o = scope==='all' ? null : state.officers.find(x=>x.id===scope);
+  if(scope!=='all' && !o){ toast('Pilih pegawai dahulu'); return; }
+  document.getElementById('pdfScopeTxt').innerHTML = scope==='all'
+    ? 'Semua pegawai ('+state.officers.length+') — ringkasan, matriks, senarai tugas &amp; carta alir.'
+    : 'Pegawai: <b>'+escapeHtml(o.nama)+'</b> — senarai tugas &amp; carta alir.';
+  document.querySelectorAll('input[name=pdfFmt]').forEach(r=>{ r.checked=(r.value===cartaMode); });
+  document.getElementById('pdfTheme').innerHTML=themeOptions();
+  document.getElementById('pdfModal').classList.add('open');
+}
+function closePdf(){ document.getElementById('pdfModal').classList.remove('open'); }
+document.getElementById('pdfClose').onclick=closePdf;
+document.getElementById('pdfCancel').onclick=closePdf;
+document.getElementById('pdfModal').addEventListener('click',e=>{ if(e.target.id==='pdfModal') closePdf(); });
+document.getElementById('pdfGo').onclick=()=>{
+  const r=document.querySelector('input[name=pdfFmt]:checked'), fmt=r?r.value:'ringkas';
+  setTheme(document.getElementById('pdfTheme').value);
+  closePdf(); setTimeout(()=>buildReport(pdfScope,fmt),80);
+};
 
 let cartaCtx=null;
 function slugify(s){ return (s||'carta').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,40)||'carta'; }
@@ -857,8 +1499,14 @@ function openCarta(oid,ri){ const o=state.officers.find(x=>x.id===oid); if(!o)re
   cartaCtx={oid,ri};
   document.getElementById('cartaTitle').textContent=r.task;
   document.getElementById('cartaInput').value=r.proses||'';
-  drawCarta(); document.getElementById('cartaModal').classList.add('open'); }
-function drawCarta(){ const {svg}=renderFlow(parseFlow(document.getElementById('cartaInput').value)); document.getElementById('cartaPreview').innerHTML=svg; }
+  document.getElementById('cartaTheme').innerHTML=themeOptions();
+  document.querySelectorAll('#cartaModeTabs button').forEach(b=>b.classList.toggle('on',b.dataset.m===cartaMode));
+  setIn(cartaIn); drawCarta(); document.getElementById('cartaModal').classList.add('open'); }
+function drawCarta(){ const steps=parseFlow(document.getElementById('cartaInput').value);
+  const svg = cartaMode==='rasmi'
+    ? renderFlowRasmi(steps,{header:true, aktiviti:cartaCtx?cartaCtx.ri+1:'', title:document.getElementById('cartaTitle').textContent}).svg
+    : renderFlow(steps).svg;
+  document.getElementById('cartaPreview').innerHTML=svg; }
 function closeCarta(){ document.getElementById('cartaModal').classList.remove('open'); cartaCtx=null; }
 document.getElementById('cartaInput').addEventListener('input',drawCarta);
 document.getElementById('cartaClose').onclick=closeCarta;
@@ -885,6 +1533,404 @@ if(apiConfigured()){
   apiLoad();
   if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
+
+/* ================= DEMO CARTA ALIR ================= */
+const DEMOS=[
+ {grp:'Asas 1', umum:true, mode:'ringkas', title:'Menyediakan minit mesyuarat',
+  desc:'Aliran lurus tanpa keputusan. Perhatikan simbol dikesan sendiri daripada perkataan pertama: <b>Terima</b> → Input/Output, <b>Rujuk</b> → Sub-proses, <b>Rekod</b> → Dokumen.',
+  ciri:['Aliran lurus','Simbol automatik','Sub-proses','Dokumen'],
+  text:`Terima nota mesyuarat daripada urus setia
+  Oleh: PT
+  Tempoh: 1 hari
+Draf minit mesyuarat
+  Oleh: PP
+  Tempoh: 2 hari
+Rujuk format minit mesyuarat jabatan
+  Oleh: PP
+Semak dan sahkan draf minit
+  Oleh: KPP
+  Tempoh: 1 hari
+Hantar minit kepada semua ahli mesyuarat
+  Oleh: PT
+  Tempoh: 3 hari
+Rekod dan failkan minit mesyuarat
+  Oleh: PT
+  Tempoh: 1 hari`},
+ {grp:'Asas 2', umum:true, mode:'ringkas', title:'Permohonan cuti rehat',
+  desc:'Dua keputusan. <b>Tidak → 1</b> memulangkan borang tak lengkap (patah balik), manakala <b>Tidak → 6</b> melangkau terus ke makluman kepada pemohon.',
+  ciri:['Keputusan Ya/Tidak','Patah balik','Lompat ke hadapan','Warna'],
+  text:`Terima borang permohonan cuti
+  Oleh: PT
+  Tempoh: 1 hari
+Borang lengkap diisi?
+  Ya → teruskan
+  Tidak → 1
+  Oleh: PT
+Semak baki cuti pemohon
+  Oleh: PT
+  Tempoh: 1 hari
+Cuti diluluskan?
+  Ya → teruskan
+  Tidak → 6
+  Oleh: KPP
+  Tempoh: 1 hari
+  Warna: kuning
+Kemas kini rekod cuti dalam sistem
+  Oleh: PT
+Maklumkan keputusan kepada pemohon
+  Oleh: PT
+  Tempoh: 1 hari`},
+ {grp:'S4PD 1', umum:false, mode:'rasmi', title:'Menyelaras, mewujudkan, memantau dan menilai keberkesanan Pelan Strategik Organisasi',
+  desc:'Format Manual Prosedur Kerja penuh: tajuk langkah dengan huraian, lajur Tanggungjawab dan Tempoh Masa, serta titik kelulusan yang ditonjolkan.',
+  ciri:['Format rasmi 4 lajur','Huraian','Tanggungjawab & tempoh','Patah balik'],
+  text:`Menerima arahan melaksanakan tugas
+  Oleh: PPN, TPP
+  Tempoh: 1 hari
+Menganalisis situasi
+  - Membuat analisis dalam dan analisis luaran
+  Oleh: TPP, KPPK, KPP
+  Tempoh: 1 minggu
+Penetapan arah / hala tuju
+  - Visi, Misi, Objektif, Matlamat, KPI dan sasaran
+  Oleh: TPP, KPPK, KPP
+  Tempoh: 1 minggu
+Pembangunan Pelan Strategik Organisasi
+  - Menyediakan Pelan Strategik dan Pelan Taktikal
+  Oleh: KPP, PP
+  Tempoh: 1 bulan
+Mendapat kelulusan / menyebarluaskan PSO?
+  Ya → teruskan
+  Tidak → 4
+  Oleh: KPPK, KPP, PP
+  Tempoh: 3 hari
+  Warna: kuning
+Pemantauan Pelan Strategik Organisasi
+  - Semakan pelan taktikal / sasaran / KPI
+  Oleh: KPP, PP
+  Tempoh: 2 kali setahun
+Penilaian / Penambahbaikan PSO
+  Oleh: KPP, PP
+  Tempoh: Nov – Dis
+[P] Pengdokumentasian / laporan
+  Oleh: PP, PT
+  Tempoh: Dis`},
+ {grp:'S4PD 2', umum:false, mode:'rasmi', title:'Pengurusan aduan awam melalui SISPAA',
+  desc:'Aduan luar bidang kuasa dilencongkan ke langkah 8, siasatan digelung sehingga isu selesai, dan langkah 7 terus ke TAMAT dengan <b>→ tamat</b>.',
+  ciri:['Dua keputusan','Gelung siasatan','→ tamat','Huraian berbilang'],
+  text:`Terima aduan melalui SISPAA
+  Oleh: PT
+  Tempoh: 1 hari
+Daftar dan agihkan aduan kepada pegawai
+  Oleh: KPP
+  Tempoh: 1 hari
+Aduan dalam bidang kuasa sektor?
+  Ya → teruskan
+  Tidak → 8
+  Oleh: KPP
+Siasat dan kumpul maklumat aduan
+  - Hubungi PPD / sekolah berkaitan
+  - Lawatan ke lokasi jika perlu
+  Oleh: PP
+  Tempoh: 7 hari
+Isu aduan selesai?
+  Ya → teruskan
+  Tidak → 4
+  Oleh: KPP
+  Warna: kuning
+Sediakan jawapan kepada pengadu
+  Oleh: PP
+  Tempoh: 2 hari
+Hantar jawapan dan tutup aduan dalam SISPAA → tamat
+  Oleh: PT
+  Tempoh: 1 hari
+Panjangkan aduan kepada sektor berkaitan
+  Oleh: KPP
+  Tempoh: 1 hari`},
+ {grp:'S4PD 3', umum:false, mode:'rasmi', title:'Permohonan penyelenggaraan sekolah',
+  desc:'Dokumen tak lengkap dipulangkan (patah balik), permohonan tanpa peruntukan masuk senarai menunggu. Warna membezakan hasil: hijau siap, kelabu menunggu.',
+  ciri:['Warna per simbol','Keputusan dengan huraian','Laporan (dokumen)','Surat (input/output)'],
+  text:`Terima permohonan penyelenggaraan daripada sekolah
+  Oleh: PPD
+  Tempoh: Ikut takwim
+Dokumen sokongan lengkap?
+  - Sekolah dimaklumkan untuk melengkapkan dokumen
+  Ya → teruskan
+  Tidak → 1
+  Oleh: PP
+Lawatan tapak dan penilaian teknikal
+  - Ambil gambar kerosakan
+  - Anggaran kos kerja
+  Oleh: PP
+  Tempoh: 14 hari
+Laporan penilaian keutamaan projek
+  Oleh: PP
+  Tempoh: 3 hari
+Peruntukan mencukupi?
+  Ya → teruskan
+  Tidak → 8
+  Oleh: KPPK, KPP
+  Warna: kuning
+Keluarkan surat kelulusan kepada sekolah
+  Oleh: KPP
+  Tempoh: 2 hari
+Pantau pelaksanaan kerja hingga siap → tamat
+  Oleh: PP
+  Warna: hijau
+Masukkan dalam senarai menunggu peruntukan
+  Oleh: PP
+  Warna: kelabu`},
+ {grp:'S4PD 4', umum:false, mode:'ringkas', title:'Pembentangan projek pembangunan dalam mesyuarat J3P',
+  desc:'Kertas tak patuh dipulangkan ke langkah 1; cadangan yang ditolak dipinda lalu <b>digelung</b> kembali ke pembentangan dengan <b>→ 4</b> pada langkah biasa.',
+  ciri:['Gelung langkah biasa','Sub-proses','Minit (dokumen)','Warna oren'],
+  text:`Terima kertas cadangan projek daripada PPD
+  Oleh: PPD, KPP
+  Tempoh: 7 hari
+Rujuk garis panduan J3P
+  Oleh: PP
+Kertas cadangan mematuhi garis panduan?
+  Ya → teruskan
+  Tidak → 1
+  Oleh: KPP
+Bentang dalam mesyuarat J3P
+  Oleh: KPPK, KPP
+Diluluskan jawatankuasa?
+  Ya → teruskan
+  Tidak → 7
+  Oleh: TPP
+  Warna: kuning
+Minit keputusan mesyuarat J3P → tamat
+  Oleh: PT
+  Tempoh: 3 hari
+Pinda cadangan mengikut ulasan jawatankuasa → 4
+  Oleh: PP
+  Warna: oren`}
+];
+let demoIdx=0, demoMode=null;
+function hlFlow(t){
+  return String(t).split('\n').map(line=>{ const e=escapeHtml(line), s=line.trim(); let c='';
+    if(/^(ya|tidak)\s*(→|->|=>|:)/i.test(s)) c=/^tidak/i.test(s)?'hl-no':'hl-yes';
+    else if(/^(oleh|tanggungjawab|tempoh|masa)\s*:/i.test(s)) c='hl-meta';
+    else if(/^warna\s*:/i.test(s)) c='hl-col';
+    else if(/^[-•*]\s/.test(s)) c='hl-hur';
+    else if(/\?\s*$/.test(s)||/^\[\?\]/.test(s)) c='hl-dec';
+    else if(/(→|->)\s*\S+$/.test(s)) c='hl-go';
+    return c?'<span class="'+c+'">'+e+'</span>':e; }).join('\n');
+}
+function copyText(t){
+  const done=()=>toast('Pernyataan disalin');
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,()=>fallback()); } else fallback();
+  function fallback(){ const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){ toast('Gagal menyalin'); } ta.remove(); }
+}
+function renderDemoChips(){
+  document.getElementById('demoChips').innerHTML=DEMOS.map((d,i)=>'<button class="dchip'+(i===demoIdx?' on':'')+'" data-i="'+i+'">'+
+    '<span class="dk '+(d.umum?'umum':'s4pd')+'">'+d.grp+'</span>'+escapeHtml(d.title.length>52?d.title.slice(0,50)+'…':d.title)+'</button>').join('');
+}
+function renderDemo(){
+  const d=DEMOS[demoIdx], m=demoMode||d.mode, steps=parseFlow(d.text);
+  const svg = m==='rasmi' ? renderFlowRasmi(steps,{header:true,aktiviti:demoIdx+1,title:d.title}).svg : renderFlow(steps).svg;
+  document.getElementById('demoCard').innerHTML=
+    '<div class="demo-top"><div class="demo-kick">'+d.grp+' · '+(d.umum?'Contoh umum':'Proses S4PD')+'</div>'+
+    '<h3>'+escapeHtml(d.title)+'</h3><p>'+d.desc+'</p><div class="demo-ciri">'+d.ciri.map(c=>'<span>'+c+'</span>').join('')+'</div></div>'+
+    '<div class="demo-bar"><div class="seg" id="demoModeTabs"><button data-m="ringkas"'+(m==='ringkas'?' class="on"':'')+'>Ringkas</button><button data-m="rasmi"'+(m==='rasmi'?' class="on"':'')+'>Rasmi</button></div>'+
+    '<select id="demoTheme" aria-label="Warna tema">'+themeOptions()+'</select><span class="spacer"></span>'+
+    '<button class="btn sm" id="demoCopy" style="border-color:var(--line-strong)">⧉ Salin pernyataan</button>'+
+    '<button class="btn sm brass" id="demoUse">↳ Guna contoh ini</button></div>'+
+    '<div class="demo-grid"><div class="demo-src"><div class="fmini">Pernyataan — tulis begini</div><pre>'+hlFlow(d.text)+'</pre></div>'+
+    '<div class="demo-out"><div class="fmini">Carta alir — jadi begini</div><div class="demo-svg">'+svg+'</div></div></div>'+
+    '<div class="demo-note">Contoh ilustrasi. Tanggungjawab dan tempoh masa perlu dilaraskan mengikut SOP sebenar.</div>';
+}
+document.getElementById('demoChips').addEventListener('click',e=>{ const b=e.target.closest('.dchip'); if(!b) return;
+  demoIdx=+b.dataset.i; demoMode=null; renderDemoChips(); renderDemo(); });
+document.getElementById('demoCard').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+  if(b.dataset.m){ demoMode=b.dataset.m; renderDemo(); return; }
+  if(b.id==='demoCopy'){ copyText(DEMOS[demoIdx].text); return; }
+  if(b.id==='demoUse') openUse(); });
+document.getElementById('demoCard').addEventListener('change',e=>{ if(e.target.id==='demoTheme'){ setTheme(e.target.value); renderDemo(); } });
+
+/* --- Guna contoh pada tugas sebenar --- */
+function useOfficer(){ return state.officers.find(x=>String(x.id)===document.getElementById('useOff').value); }
+function fillUseTasks(){
+  const o=useOfficer(), sel=document.getElementById('useTask');
+  sel.innerHTML = o&&o.rows.length
+    ? o.rows.map((r,i)=>'<option value="'+i+'">'+(i+1)+'. '+(r.proses&&r.proses.trim()?'✓ ':'')+escapeHtml(r.task.length>70?r.task.slice(0,68)+'…':r.task)+'</option>').join('')
+    : '<option value="">(tiada tugas)</option>';
+  updUseWarn();
+}
+function updUseWarn(){ const o=useOfficer(), v=document.getElementById('useTask').value, r=(o&&v!=='')?o.rows[+v]:null;
+  document.getElementById('useWarn').style.display=(r&&r.proses&&r.proses.trim())?'block':'none'; }
+function openUse(){
+  const d=DEMOS[demoIdx];
+  if(!state.officers.length){ toast('Tiada pegawai dalam data'); return; }
+  document.getElementById('useTxt').innerHTML='Contoh: <b>'+escapeHtml(d.title)+'</b><br>Pilih tugas sasaran. Contoh dibuka dalam editor untuk dilaraskan dahulu — data hanya berubah bila anda tekan <b>Simpan</b>.';
+  document.getElementById('useOff').innerHTML=state.officers.map(o=>'<option value="'+o.id+'"'+(o.id===curOffId?' selected':'')+'>'+o.bil+'. '+escapeHtml(o.nama)+'</option>').join('');
+  fillUseTasks(); document.getElementById('useModal').classList.add('open');
+}
+function closeUse(){ document.getElementById('useModal').classList.remove('open'); }
+document.getElementById('useOff').addEventListener('change',fillUseTasks);
+document.getElementById('useTask').addEventListener('change',updUseWarn);
+document.getElementById('useClose').onclick=closeUse;
+document.getElementById('useCancel').onclick=closeUse;
+document.getElementById('useModal').addEventListener('click',e=>{ if(e.target.id==='useModal') closeUse(); });
+document.getElementById('useGo').onclick=()=>{
+  const o=useOfficer(), v=document.getElementById('useTask').value;
+  if(!o||v===''||!o.rows[+v]){ toast('Pilih tugas dahulu'); return; }
+  closeUse(); openCarta(o.id,+v);
+  document.getElementById('cartaInput').value=DEMOS[demoIdx].text;
+  if(cartaIn==='borang') setIn('borang');
+  drawCarta(); toast('Contoh dimuat — laraskan, kemudian tekan Simpan');
+};
+
+/* ================= SLIDE PANDUAN (dalam app) ================= */
+const SL_T={
+  cover:`Terima permohonan
+Permohonan lengkap?
+  Ya → teruskan
+  Tidak → 1
+Proses kelulusan
+Rekod dan failkan`,
+  lurus:`Terima nota mesyuarat
+Draf minit mesyuarat
+Semak dan sahkan draf
+Rekod dan failkan minit`,
+  dec:`Terima borang permohonan
+Borang lengkap?
+  Ya → teruskan
+  Tidak → 1
+Semak baki cuti
+Cuti diluluskan?
+  Ya → teruskan
+  Tidak → tamat
+Maklumkan kepada pemohon`,
+  gelung:`Bentang dalam mesyuarat
+Diluluskan?
+  Ya → teruskan
+  Tidak → 4
+Minit keputusan → tamat
+Pinda cadangan → 1`,
+  rasmi:`Menganalisis situasi
+  - Analisis dalam dan luaran
+  Oleh: TPP, KPPK, KPP
+  Tempoh: 1 minggu
+Mendapat kelulusan PSO?
+  Tidak → 1
+  Oleh: KPPK, KPP
+  Tempoh: 3 hari
+Pemantauan pelan strategik
+  Oleh: KPP, PP
+  Tempoh: 2 kali setahun`,
+  warna:`Semak permohonan
+Peruntukan mencukupi?
+  Tidak → 4
+  Warna: kuning
+Pantau kerja hingga siap → tamat
+  Warna: hijau
+Senarai menunggu
+  Warna: kelabu`
+};
+const slCode=t=>'<pre class="sl-code">'+hlFlow(t)+'</pre>';
+const slSvg=svg=>'<div class="sl-svg">'+svg+'</div>';
+function slMock(){
+  return '<div class="sl-mock"><div class="mk-head"><span>Terima dan semak permohonan…</span><span>×</span></div>'+
+    '<div class="mk-body"><div class="mk-left"><div class="mk-tabs"><b>✎ Teks</b><span>☰ Borang</span></div>'+
+    '<div class="mk-lines"><i style="width:80%"></i><i style="width:55%"></i><i class="s" style="width:42%"></i><i class="s" style="width:38%"></i><i style="width:70%"></i></div>'+
+    '<div class="mk-cap">① Isi di sini</div></div>'+
+    '<div class="mk-right"><div class="mk-tabs"><b>Ringkas</b><span>Rasmi</span></div><div class="mk-flow">'+renderFlow(parseFlow('Terima\nLengkap?\n  Tidak → 1\nRekod')).svg+'</div>'+
+    '<div class="mk-cap">② Pratonton langsung</div></div></div>'+
+    '<div class="mk-foot"><b>Simpan</b><span>? Panduan simbol</span><span class="r">⭳ PNG · ⭳ SVG</span></div></div>';
+}
+function slFormMock(){
+  const chip=(t,on)=>'<span class="mf-chip'+(on?' on':'')+'">'+t+'</span>';
+  return '<div class="sl-fmock"><div class="mf-top"><span class="fnum">2</span><span class="mf-sel">Keputusan ▾</span><span class="mf-ic">↑</span><span class="mf-ic">↓</span><span class="mf-ic del">🗑</span></div>'+
+    '<div class="mf-in">Borang lengkap</div><div class="mf-in mf-soft">Huraian (pilihan)…</div>'+
+    '<div class="mf-2"><div><small>TANGGUNGJAWAB</small><div class="mf-in">KPP, PP</div></div><div><small>TEMPOH MASA</small><div class="mf-in">1 hari</div></div></div>'+
+    '<div class="mf-chips">'+chip('PPN')+chip('TPP')+chip('KPPK')+chip('KPP',1)+chip('PP',1)+chip('PT')+'</div>'+
+    '<div class="mf-chips"><small>WARNA</small><span class="mf-chip">Lalai</span>'+['#FFFF66','#FFD8A8','#FFC4C4','#CFE3FF','#C8F0C8','#E3E6EA'].map((c,i)=>'<span class="mf-sw'+(i===0?' on':'')+'" style="background:'+c+'"></span>').join('')+'</div>'+
+    '<div class="mf-2"><div><small style="color:#0F6E56">YA →</small><div class="mf-in">Langkah bawah ▾</div></div><div><small style="color:#C62828">TIDAK →</small><div class="mf-in">Langkah 1 ▾</div></div></div></div>';
+}
+function slSymbols(){
+  const L=[['process','Proses','Semak dokumen','Lalai'],['decision','Keputusan','Lengkap ?','Hujung ?'],['io','Input / Output','Terima borang','Terima, Hantar, Isi…'],
+           ['document','Dokumen','Laporan projek','Laporan, Surat, Minit…'],['subprocess','Sub-proses','Rujuk SOP','Rujuk, [[ ]]'],['start','Mula / Tamat','MULA','Automatik']];
+  return '<div class="sl-sym">'+L.map(x=>'<div class="sl-symc">'+nodePreview({type:x[0],text:x[2]}).svg+'<b>'+x[1]+'</b><small>'+x[3]+'</small></div>').join('')+'</div>';
+}
+function slStatus(){
+  let tot=0, ada=0; state.officers.forEach(o=>o.rows.forEach(r=>{ tot++; if(r.proses&&r.proses.trim()) ada++; }));
+  const pct=tot?Math.round(ada/tot*100):0;
+  return '<div class="sl-stat"><div class="sl-statn">'+ada+' <span>/ '+tot+'</span></div><div class="sl-statl">tugas sudah ada carta alir</div>'+
+    '<div class="sl-statbar"><i style="width:'+pct+'%"></i></div><div class="sl-statl">'+pct+'% lengkap · selebihnya dipapar “Belum ada carta alir” dalam PDF</div></div>'+
+    '<div class="sl-tiles"><div><b>PNG / SVG</b><small>Satu carta, dari editor</small></div><div><b>PDF semua</b><small>Ringkasan + matriks + semua carta</small></div><div><b>PDF pegawai</b><small>Tugas & carta seorang pegawai</small></div></div>';
+}
+const SLIDES=[
+ {cover:1,k:'Panduan pengguna · S4PD JPN Kedah',t:'Membina carta alir untuk setiap tugas',
+  b:'<p>Tulis langkah kerja dalam ayat biasa — satu baris, satu langkah. App melukis carta alir secara automatik, lengkap dengan cabang keputusan, patah balik dan format rasmi 4 lajur.</p><p class="sl-hint">Guna ← → atau leret untuk bertukar slide</p>',
+  v:()=>slSvg(renderFlow(parseFlow(SL_T.cover)).svg)},
+ {k:'Langkah 1',t:'Di mana bermula',
+  b:'<ol><li>Buka tab <b>Ikut Pegawai</b> dan pilih nama pegawai.</li><li>Tekan <b>ikon carta alir</b> di hujung tugas — atau klik terus teks tugas.</li><li>Editor dibuka: <b>kiri</b> untuk mengisi, <b>kanan</b> pratonton langsung.</li><li>Tekan <b>Simpan</b>. Ikon bertukar warna bila tugas sudah ada carta.</li></ol>',
+  v:slMock},
+ {k:'Asas',t:'Enam simbol, dikesan automatik',
+  b:'<p>App membaca <b>perkataan pertama</b> setiap ayat untuk memilih simbol. Tak perlu melukis apa-apa.</p><p>Mahu simbol lain? Paksa dengan tag <code>[D]</code>, <code>[IO]</code>, <code>[S]</code>, <code>[P]</code> — atau pilih jenis dalam tab Borang.</p>',
+  v:slSymbols},
+ {k:'Asas',t:'Satu baris, satu langkah',
+  b:'<p>Tulis setiap langkah dalam baris sendiri, mengikut turutan kerja.</p><ul><li><b>MULA</b> dan <b>TAMAT</b> ditambah automatik</li><li>Setiap langkah <b>dinombor</b> — nombor ini dirujuk untuk cabang</li><li>Pratonton dikemas kini setiap kali anda menaip</li></ul>'+slCode(SL_T.lurus),
+  v:()=>slSvg(renderFlow(parseFlow(SL_T.lurus)).svg)},
+ {k:'Cabang',t:'Keputusan & patah balik',
+  b:'<p>Akhiri soalan dengan <code>?</code> (atau awali dengan <code>[?]</code>). Di bawahnya, tulis ke mana setiap jawapan pergi:</p><ul><li><code>Ya → teruskan</code> — ke langkah bawah</li><li><code>Tidak → 1</code> — <b>patah balik</b> ke langkah 1</li><li><code>Tidak → tamat</code> — terus ke TAMAT</li></ul>'+slCode(SL_T.dec),
+  v:()=>slSvg(renderFlow(parseFlow(SL_T.dec)).svg)},
+ {k:'Cabang',t:'Lompat & gelung dari langkah biasa',
+  b:'<p>Langkah biasa juga boleh ubah hala — letak anak panah di hujung ayat:</p><ul><li><code>Pinda cadangan → 1</code> — gelung balik</li><li><code>Minit keputusan → tamat</code> — terus tamat</li><li>Garis cabang dilukis di tepi, jadi aliran utama kekal lurus dan kemas</li></ul>'+slCode(SL_T.gelung),
+  v:()=>slSvg(renderFlow(parseFlow(SL_T.gelung)).svg)},
+ {k:'Format rasmi',t:'Tanggungjawab · Proses Kerja · Tempoh Masa',
+  b:'<p>Tambah sub-baris di bawah mana-mana langkah untuk format Manual Prosedur Kerja:</p><ul><li><code>- huraian</code> → teks di bawah tajuk langkah</li><li><code>Oleh: KPP, PP</code> → lajur Tanggungjawab</li><li><code>Tempoh: 1 minggu</code> → lajur Tempoh Masa</li></ul><p>Togol <b>Ringkas / Rasmi</b> di atas pratonton.</p>'+slCode(SL_T.rasmi),
+  v:()=>slSvg(renderFlowRasmi(parseFlow(SL_T.rasmi)).svg)},
+ {k:'Tanpa sintaks',t:'Tab Borang — isi macam borang',
+  b:'<ul><li>Pilih <b>jenis simbol</b> daripada senarai</li><li>Ketik <b>cip peranan</b>: PPN, TPP, KPPK, KPP, PP, PT</li><li>Pilih <b>Ya → / Tidak →</b> daripada menu</li><li><b>↑ ↓</b> untuk susun semula — nombor rujukan patah balik dikemas kini sendiri</li></ul><p>Teks dan Borang sentiasa selari. Tukar bila-bila masa.</p>',
+  v:slFormMock},
+ {k:'Tonjolkan',t:'Warna untuk langkah penting',
+  b:'<p>Tambah <code>Warna: kuning</code> di bawah langkah — atau ketik swatch dalam Borang. Sesuai untuk titik kelulusan atau hasil akhir.</p><ul><li>Tema keseluruhan: Identiti app, Rasmi kuning, Hitam putih</li><li>Warna per simbol mengatasi tema</li><li>Warna gelap → teks automatik putih</li></ul>'+slCode(SL_T.warna),
+  v:()=>slSvg(renderFlowRasmi(parseFlow(SL_T.warna)).svg)},
+ {k:'Hasil',t:'Eksport & PDF',
+  b:'<ul><li>Editor: muat turun <b>PNG</b> atau <b>SVG</b></li><li>Mod <b>Sunting</b>: <b>⬇ PDF semua</b> atau <b>⬇ PDF pegawai ini</b></li><li>Pilih format <b>Ringkas / Rasmi</b> dan warna sebelum jana</li><li>Dalam dialog cetak, pilih <b>Simpan sebagai PDF</b> dan tandakan <b>Background graphics</b></li></ul>',
+  v:slStatus},
+ {cover:1,k:'Mula sekarang',t:'Lima langkah ke carta pertama anda',
+  b:'<ol><li>Buka tab <b>Demo Carta Alir</b></li><li>Pilih contoh paling hampir dengan tugas anda</li><li>Tekan <b>Guna contoh ini</b> dan pilih tugas</li><li>Laraskan langkah, tanggungjawab & tempoh</li><li>Tekan <b>Simpan</b> ✓</li></ol>',
+  v:()=>slSvg(renderFlowRasmi(parseFlow(DEMOS[4].text),{header:true,aktiviti:5,title:DEMOS[4].title}).svg)}
+];
+let slIdx=0;
+function renderSlide(){
+  const s=SLIDES[slIdx], stage=document.getElementById('slStage');
+  stage.innerHTML='<div class="sl-slide'+(s.cover?' cover':'')+(s.v?'':' novis')+'"><div class="sl-text"><div class="sl-kick">'+s.k+'</div><h2>'+s.t+'</h2>'+s.b+'</div>'+(s.v?'<div class="sl-vis">'+s.v()+'</div>':'')+'</div>';
+  stage.scrollTop=0;
+  document.getElementById('slCount').textContent=(slIdx+1)+' / '+SLIDES.length;
+  document.getElementById('slDots').innerHTML=SLIDES.map((x,i)=>'<button data-i="'+i+'" class="'+(i===slIdx?'on':'')+'" aria-label="Slide '+(i+1)+'"></button>').join('');
+  document.getElementById('slPrev').disabled=slIdx===0;
+  document.getElementById('slNext').textContent=slIdx===SLIDES.length-1?'Lihat demo ✓':'Seterusnya ›';
+}
+function openSlides(i){ slIdx=i||0; renderSlide(); document.getElementById('slideModal').classList.add('open'); }
+function closeSlides(){ document.getElementById('slideModal').classList.remove('open');
+  if(document.fullscreenElement&&document.exitFullscreen) document.exitFullscreen().catch(()=>{}); }
+function slGo(d){ const n=slIdx+d;
+  if(n>=SLIDES.length){ closeSlides(); const t=document.querySelector('.tab[data-p=demo]'); if(t) t.click(); return; }
+  if(n<0) return; slIdx=n; renderSlide(); }
+document.getElementById('btnSlides').onclick=()=>openSlides(0);
+document.getElementById('slPrev').onclick=()=>slGo(-1);
+document.getElementById('slNext').onclick=()=>slGo(1);
+document.getElementById('slClose').onclick=closeSlides;
+document.getElementById('slDots').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; slIdx=+b.dataset.i; renderSlide(); });
+document.getElementById('slFs').onclick=()=>{ const el=document.getElementById('slideModal');
+  if(document.fullscreenElement){ document.exitFullscreen&&document.exitFullscreen().catch(()=>{}); }
+  else if(el.requestFullscreen){ el.requestFullscreen().catch(()=>toast('Skrin penuh tidak disokong di sini')); }
+  else toast('Skrin penuh tidak disokong di sini'); };
+document.addEventListener('keydown',e=>{ if(!document.getElementById('slideModal').classList.contains('open')) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){ e.preventDefault(); slGo(1); }
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); slGo(-1); }
+  else if(e.key==='Escape') closeSlides(); });
+(function(){ let x0=null,y0=null; const st=document.getElementById('slStage');
+  st.addEventListener('touchstart',e=>{ x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+  st.addEventListener('touchend',e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5) slGo(dx<0?1:-1); x0=null; },{passive:true}); })();
+
+renderDemoChips(); renderDemo();
+
 </script>
 </body>
 </html>
