@@ -1,5 +1,5 @@
 /* Agihan Tugas S4PD — Service Worker (cache berversi) */
-const CACHE = 's4pd-v1';                 // naikkan versi (v2, v3…) setiap kali kemas kini fail
+const CACHE = 's4pd-v4';                 // naikkan versi (v2, v3…) setiap kali kemas kini fail
 const ASSETS = ['./', './index.html'];   // laman utama
 
 self.addEventListener('install', e => {
